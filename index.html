@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SunnyToolsPro — Live Widgets Demo</title>
+<link rel="stylesheet" href="tokens.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" />
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem("stp-theme") || "system";
+    var dark = saved === "dark" || (saved === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+  } catch (_) {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+})();
+</script>
+<style>
+/* Hallmark · macrostructure: Bento Grid · tone: restrained premium · anchor hue: warm copper
+ * nav: N3 Side-rail · footer: Ft2 · theme: Coral · genre: modern-minimal */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  line-height: 1.6;
+  font-size: var(--text-base);
+}
+h1, h2, h3 { font-style: normal; }
+h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  font-size: var(--text-display);
+  margin: 0;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  font-size: var(--text-lg);
+  margin: 0;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+p { margin: 0; }
+button { font-family: var(--font-body); }
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ——— Demo strip ——— */
+.demo-strip {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-size: var(--text-sm);
+  padding: var(--space-sm) var(--space-md);
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.demo-strip strong { font-weight: 600; }
+.demo-strip span { opacity: 0.72; }
+
+/* ——— Shell: rail + main ——— */
+.shell { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); min-height: calc(100vh - 41px); }
+.shell.is-collapsed { grid-template-columns: var(--rail-w-collapsed) minmax(0, 1fr); }
+
+/* ——— N3 side rail ——— */
+.rail {
+  border-right: 1px solid var(--color-rule);
+  background: var(--color-card);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 41px);
+}
+.rail-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-md);
+  border-bottom: 1px solid var(--color-rule);
+  min-height: 4.25rem;
+}
+.brand-mark {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: var(--color-accent);
+  color: var(--color-card);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-outlier);
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+.wordmark {
+  font-family: var(--font-outlier);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.wordmark small { display: block; font-weight: 500; color: var(--color-neutral); font-size: var(--text-xs); }
+.rail nav { padding: var(--space-sm); display: flex; flex-direction: column; gap: 2px; }
+.nav-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-neutral);
+  padding: var(--space-sm) var(--space-sm) var(--space-xs);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink-soft);
+  font-size: var(--text-base);
+  font-weight: 500;
+  padding: 0.625rem var(--space-sm);
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  text-align: left;
+  min-height: 44px;
+}
+.nav-item svg { flex: none; width: 1.25rem; height: 1.25rem; }
+.nav-item:hover { background: var(--color-paper-2); color: var(--color-ink); }
+.nav-item[aria-current="page"] { background: var(--color-accent-soft); color: var(--color-accent-deep); font-weight: 600; }
+.nav-item[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--color-accent);
+}
+.nav-item .nav-text { overflow: hidden; text-overflow: ellipsis; }
+.rail-foot {
+  margin-top: auto;
+  padding: var(--space-sm);
+  border-top: 1px solid var(--color-rule);
+}
+.collapse-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  border: 1px solid var(--color-rule);
+  background: var(--color-paper);
+  color: var(--color-muted);
+  border-radius: 8px;
+  padding: 0.625rem var(--space-sm);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px;
+}
+.collapse-btn:hover { border-color: var(--color-rule-strong); color: var(--color-ink); }
+.collapse-btn svg { flex: none; width: 1.1rem; height: 1.1rem; transition: transform var(--dur-2) var(--ease-out); }
+.shell.is-collapsed .collapse-btn svg { transform: rotate(180deg); }
+.shell.is-collapsed .wordmark,
+.shell.is-collapsed .nav-label,
+.shell.is-collapsed .nav-item .nav-text,
+.shell.is-collapsed .collapse-btn .collapse-text { display: none; }
+.shell.is-collapsed .nav-item,
+.shell.is-collapsed .collapse-btn { justify-content: center; }
+.shell.is-collapsed .rail-brand { justify-content: center; padding-inline: var(--space-sm); }
+
+/* ——— Main column ——— */
+.main { min-width: 0; display: flex; flex-direction: column; }
+.topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-xl) var(--space-xl) 0;
+  flex-wrap: wrap;
+}
+.topbar .kicker { font-size: var(--text-sm); color: var(--color-neutral); margin-bottom: var(--space-xs); }
+.topbar .lede { color: var(--color-muted); font-size: var(--text-base); max-width: 62ch; margin-top: var(--space-sm); }
+.topbar-right { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-sm); flex: none; }
+
+/* ——— Theme switch ——— */
+.theme-switch {
+  display: inline-flex;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  background: var(--color-card);
+  gap: 2px;
+}
+.theme-switch button {
+  border: 0;
+  background: transparent;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.theme-switch button svg { width: 0.95rem; height: 0.95rem; }
+.theme-switch button[aria-pressed="true"] { background: var(--color-ink); color: var(--color-paper); }
+.theme-switch button:hover:not([aria-pressed="true"]) { color: var(--color-ink); }
+
+.clock { text-align: right; }
+.clock time {
+  font-family: var(--font-outlier);
+  font-weight: 600;
+  font-size: var(--text-md);
+  font-variant-numeric: tabular-nums;
+  display: block;
+}
+.clock span { font-size: var(--text-sm); color: var(--color-neutral); display: block; }
+
+.content { padding: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-xl); max-width: 72rem; width: 100%; margin-inline: auto; }
+
+/* ——— Welcome ——— */
+.welcome {
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-card);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.welcome .hello {
+  font-family: var(--font-outlier);
+  font-size: var(--text-sm);
+  color: var(--color-accent-deep);
+  font-weight: 600;
+}
+.welcome h2 { font-size: var(--text-xl); }
+.welcome p { color: var(--color-muted); max-width: 64ch; }
+
+/* ——— Service cards ——— */
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); }
+.cell {
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.cell .icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent-deep);
+  display: grid;
+  place-items: center;
+}
+.cell .icon svg { width: 1.35rem; height: 1.35rem; }
+.cell h2 { font-size: var(--text-md); }
+.cell .note { font-size: var(--text-base); color: var(--color-muted); }
+.link-more {
+  margin-top: auto;
+  padding-top: var(--space-sm);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-accent-deep);
+  background: none;
+  border: 0;
+  padding-left: 0;
+  padding-right: 0;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  width: fit-content;
+}
+.link-more:hover { text-decoration-thickness: 2px; }
+
+/* ——— Service detail ——— */
+.service { display: flex; flex-direction: column; gap: var(--space-md); }
+.service-head h2 { font-size: var(--text-xl); }
+.service-head p { color: var(--color-muted); font-size: var(--text-base); max-width: 60ch; margin-top: var(--space-xs); }
+.panel {
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-card);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.readout {
+  font-family: var(--font-outlier);
+  font-weight: 600;
+  font-size: var(--text-display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.readout small { font-size: var(--text-lg); font-weight: 500; color: var(--color-neutral); font-family: var(--font-body); }
+.readout.is-loading, .result-line strong.is-loading { animation: pulse-soft 1.1s var(--ease-out) infinite; }
+@keyframes pulse-soft { 50% { opacity: 0.4; } }
+.sub-line { color: var(--color-muted); font-size: var(--text-base); }
+.status {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+  border-radius: 8px;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-rule);
+  background: var(--color-paper-2);
+  color: var(--color-muted);
+  line-height: 1.55;
+}
+.status .dot { flex: none; width: 0.55rem; height: 0.55rem; border-radius: 50%; margin-top: 0.4rem; background: var(--color-wait); }
+.status.is-ok { background: var(--color-ok-soft); border-color: var(--color-ok); color: var(--color-ink-soft); }
+.status.is-ok .dot { background: var(--color-ok); }
+.status.is-error { background: var(--color-bad-soft); border-color: var(--color-bad); color: var(--color-ink-soft); }
+.status.is-error .dot { background: var(--color-bad); }
+
+/* ——— Forms + live suggestions ——— */
+.field label { display: block; font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-xs); }
+.field input, .field select {
+  font-size: var(--text-base);
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 8px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  min-height: 44px;
+}
+.field input { width: 100%; max-width: 22rem; font-family: var(--font-outlier); font-variant-numeric: tabular-nums; font-size: var(--text-md); }
+.field select { width: 100%; }
+.field input:focus, .field select:focus, .search-box input:focus { outline: 2px solid var(--color-focus); outline-offset: 1px; border-color: var(--color-focus); }
+.fx-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-md); }
+.swap-btn {
+  align-self: end;
+  border: 1px solid var(--color-rule-strong);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border-radius: 8px;
+  min-height: 44px;
+  min-width: 44px;
+  font-size: var(--text-lg);
+  cursor: pointer;
+}
+.swap-btn:hover { border-color: var(--color-ink); }
+.result-line {
+  border-top: 1px solid var(--color-rule);
+  padding-top: var(--space-md);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+.result-line strong {
+  font-family: var(--font-outlier);
+  font-weight: 600;
+  font-size: var(--text-xl);
+  font-variant-numeric: tabular-nums;
+}
+.result-line span { font-size: var(--text-sm); color: var(--color-muted); }
+.search-box { position: relative; max-width: 26rem; }
+.search-box input {
+  width: 100%;
+  font-size: var(--text-base);
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 8px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  min-height: 44px;
+}
+.suggest-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: var(--color-card);
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 8px;
+  z-index: 20;
+  max-height: 16rem;
+  overflow-y: auto;
+}
+.suggest-list[hidden] { display: none; }
+.suggest-list button {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-sm);
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink-soft);
+  border-radius: 6px;
+  padding: 0.6rem 0.7rem;
+  font-size: var(--text-base);
+  cursor: pointer;
+  text-align: left;
+  min-height: 44px;
+}
+.suggest-list button:hover, .suggest-list button.is-active { background: var(--color-accent-soft); color: var(--color-accent-deep); }
+.suggest-list button small { color: var(--color-neutral); font-family: var(--font-outlier); font-size: var(--text-sm); flex: none; }
+.suggest-hint { font-size: var(--text-sm); color: var(--color-neutral); padding: 0.5rem 0.7rem; }
+.btn {
+  border: 1px solid var(--color-rule-strong);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border-radius: var(--radius-pill);
+  padding: 0.6rem 1.25rem;
+  font-size: var(--text-base);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+}
+.btn:hover { border-color: var(--color-ink); }
+.btn:active { transform: translateY(1px); }
+.meta { font-size: var(--text-sm); color: var(--color-neutral); overflow-wrap: anywhere; }
+
+/* ——— Ft2 inline footer ——— */
+.foot-line {
+  margin-top: auto;
+  border-top: 1px solid var(--color-rule);
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--text-sm);
+  color: var(--color-neutral);
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.foot-line strong { font-family: var(--font-outlier); font-weight: 600; color: var(--color-muted); }
+.foot-line .sep { opacity: 0.5; }
+
+/* ——— View switch ——— */
+[data-view-panel][hidden] { display: none; }
+[data-view-panel]:not([hidden]) { animation: view-in var(--dur-1) var(--ease-out); }
+@keyframes view-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* ——— Below 60rem ——— */
+@media (max-width: 60rem) {
+  .shell, .shell.is-collapsed { grid-template-columns: minmax(0, 1fr); }
+  .rail { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--color-rule); }
+  .rail nav { flex-direction: row; overflow-x: auto; padding: var(--space-sm) var(--space-md); }
+  .nav-label { display: none; }
+  .nav-item { width: auto; flex: none; }
+  .nav-item[aria-current="page"]::before { display: none; }
+  .rail-foot { display: none; }
+  .shell.is-collapsed .wordmark,
+  .shell.is-collapsed .nav-item .nav-text { display: block; }
+  .topbar, .content { padding-inline: var(--space-md); }
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .fx-grid { grid-template-columns: minmax(0, 1fr); }
+  .topbar-right { align-items: flex-start; }
+  .clock { text-align: left; }
+}
+/* ——— Below 40rem ——— */
+@media (max-width: 40rem) {
+  h1 { font-size: var(--text-2xl); }
+  .topbar { flex-direction: column; align-items: flex-start; }
+  .panel, .welcome { padding: var(--space-lg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-strip"><strong>Demo Preview</strong> <span>— live demo board</span></div>
+
+<div class="shell" id="shell">
+  <!-- N3 side rail -->
+  <aside class="rail" aria-label="Services">
+    <div class="rail-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="wordmark">SunnyToolsPro<small>Live demo</small></span>
+    </div>
+    <nav aria-label="Services">
+      <span class="nav-label" aria-hidden="true">Menu</span>
+      <button class="nav-item" data-nav="home" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/></svg>
+        <span class="nav-text">Home</span>
+      </button>
+      <button class="nav-item" data-nav="weather" aria-current="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+        <span class="nav-text">Weather</span>
+      </button>
+      <button class="nav-item" data-nav="fx" aria-current="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 9h13l-3-3M20 15H7l3 3"/></svg>
+        <span class="nav-text">Currency</span>
+      </button>
+      <button class="nav-item" data-nav="gold" aria-current="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M7 10h10l3 7H4l3-7z"/><path d="M9.5 10V6.5h5V10"/></svg>
+        <span class="nav-text">Gold 24K</span>
+      </button>
+      <button class="nav-item" data-nav="time" aria-current="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+        <span class="nav-text">World time</span>
+      </button>
+    </nav>
+    <div class="rail-foot">
+      <button class="collapse-btn" id="collapseBtn" aria-expanded="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg>
+        <span class="collapse-text">Collapse menu</span>
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <p class="kicker" id="viewKicker">Home</p>
+        <h1 id="viewTitle">Welcome</h1>
+        <p class="lede" id="viewLede">Four live services in one calm board — world weather, any-to-any currency, gold per gram anywhere, and the time anywhere.</p>
+      </div>
+      <div class="topbar-right">
+        <div class="theme-switch" role="group" aria-label="Appearance">
+          <button data-theme-pick="light" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+            Light
+          </button>
+          <button data-theme-pick="dark" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13.5A8 8 0 0 1 10.5 4 8 8 0 1 0 20 13.5z"/></svg>
+            Dark
+          </button>
+          <button data-theme-pick="system" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20.5h6"/></svg>
+            Auto
+          </button>
+        </div>
+        <div class="clock" aria-live="off">
+          <time id="userTime">--:--</time>
+          <span id="userTz">Your time</span>
+          <span id="uaeTime">Dubai --:--</span>
+          <span id="hijriDate">Loading Hijri date…</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <!-- Home -->
+      <section data-view-panel="home" aria-label="Home">
+        <div class="welcome">
+          <span class="hello" id="greeting">Welcome</span>
+          <h2 id="welcomeTitle">Your live board is ready.</h2>
+          <p>This demo carries four services. Each one refreshes itself in the background — there is nothing to press and nothing to configure. Pick a service from the menu to begin.</p>
+        </div>
+        <div class="cards">
+          <article class="cell">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg></span>
+            <h2>Weather</h2>
+            <p class="note">Live conditions for any city on earth. Start typing and pick from suggestions — temperature, sky, and local observation time.</p>
+            <button class="link-more" data-goto="weather">Open weather →</button>
+          </article>
+          <article class="cell">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 9h13l-3-3M20 15H7l3 3"/></svg></span>
+            <h2>Currency</h2>
+            <p class="note">Convert any currency into any other at the live rate. Type an amount, pick both sides — the figure updates as you type.</p>
+            <button class="link-more" data-goto="fx">Open converter →</button>
+          </article>
+          <article class="cell">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M7 10h10l3 7H4l3-7z"/><path d="M9.5 10V6.5h5V10"/></svg></span>
+            <h2>Gold 24K</h2>
+            <p class="note">Type any country or city — the 24-karat price per gram appears in that place's own currency, refreshed every minute.</p>
+            <button class="link-more" data-goto="gold">Open gold price →</button>
+          </article>
+          <article class="cell">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+            <h2>World time</h2>
+            <p class="note">The exact time in any city on earth. Start typing, pick a place — a live clock with date and offset follows.</p>
+            <button class="link-more" data-goto="time">Open world time →</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- Weather -->
+      <section class="service" data-view-panel="weather" aria-label="Weather" hidden>
+        <div class="service-head">
+          <h2>Weather</h2>
+          <p id="weatherPlace">Sharjah, United Arab Emirates</p>
+        </div>
+        <div class="panel">
+          <div class="search-box">
+            <input type="search" id="placeSearch" placeholder="Type any city — Lon…" aria-label="Search any city" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="placeSuggest" />
+            <ul class="suggest-list" id="placeSuggest" role="listbox" hidden></ul>
+          </div>
+          <p class="readout" id="weatherTemp">— <small>°C</small></p>
+          <p class="sub-line" id="weatherDesc">Loading…</p>
+          <p class="status" id="weatherStatus"><span class="dot" aria-hidden="true"></span><span>Loading…</span></p>
+          <p class="meta" id="weatherTime"></p>
+        </div>
+      </section>
+
+      <!-- Converter -->
+      <section class="service" data-view-panel="fx" aria-label="Currency converter" hidden>
+        <div class="service-head">
+          <h2>Currency converter</h2>
+          <p>Any currency to any currency, at the live rate. Figures refresh on their own.</p>
+        </div>
+        <div class="panel">
+          <div class="field">
+            <label for="fxAmount">Amount</label>
+            <input type="number" id="fxAmount" value="100" min="0" step="any" inputmode="decimal" />
+          </div>
+          <div class="fx-grid">
+            <div class="field">
+              <label for="fxFrom">From</label>
+              <select id="fxFrom"></select>
+            </div>
+            <div class="field">
+              <label for="fxTo">To</label>
+              <select id="fxTo"></select>
+            </div>
+          </div>
+          <div class="btn-row" style="display:flex;gap:var(--space-sm)"><button class="btn" id="fxSwap" aria-label="Swap currencies">⇄ Swap</button></div>
+          <div class="result-line">
+            <strong id="fxResult">—</strong>
+            <span id="fxRate">Loading rate…</span>
+          </div>
+          <p class="status" id="fxStatus"><span class="dot" aria-hidden="true"></span><span>Loading…</span></p>
+        </div>
+      </section>
+
+      <!-- Gold -->
+      <section class="service" data-view-panel="gold" aria-label="Gold 24K price" hidden>
+        <div class="service-head">
+          <h2>Gold 24K</h2>
+          <p id="goldPlace">United Arab Emirates · AED</p>
+        </div>
+        <div class="panel">
+          <div class="search-box">
+            <input type="search" id="goldSearch" placeholder="Type a country or city — Ind…" aria-label="Search a country or city for gold price" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="goldSuggest" />
+            <ul class="suggest-list" id="goldSuggest" role="listbox" hidden></ul>
+          </div>
+          <p class="readout" id="goldPrice">— <small>AED / g</small></p>
+          <p class="sub-line" id="goldMeta">Loading…</p>
+          <p class="status" id="goldStatus"><span class="dot" aria-hidden="true"></span><span>Loading…</span></p>
+          <p class="meta" id="goldTime"></p>
+        </div>
+      </section>
+
+      <!-- World time -->
+      <section class="service" data-view-panel="time" aria-label="World time" hidden>
+        <div class="service-head">
+          <h2>World time</h2>
+          <p id="timePlace">Dubai, United Arab Emirates</p>
+        </div>
+        <div class="panel">
+          <div class="search-box">
+            <input type="search" id="timeSearch" placeholder="Type any city — Tok…" aria-label="Search any city for local time" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="timeSuggest" />
+            <ul class="suggest-list" id="timeSuggest" role="listbox" hidden></ul>
+          </div>
+          <p class="readout" id="timeClock">--:--:--</p>
+          <p class="sub-line" id="timeDate">Loading…</p>
+          <p class="status" id="timeStatus"><span class="dot" aria-hidden="true"></span><span>Live — ticks every second.</span></p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Ft2 inline footer -->
+    <footer class="foot-line">
+      <strong>SunnyToolsPro</strong><span class="sep">·</span>
+      <span>Demo preview</span><span class="sep">·</span>
+      <span>© 2026</span>
+    </footer>
+  </div>
+</div>
+
+<script>
+var $ = function (id) { return document.getElementById(id); };
+
+/* ——— View switching + rail collapse ——— */
+var TITLES = {
+  home: ["Home", "Welcome", "Four live services in one calm board — world weather, any-to-any currency, gold per gram anywhere, and the time anywhere."],
+  weather: ["Service · Weather", "Weather", "Live conditions for any city on earth — start typing and pick a suggestion."],
+  fx: ["Service · Currency", "Currency converter", "Any currency to any currency, at the live rate. Figures refresh on their own."],
+  gold: ["Service · Metals", "Gold 24K", "Type any country or city — the per-gram price appears in local currency."],
+  time: ["Service · Clocks", "World time", "The exact time anywhere on earth — type a city and pick a suggestion."]
+};
+function showView(name) {
+  var panels = document.querySelectorAll("[data-view-panel]");
+  for (var i = 0; i < panels.length; i++) {
+    panels[i].hidden = panels[i].getAttribute("data-view-panel") !== name;
+  }
+  var items = document.querySelectorAll("[data-nav]");
+  for (var j = 0; j < items.length; j++) {
+    items[j].setAttribute("aria-current", items[j].getAttribute("data-nav") === name ? "page" : "false");
+  }
+  $("viewKicker").textContent = TITLES[name][0];
+  $("viewTitle").textContent = TITLES[name][1];
+  $("viewLede").textContent = TITLES[name][2];
+}
+(function initNav() {
+  var items = document.querySelectorAll("[data-nav]");
+  for (var i = 0; i < items.length; i++) {
+    items[i].addEventListener("click", function () { showView(this.getAttribute("data-nav")); });
+  }
+  var links = document.querySelectorAll("[data-goto]");
+  for (var k = 0; k < links.length; k++) {
+    links[k].addEventListener("click", function () { showView(this.getAttribute("data-goto")); });
+  }
+  $("collapseBtn").addEventListener("click", function () {
+    var collapsed = $("shell").classList.toggle("is-collapsed");
+    this.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    this.querySelector(".collapse-text").textContent = collapsed ? "Expand menu" : "Collapse menu";
+  });
+})();
+
+/* ——— Appearance: light / dark / system ——— */
+function applyThemeSetting(setting) {
+  var dark = setting === "dark" ||
+    (setting === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+  var btns = document.querySelectorAll("[data-theme-pick]");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].setAttribute("aria-pressed", btns[i].getAttribute("data-theme-pick") === setting ? "true" : "false");
+  }
+  try { localStorage.setItem("stp-theme", setting); } catch (_) {}
+}
+(function initTheme() {
+  var saved = "system";
+  try { saved = localStorage.getItem("stp-theme") || "system"; } catch (_) {}
+  if (["light", "dark", "system"].indexOf(saved) === -1) saved = "system";
+  applyThemeSetting(saved);
+  var btns = document.querySelectorAll("[data-theme-pick]");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function () { applyThemeSetting(this.getAttribute("data-theme-pick")); });
+  }
+  try {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
+      var cur = "system";
+      try { cur = localStorage.getItem("stp-theme") || "system"; } catch (_) {}
+      if (cur === "system") applyThemeSetting("system");
+    });
+  } catch (_) {}
+})();
+
+/* ——— Same-origin data layer (provider details stay server-side) ——— */
+function api(path) {
+  return fetch(path, { cache: "no-store" }).then(function (res) {
+    if (!res.ok) throw new Error("request failed");
+    return res.json();
+  }).then(function (data) {
+    if (data && data.error) throw new Error("unavailable");
+    return data;
+  });
+}
+function setStatus(el, kind, msg) {
+  el.className = "status" + (kind ? " " + kind : "");
+  el.innerHTML = '<span class="dot" aria-hidden="true"></span><span></span>';
+  el.lastChild.textContent = msg;
+}
+function debounce(fn, ms) {
+  var t = null;
+  return function () {
+    var args = arguments, self = this;
+    if (t) clearTimeout(t);
+    t = setTimeout(function () { fn.apply(self, args); }, ms);
+  };
+}
+/* Live suggestions: type → list → pick. Shared by weather, gold, time. */
+function attachSuggest(input, list, onPick) {
+  function close() {
+    list.innerHTML = "";
+    list.hidden = true;
+    input.setAttribute("aria-expanded", "false");
+  }
+  function render(places, note) {
+    list.innerHTML = "";
+    if (note) {
+      var li = document.createElement("li");
+      li.className = "suggest-hint";
+      li.textContent = note;
+      list.appendChild(li);
+    }
+    places.forEach(function (p) {
+      var li = document.createElement("li");
+      li.setAttribute("role", "option");
+      var b = document.createElement("button");
+      b.type = "button";
+      var label = document.createElement("span");
+      label.textContent = p.name + (p.country ? ", " + p.country : "");
+      var sub = document.createElement("small");
+      var bits = [];
+      if (p.region) bits.push(p.region);
+      if (p.tz) bits.push(p.tz);
+      sub.textContent = bits.join(" · ");
+      b.appendChild(label);
+      b.appendChild(sub);
+      b.addEventListener("mousedown", function (e) {
+        e.preventDefault();
+        close();
+        input.value = "";
+        onPick(p);
+      });
+      li.appendChild(b);
+      list.appendChild(li);
+    });
+    list.hidden = false;
+    input.setAttribute("aria-expanded", "true");
+  }
+  var lookup = debounce(function () {
+    var q = input.value.trim();
+    if (q.length < 2) { close(); return; }
+    api("/api/geocode?q=" + encodeURIComponent(q)).then(function (d) {
+      if (input.value.trim().length < 2) return;
+      if (!d.places || !d.places.length) render([], "No matches — keep typing.");
+      else render(d.places.slice(0, 6));
+    }).catch(function () { render([], "Suggestions unavailable — keep typing."); });
+  }, 280);
+  input.addEventListener("input", lookup);
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { close(); input.blur(); }
+    if (e.key === "Enter") {
+      var first = list.querySelector("button");
+      if (first) { e.preventDefault(); first.dispatchEvent(new Event("mousedown", { cancelable: true })); }
+    }
+  });
+  input.addEventListener("blur", function () { setTimeout(close, 120); });
+}
+function wmoToText(code) {
+  var m = { 0: "Clear sky", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast",
+    45: "Fog", 48: "Icy fog", 51: "Light drizzle", 53: "Drizzle", 55: "Heavy drizzle",
+    61: "Light rain", 63: "Rain", 65: "Heavy rain",
+    71: "Light snow", 73: "Snow", 75: "Heavy snow",
+    80: "Light showers", 81: "Showers", 82: "Violent showers",
+    95: "Thunderstorm", 96: "Storm with hail", 99: "Storm with hail" };
+  return m[code] !== undefined ? m[code] : "Condition " + code;
+}
+function paintFigure(el, value, unit) {
+  el.innerHTML = "";
+  el.appendChild(document.createTextNode(value + " "));
+  var u = document.createElement("small");
+  u.textContent = unit;
+  el.appendChild(u);
+}
+/* While a figure has never loaded, show a pulsing "--" until data arrives. */
+function beginLoad(el, unit) {
+  if (!el.dataset.loaded) { paintFigure(el, "--", unit); el.classList.add("is-loading"); }
+}
+function endLoad(el) {
+  el.classList.remove("is-loading");
+  el.dataset.loaded = "1";
+}
+
+/* ——— Clocks: user timezone + Dubai + Hijri + world-time view ——— */
+var userTz = "local time";
+try { userTz = Intl.DateTimeFormat().resolvedOptions().timeZone || "local time"; } catch (_) {}
+var timePlace = { name: "Dubai", country: "United Arab Emirates", tz: "Asia/Dubai" };
+function fmtInZone(date, tz, opts) {
+  var o = { timeZone: tz };
+  for (var k in opts) o[k] = opts[k];
+  return new Intl.DateTimeFormat("en-GB", o).format(date);
+}
+function tickClock() {
+  var now = new Date();
+  var h = now.getHours();
+  var greet = h < 5 ? "Good night" : h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening";
+  $("greeting").textContent = greet + " — welcome to SunnyToolsPro.";
+  try {
+    $("userTime").textContent = fmtInZone(now, undefined, { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
+  } catch (_) {
+    try { $("userTime").textContent = now.toLocaleTimeString(); } catch (_) {}
+  }
+  $("userTz").textContent = "Your time · " + userTz;
+  try {
+    $("uaeTime").textContent = "Dubai " + fmtInZone(now, "Asia/Dubai", { hour: "2-digit", minute: "2-digit", hour12: true }) + " GST";
+  } catch (_) { $("uaeTime").textContent = ""; }
+  try {
+    var hijri = "";
+    try {
+      hijri = new Intl.DateTimeFormat("en-SA-u-ca-islamic-umalqura", {
+        timeZone: "Asia/Dubai", day: "numeric", month: "long", year: "numeric"
+      }).format(now);
+    } catch (_) {
+      hijri = new Intl.DateTimeFormat("en-u-ca-islamic", {
+        timeZone: "Asia/Dubai", day: "numeric", month: "long", year: "numeric"
+      }).format(now);
+    }
+    $("hijriDate").textContent = hijri + " AH";
+  } catch (_) { $("hijriDate").textContent = ""; }
+  /* World-time view ticks here too */
+  if (timePlace.tz) {
+    try {
+      $("timeClock").textContent = fmtInZone(now, timePlace.tz, { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
+      var dt = fmtInZone(now, timePlace.tz, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+      var off = "";
+      try {
+        off = new Intl.DateTimeFormat("en", { timeZone: timePlace.tz, timeZoneName: "shortOffset" }).formatToParts(now)
+          .filter(function (p) { return p.type === "timeZoneName"; })
+          .map(function (p) { return p.value; }).join("");
+      } catch (_) {}
+      $("timeDate").textContent = dt + (off ? " · " + off : "");
+      setStatus($("timeStatus"), "is-ok", "Live — ticks every second.");
+    } catch (_) {
+      setStatus($("timeStatus"), "is-error", "This timezone is not supported in this browser.");
+    }
+  }
+}
+tickClock();
+setInterval(tickClock, 1000);
+
+/* ——— Weather: any city in the world ——— */
+var place = { name: "Sharjah", country: "United Arab Emirates", lat: 25.3463, lon: 55.4209 };
+function loadWeather() {
+  setStatus($("weatherStatus"), "", "Updating…");
+  beginLoad($("weatherTemp"), "°C");
+  api("/api/weather?lat=" + place.lat + "&lon=" + place.lon).then(function (d) {
+    paintFigure($("weatherTemp"), Math.round(d.temp), "°C");
+    $("weatherDesc").textContent = wmoToText(d.code) + " · " + place.name;
+    $("weatherTime").textContent = "Observed " + String(d.time).replace("T", " ");
+    $("weatherPlace").textContent = place.name + (place.country ? ", " + place.country : "");
+    endLoad($("weatherTemp"));
+    setStatus($("weatherStatus"), "is-ok", "Live — refreshes automatically.");
+  }).catch(function () {
+    endLoad($("weatherTemp"));
+    setStatus($("weatherStatus"), "is-error", "Could not update just now — retrying automatically.");
+  });
+}
+attachSuggest($("placeSearch"), $("placeSuggest"), function (p) {
+  place = { name: p.name, country: p.country, lat: p.lat, lon: p.lon };
+  $("weatherTemp").dataset.loaded = "";
+  loadWeather();
+});
+
+/* ——— Currency: any to any ——— */
+var CURRENCIES = [
+  ["USD", "US Dollar"], ["AED", "UAE Dirham"], ["EUR", "Euro"], ["GBP", "British Pound"],
+  ["INR", "Indian Rupee"], ["PKR", "Pakistani Rupee"], ["SAR", "Saudi Riyal"], ["QAR", "Qatari Riyal"],
+  ["KWD", "Kuwaiti Dinar"], ["BHD", "Bahraini Dinar"], ["OMR", "Omani Rial"], ["JOD", "Jordanian Dinar"],
+  ["EGP", "Egyptian Pound"], ["TRY", "Turkish Lira"], ["JPY", "Japanese Yen"], ["CNY", "Chinese Yuan"],
+  ["AUD", "Australian Dollar"], ["CAD", "Canadian Dollar"], ["CHF", "Swiss Franc"], ["SGD", "Singapore Dollar"],
+  ["MYR", "Malaysian Ringgit"], ["IDR", "Indonesian Rupiah"], ["THB", "Thai Baht"], ["PHP", "Philippine Peso"],
+  ["KRW", "South Korean Won"], ["HKD", "Hong Kong Dollar"], ["NZD", "New Zealand Dollar"], ["SEK", "Swedish Krona"],
+  ["NOK", "Norwegian Krone"], ["ZAR", "South African Rand"], ["BDT", "Bangladeshi Taka"], ["LKR", "Sri Lankan Rupee"],
+  ["NPR", "Nepalese Rupee"]
+];
+(function initCurrencySelects() {
+  var from = $("fxFrom"), to = $("fxTo");
+  CURRENCIES.forEach(function (c) {
+    var o1 = document.createElement("option");
+    o1.value = c[0];
+    o1.textContent = c[0] + " — " + c[1];
+    from.appendChild(o1);
+    var o2 = document.createElement("option");
+    o2.value = c[0];
+    o2.textContent = c[0] + " — " + c[1];
+    to.appendChild(o2);
+  });
+  from.value = "USD";
+  to.value = "AED";
+})();
+var ratesCache = {};
+function rateFor(from, to, byBase) {
+  if (byBase[from] && byBase[from][to] !== undefined) return byBase[from][to];
+  var viaUSD = byBase.USD;
+  if (viaUSD && viaUSD[from] && viaUSD[to]) return viaUSD[to] / viaUSD[from];
+  return null;
+}
+function loadFx() {
+  var from = $("fxFrom").value, to = $("fxTo").value;
+  setStatus($("fxStatus"), "", "Updating…");
+  var fr = $("fxResult");
+  if (!fr.dataset.loaded) { fr.textContent = "--"; fr.classList.add("is-loading"); }
+  function render(rate) {
+    fr.classList.remove("is-loading");
+    fr.dataset.loaded = "1";
+    var amt = parseFloat($("fxAmount").value);
+    if (rate === null || rate === undefined) {
+      $("fxResult").textContent = "—";
+      $("fxRate").textContent = "Rate unavailable — retrying automatically.";
+      setStatus($("fxStatus"), "is-error", "Could not update just now — retrying automatically.");
+      return;
+    }
+    if (isNaN(amt)) { $("fxResult").textContent = "Enter an amount"; }
+    else {
+      $("fxResult").textContent = (amt * rate).toLocaleString("en-AE", { maximumFractionDigits: 2 }) + " " + to;
+    }
+    $("fxRate").textContent = "1 " + from + " = " + rate.toLocaleString("en-AE", { maximumFractionDigits: 4 }) + " " + to;
+    setStatus($("fxStatus"), "is-ok", "Live — refreshes automatically.");
+  }
+  api("/api/fx?base=" + from).then(function (d) {
+    ratesCache[from] = d.rates;
+    render(d.rates[to]);
+  }).catch(function () {
+    if (ratesCache.USD) render(rateFor(from, to, ratesCache));
+    else api("/api/fx?base=USD").then(function (d) {
+      ratesCache.USD = d.rates;
+      render(rateFor(from, to, ratesCache));
+    }).catch(function () { render(null); });
+  });
+}
+$("fxAmount").addEventListener("input", loadFx);
+$("fxFrom").addEventListener("change", loadFx);
+$("fxTo").addEventListener("change", loadFx);
+$("fxSwap").addEventListener("click", function () {
+  var f = $("fxFrom").value;
+  $("fxFrom").value = $("fxTo").value;
+  $("fxTo").value = f;
+  loadFx();
+});
+
+/* ——— Gold 24K: any country, local currency, automatic ——— */
+var CC_TO_CUR = { US: "USD", AE: "AED", GB: "GBP", IN: "INR", PK: "PKR", SA: "SAR", QA: "QAR", KW: "KWD", BH: "BHD", OM: "OMR", JO: "JOD", EG: "EGP", TR: "TRY", JP: "JPY", CN: "CNY", AU: "AUD", CA: "CAD", CH: "CHF", SG: "SGD", MY: "MYR", ID: "IDR", TH: "THB", PH: "PHP", KR: "KRW", HK: "HKD", NZ: "NZD", SE: "SEK", NO: "NOK", ZA: "ZAR", BD: "BDT", LK: "LKR", NP: "NPR", AF: "AFN", AL: "ALL", DZ: "DZD", AD: "EUR", AO: "AOA", AR: "ARS", AM: "AMD", AW: "AWG", AT: "EUR", AZ: "AZN", BS: "BSD", BB: "BBD", BY: "BYN", BE: "EUR", BZ: "BZD", BJ: "XOF", BT: "BTN", BO: "BOB", BA: "BAM", BW: "BWP", BR: "BRL", BN: "BND", BG: "EUR", BF: "XOF", BI: "BIF", KH: "KHR", CM: "XAF", CV: "CVE", KY: "KYD", CF: "XAF", TD: "XAF", CL: "CLP", CO: "COP", KM: "KMF", CG: "XAF", CD: "CDF", CR: "CRC", CI: "XOF", HR: "EUR", CU: "CUP", CY: "EUR", CZ: "CZK", DK: "DKK", DJ: "DJF", DM: "XCD", DO: "DOP", EC: "USD", GQ: "XAF", ER: "ERN", EE: "EUR", ET: "ETB", FJ: "FJD", FI: "EUR", FR: "EUR", GA: "XAF", GM: "GMD", GE: "GEL", DE: "EUR", GH: "GHS", GR: "EUR", GD: "XCD", GT: "GTQ", GN: "GNF", GW: "XOF", GY: "GYD", HT: "HTG", HN: "HNL", HU: "HUF", IS: "ISK", IR: "IRR", IQ: "IQD", IE: "EUR", IL: "ILS", IT: "EUR", JM: "JMD", KZ: "KZT", KE: "KES", KI: "AUD", KG: "KGS", LA: "LAK", LV: "EUR", LB: "LBP", LS: "LSL", LR: "LRD", LY: "LYD", LI: "CHF", LT: "EUR", LU: "EUR", MO: "MOP", MG: "MGA", MW: "MWK", ML: "XOF", MT: "EUR", MR: "MRU", MU: "MUR", MX: "MXN", MD: "MDL", MC: "EUR", MN: "MNT", ME: "EUR", MA: "MAD", MZ: "MZN", MM: "MMK", NA: "NAD", NR: "AUD", NL: "EUR", NI: "NIO", NE: "XOF", NG: "NGN", MK: "MKD", PA: "PAB", PG: "PGK", PY: "PYG", PE: "PEN", PL: "PLN", PT: "EUR", RO: "RON", RU: "RUB", RW: "RWF", KN: "XCD", LC: "XCD", VC: "XCD", WS: "WST", SM: "EUR", ST: "STN", SN: "XOF", RS: "RSD", SC: "SCR", SL: "SLE", SK: "EUR", SI: "EUR", SB: "SBD", SO: "SOS", ES: "EUR", SD: "SDG", SR: "SRD", SZ: "SZL", SY: "SYP", TW: "TWD", TJ: "TJS", TZ: "TZS", TL: "USD", TG: "XOF", TO: "TOP", TT: "TTD", TN: "TND", TM: "TMT", UG: "UGX", UA: "UAH", UY: "UYU", UZ: "UZS", VU: "VUV", VE: "VES", VN: "VND", YE: "YER", ZM: "ZMW", ZW: "ZWG", PS: "ILS", VA: "EUR" };
+var CUR_NAMES = {};
+CURRENCIES.forEach(function (c) { CUR_NAMES[c[0]] = c[1]; });
+var goldPlace = { name: "United Arab Emirates", cc: "AE", cur: "AED" };
+function currencyFor(cc) { return CC_TO_CUR[cc] || "USD"; }
+function loadGold() {
+  setStatus($("goldStatus"), "", "Updating…");
+  beginLoad($("goldPrice"), goldPlace.cur + " / g");
+  Promise.all([api("/api/gold"), api("/api/fx?base=USD")]).then(function (pair) {
+    var code = goldPlace.cur;
+    var rate = code === "USD" ? 1 : pair[1].rates && pair[1].rates[code];
+    if (typeof rate !== "number") throw new Error("unavailable");
+    var perGram = (pair[0].ounceUSD / 31.1035) * rate;
+    var g = perGram.toLocaleString("en-AE", { maximumFractionDigits: 2 });
+    paintFigure($("goldPrice"), g, code + " / g");
+    endLoad($("goldPrice"));
+    var cname = CUR_NAMES[code] ? " · " + CUR_NAMES[code] : "";
+    $("goldMeta").textContent = "24 karat · per gram · " + code + cname + ".";
+    $("goldPlace").textContent = goldPlace.name + " · " + code;
+    $("goldTime").textContent = "Updated " + new Date().toLocaleString("en-GB", { timeZone: "Asia/Dubai" }) + " GST";
+    setStatus($("goldStatus"), "is-ok", "Live — refreshes automatically.");
+  }).catch(function () {
+    endLoad($("goldPrice"));
+    setStatus($("goldStatus"), "is-error", "Could not update just now — retrying automatically.");
+  });
+}
+attachSuggest($("goldSearch"), $("goldSuggest"), function (p) {
+  var code = currencyFor(p.cc);
+  goldPlace = { name: p.country || p.name, cc: p.cc, cur: code };
+  $("goldPrice").dataset.loaded = "";
+  loadGold();
+});
+
+/* ——— World time: any city ——— */
+attachSuggest($("timeSearch"), $("timeSuggest"), function (p) {
+  if (!p.tz) {
+    setStatus($("timeStatus"), "is-error", "No timezone found for this place — try another.");
+    return;
+  }
+  timePlace = { name: p.name, country: p.country, tz: p.tz };
+  $("timePlace").textContent = p.name + (p.country ? ", " + p.country : "");
+  tickClock();
+});
+
+/* ——— Boot + silent auto-refresh every minute ——— */
+loadWeather();
+loadFx();
+loadGold();
+setInterval(function () { loadWeather(); loadFx(); loadGold(); }, 60000);
+</script>
+</body>
+</html>

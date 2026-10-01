@@ -1,0 +1,13 @@
+{
+  "name": "sunnytoolspro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SunnyToolsPro — live widgets demo (weather, currency, gold, world time)",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
