@@ -78,6 +78,7 @@ body[data-theme="light"] .ad-slot-placeholder{border-color:#c4cde0;color:#8a94b5
 <select id="jt" aria-label="Filter by type"><option value="">All types</option><option>Full-Time</option><option>Part-Time</option><option>Contract</option></select>
 </div>
 <div id="jobs"><p>Loading live jobs…</p></div>
+<div id="pager" style="margin:12px 0"></div>
 <p class="credit" id="jcredit">Job listings by <a href="https://jobicy.com" target="_blank" rel="noopener">Jobicy</a> — applications open on the employer's original posting.</p>
 <h2>How to Apply in 4 Steps</h2>
 <ol><li><b>Search your skill.</b> Type "designer", "accountant", "driver" or "developer" above — results filter instantly.</li><li><b>Check fit fast.</b> Read the type (full-time/contract), location rules and level before investing time.</li><li><b>Apply on the source.</b> The Apply button opens the employer's original listing — that is where your application actually lands.</li><li><b>Track and follow up.</b> Remote postings get hundreds of applicants; apply within 48 hours and tailor your CV per role.</li></ol>
@@ -104,16 +105,23 @@ body[data-theme="light"] .ad-slot-placeholder{border-color:#c4cde0;color:#8a94b5
 </div><div class="copy">© 2026 SunnyToolsPro. All rights reserved. | Website Design &amp; Build by <b style="color:#fff">Sunny Janjowa &amp; Sabir Ali</b></div></div></footer>
 <script>
 var ALL=[];
+var PAGE=0, PER_PAGE=30, FILTERED=[];
 function render(){
   var q=(document.getElementById('jq').value||'').toLowerCase(), t=document.getElementById('jt').value;
-  var box=document.getElementById('jobs'); box.innerHTML='';
-  var list=ALL.filter(function(j){
+  FILTERED=ALL.filter(function(j){
     var okQ=!q||(j.title+' '+j.company+' '+(j.industry||'')).toLowerCase().indexOf(q)>-1;
     var okT=!t||(j.type||'').indexOf(t)>-1;
     return okQ&&okT;
   });
-  if(!list.length){box.innerHTML='<p>No matches — try a different keyword.</p>';return}
-  list.slice(0,30).forEach(function(j){
+  var maxPage=Math.max(0,Math.ceil(FILTERED.length/PER_PAGE)-1);
+  if(PAGE>maxPage)PAGE=maxPage;
+  renderPage();
+}
+function renderPage(){
+  var box=document.getElementById('jobs'); box.innerHTML='';
+  if(!FILTERED.length){box.innerHTML='<p>No matches — try a different keyword.</p>';drawPager(0,0);return}
+  var start=PAGE*PER_PAGE, slice=FILTERED.slice(start,start+PER_PAGE);
+  slice.forEach(function(j){
     var d=document.createElement('div');d.className='job';
     var dt=j.date?new Date(j.date).toLocaleDateString('en-GB',{day:'numeric',month:'short'}):'New';
     d.innerHTML='<b></b><small></small><p></p>';
@@ -135,12 +143,30 @@ function render(){
     }
     box.appendChild(d);
   });
+  drawPager(start+1,Math.min(start+PER_PAGE,FILTERED.length));
 }
-document.getElementById('jq').addEventListener('input',render);
-document.getElementById('jt').addEventListener('change',render);
+function drawPager(from,to){
+  var p=document.getElementById('pager');if(!p)return;
+  p.innerHTML='';
+  var maxPage=Math.max(0,Math.ceil(FILTERED.length/PER_PAGE)-1);
+  function btn(label,page,dis){
+    var b=document.createElement('button');b.className='apply';b.textContent=label;b.disabled=!!dis;
+    if(dis)b.style.opacity='0.45';
+    b.onclick=function(){PAGE=page;renderPage();document.getElementById('jobs').scrollIntoView()};
+    p.appendChild(b);return b;
+  }
+  btn('← Prev',Math.max(0,PAGE-1),PAGE<=0);
+  var info=document.createElement('span');
+  info.style.cssText='font-size:12.5px;color:#6b7aa5;margin:0 10px';
+  info.textContent=FILTERED.length?('Showing '+from+'–'+to+' of '+FILTERED.length+' jobs · Page '+(PAGE+1)+' of '+(maxPage+1)):'';
+  p.appendChild(info);
+  btn('Next →',Math.min(maxPage,PAGE+1),PAGE>=maxPage);
+}
+document.getElementById('jq').addEventListener('input',function(){PAGE=0;render()});
+document.getElementById('jt').addEventListener('change',function(){PAGE=0;render()});
 function setCredit(html){document.getElementById('jcredit').innerHTML=html}
 function loadJobicy(){
-fetch('/api/jobs?count=24').then(function(r){return r.json()}).then(function(d){
+fetch('/api/jobs?count=200').then(function(r){return r.json()}).then(function(d){
   ALL=(d&&d.jobs)||[];setCredit('Job listings by <a href="https://jobicy.com" target="_blank" rel="noopener">Jobicy</a> — applications open on the employer\'s original posting.');render();
 }).catch(function(){document.getElementById('jobs').innerHTML='<p>Could not load jobs just now — please refresh.</p>'});
 }
