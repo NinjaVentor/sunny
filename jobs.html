@@ -78,7 +78,7 @@ body[data-theme="light"] .ad-slot-placeholder{border-color:#c4cde0;color:#8a94b5
 <select id="jt" aria-label="Filter by type"><option value="">All types</option><option>Full-Time</option><option>Part-Time</option><option>Contract</option></select>
 </div>
 <div id="jobs"><p>Loading live jobs…</p></div>
-<p class="credit">Job listings by <a href="https://jobicy.com" target="_blank" rel="noopener">Jobicy</a> — applications open on the employer's original posting.</p>
+<p class="credit" id="jcredit">Job listings by <a href="https://jobicy.com" target="_blank" rel="noopener">Jobicy</a> — applications open on the employer's original posting.</p>
 <h2>How to Apply in 4 Steps</h2>
 <ol><li><b>Search your skill.</b> Type "designer", "accountant", "driver" or "developer" above — results filter instantly.</li><li><b>Check fit fast.</b> Read the type (full-time/contract), location rules and level before investing time.</li><li><b>Apply on the source.</b> The Apply button opens the employer's original listing — that is where your application actually lands.</li><li><b>Track and follow up.</b> Remote postings get hundreds of applicants; apply within 48 hours and tailor your CV per role.</li></ol>
 <h2>Working Remotely From the UAE — What to Know</h2>
@@ -138,9 +138,19 @@ function render(){
 }
 document.getElementById('jq').addEventListener('input',render);
 document.getElementById('jt').addEventListener('change',render);
+function setCredit(html){document.getElementById('jcredit').innerHTML=html}
+function loadJobicy(){
 fetch('/api/jobs?count=24').then(function(r){return r.json()}).then(function(d){
-  ALL=(d&&d.jobs)||[];render();
+  ALL=(d&&d.jobs)||[];setCredit('Job listings by <a href="https://jobicy.com" target="_blank" rel="noopener">Jobicy</a> — applications open on the employer\'s original posting.');render();
 }).catch(function(){document.getElementById('jobs').innerHTML='<p>Could not load jobs just now — please refresh.</p>'});
+}
+fetch('/data/jobs.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+  if(!d||!d.jobs||!d.jobs.length)throw 0;
+  ALL=d.jobs.map(function(j){return {title:j.title,company:j.company,geo:j.location,type:j.type,industry:'',excerpt:'',description:'',salary:j.salary,url:j.url,date:j.date,site:j.site}});
+  var upd=d.updated?new Date(d.updated).toLocaleDateString('en-GB',{day:'numeric',month:'short'}):'';
+  setCredit('Live UAE listings from Bayt, Indeed & LinkedIn'+(upd?' · updated '+upd:'')+' — apply on the employer\'s original posting.');
+  render();
+}).catch(loadJobicy);
 </script>
 <script>(function(){var b=document.getElementById('themeBtn');function lb(){if(b)b.textContent=document.body.getAttribute('data-theme')==='dark'?'☀ Light':'☾ Dark'}lb();if(b)b.onclick=function(){var n=document.body.getAttribute('data-theme')==='dark'?'light':'dark';document.body.setAttribute('data-theme',n);try{localStorage.setItem('stp-theme',n)}catch(e){}lb()}})();</script>
 </body>

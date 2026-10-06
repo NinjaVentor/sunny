@@ -295,7 +295,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
     <div class="card" id="jobs">
       <h3>Latest Jobs <a href="/jobs">View All →</a></h3>
       <div id="homeJobs"><div class="job"><span class="ic">👤</span><div><b>Loading live jobs…</b></div></div></div>
-      <p style="font-size:11px;color:#8a94b5;margin:6px 0 0">Listings by <a href="https://jobicy.com" target="_blank" rel="noopener" style="color:#3b82f6">Jobicy</a> · Apply on employer site</p>
+      <p style="font-size:11px;color:#8a94b5;margin:6px 0 0">Live UAE listings · Apply on employer site</p>
       <button class="darkbtn" onclick="location.href='/jobs'">Browse All Jobs →</button>
     </div>
   </section>
@@ -379,15 +379,20 @@ $("top").onclick=function(){window.scrollTo({top:0,behavior:"smooth"})};
 /* ——— Homepage live jobs (Jobicy via /api/jobs) ——— */
 (function(){
   var box=$("homeJobs"); if(!box) return;
-  api("/api/jobs?count=4").then(function(d){
+  api("/data/jobs.json").then(function(d){
     if(!d.jobs||!d.jobs.length) throw 0;
+    return d.jobs.slice(0,4);
+  }).catch(function(){
+    return api("/api/jobs?count=4").then(function(d){ return (d&&d.jobs)||[]; });
+  }).then(function(jobs){
+    if(!jobs.length) throw 0;
     box.innerHTML="";
-    d.jobs.forEach(function(j){
+    jobs.forEach(function(j){
       var div=document.createElement("div");div.className="job";
       var dt=j.date?new Date(j.date).toLocaleDateString("en-GB",{day:"numeric",month:"short"}):"New";
       div.innerHTML='<span class="ic">👤</span><div><b></b><small></small></div><span class="new">'+dt+'</span>';
       div.querySelector("b").textContent=j.title;
-      div.querySelector("small").textContent=j.company+" · "+(j.geo||"Remote");
+      div.querySelector("small").textContent=j.company+" · "+(j.geo||j.location||"UAE");
       div.style.cursor="pointer";
       div.onclick=function(){window.open(j.url,"_blank","noopener")};
       box.appendChild(div);
