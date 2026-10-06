@@ -281,7 +281,7 @@ module.exports = [
       "No app install, no account — just allow location once. Free for travelers, new residents and anyone praying away from home.",
     ],
     understanding: [
-      "The Qibla is the great-circle (shortest-path) bearing from your coordinates to the Kaaba at 21.4225° N, 39.8262° E. From the UAE it points south-southwest (~193°); from London it is southeast (~119°); from Jakarta it is northwest (~295°). Same math, different answer everywhere — which is why a calculator beats memory.",
+      "The Qibla is the great-circle (shortest-path) bearing from your coordinates to the Kaaba at 21.4225° N, 39.8262° E. From the UAE it points west-southwest (~258°); from London it is southeast (~119°); from Jakarta it is northwest (~295°). Same math, different answer everywhere — which is why a calculator beats memory.",
       "Your phone contributes two sensors: GPS for position (accurate to meters outdoors) and the magnetometer compass for orientation. Calibrate by waving a figure-eight if the needle jumps, and step away from cars and steel structures that bend magnetic readings.",
     ],
     steps: [
@@ -299,7 +299,7 @@ module.exports = [
       { t: "Free forever", d: "No account, no ads blocking the needle." },
     ],
     faqs: [
-      { q: "Which direction is Qibla in Dubai?", a: "Approximately 193° (south-southwest). But use the tool for your exact spot — the bearing shifts slightly between emirates and buildings." },
+      { q: "Which direction is Qibla in Dubai?", a: "Approximately 258° (west-southwest). But use the tool for your exact spot — the bearing shifts slightly between emirates and buildings." },
       { q: "Do you store my location?", a: "No. Geolocation is read by your browser, used once for the calculation, and never transmitted to or stored by us." },
       { q: "The compass seems wrong. What now?", a: "Calibrate with a figure-eight motion, move away from metal and electronics, and hold the phone flat. Compare against a second device if precision is critical." },
       { q: "Does it work without internet?", a: "You need signal for the page and GPS fix; the math itself runs on-device. Download nothing — just keep location services on." },
