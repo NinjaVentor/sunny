@@ -56,8 +56,10 @@ export async function onRequest() {
       if (!area || !isFinite(annual) || annual <= 0) continue;
       const rooms = (c[iRooms] || "").trim() || "—";
       const key = area + "|AED";
-      const a = agg[key] || (agg[key] = { area, sum: 0, n: 0, rooms: {} });
+      const a = agg[key] || (agg[key] = { area, sum: 0, n: 0, min: Infinity, max: 0, rooms: {} });
       a.sum += annual; a.n++;
+      if (annual < a.min) a.min = annual;
+      if (annual > a.max) a.max = annual;
       const rk = rooms;
       const r = a.rooms[rk] || (a.rooms[rk] = { sum: 0, n: 0 });
       r.sum += annual; r.n++;
@@ -66,6 +68,8 @@ export async function onRequest() {
       .map((a) => ({
         area: a.area,
         avgAnnual: Math.round(a.sum / a.n),
+        minAnnual: a.min === Infinity ? null : a.min,
+        maxAnnual: a.max || null,
         contracts: a.n,
         byRooms: Object.entries(a.rooms)
           .map(([rooms, r]) => ({ rooms, avgAnnual: Math.round(r.sum / r.n), contracts: r.n }))

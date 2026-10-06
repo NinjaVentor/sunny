@@ -68,7 +68,7 @@ footer{background:#071222;border-top:1px solid rgba(255,255,255,.08);padding:30p
 <p class="lead">Start with official government rent averages, then browse rooms with working filters — or jump to live PropertyFinder listings. Free for seekers and listers.</p>
 <h2>Dubai Official Average Rents (Government Data)</h2>
 <p class="src" id="dldMeta">Loading last-30-days Ejari averages from Dubai Land Department…</p>
-<div style="overflow-x:auto"><table class="t"><thead><tr><th>Area</th><th>Avg / Year</th><th>Avg / Month</th><th>Contracts</th></tr></thead><tbody id="dldBody"><tr><td colspan="4">Loading…</td></tr></tbody></table></div>
+<div style="overflow-x:auto"><table class="t"><thead><tr><th>Area</th><th>Yearly Range</th><th>Avg / Month</th><th>Contracts</th></tr></thead><tbody id="dldBody"><tr><td colspan="4">Loading…</td></tr></tbody></table></div>
 <p class="src">Source: Dubai Land Department open-data Ejari contracts (residential, last 30 days). Use as a negotiation benchmark — individual buildings vary.</p>
 <h2>Browse Rooms</h2>
 <div class="frow">
@@ -146,7 +146,10 @@ fetch('/api/dld-rents').then(function(r){return r.json()}).then(function(d){
   d.areas.slice(0,12).forEach(function(a){
     var tr=document.createElement('tr');
     var m='AED '+Math.round(a.avgAnnual/12).toLocaleString();
-    tr.innerHTML='<td></td><td>AED '+a.avgAnnual.toLocaleString()+'</td><td>'+m+'</td><td>'+a.contracts.toLocaleString()+'</td>';
+    var range=(a.minAnnual!=null&&a.maxAnnual!=null&&a.maxAnnual>a.minAnnual)
+      ?('AED '+a.minAnnual.toLocaleString()+' – '+a.maxAnnual.toLocaleString())
+      :('AED '+a.avgAnnual.toLocaleString());
+    tr.innerHTML='<td></td><td>'+range+'</td><td>'+m+'</td><td>'+a.contracts.toLocaleString()+'</td>';
     tr.firstChild.textContent=a.area;tb.appendChild(tr);
   });
   document.getElementById('dldMeta').textContent='Dubai Land Department Ejari averages, last '+d.windowDays+' days · Sample: '+d.areas.reduce(function(s,a){return s+a.contracts},0).toLocaleString()+' contracts.';
