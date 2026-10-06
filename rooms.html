@@ -72,13 +72,13 @@ footer{background:#071222;border-top:1px solid rgba(255,255,255,.08);padding:30p
 <p class="src">Source: Dubai Land Department open-data Ejari contracts (residential, last 30 days). Use as a negotiation benchmark — individual buildings vary.</p>
 <h2>Browse Rooms</h2>
 <div class="frow">
-<select id="fc" aria-label="City"><option value="">All cities</option><option>Sharjah</option><option>Dubai</option></select>
-<select id="fa" aria-label="Area"><option value="">All areas</option></select>
-<select id="ft" aria-label="Room type"><option value="">All types</option><option value="private">Private Room</option><option value="partition">Partition</option><option value="master">Master Room</option><option value="bedspace">Bed Space</option></select>
-<select id="fb" aria-label="Budget"><option value="">Any budget</option><option value="800">Under AED 800</option><option value="1200">Under AED 1,200</option><option value="1800">Under AED 1,800</option><option value="99999">Above AED 1,800</option></select>
+<select id="fc" aria-label="City"><option value="sharjah">Sharjah</option><option value="dubai">Dubai</option><option value="ajman">Ajman</option></select>
+<select id="fb2" aria-label="Bedrooms"><option value="">Any bedrooms</option><option value="studio">Studio</option><option value="1">1 bedroom</option><option value="2">2 bedrooms</option><option value="3">3+ bedrooms</option></select>
+<select id="fb" aria-label="Budget per month"><option value="">Any budget</option><option value="3000">Under AED 3,000/mo</option><option value="5000">Under AED 5,000/mo</option><option value="8000">Under AED 8,000/mo</option></select>
 </div>
-<div class="rgrid" id="rgrid"></div>
+<div class="rgrid" id="rgrid"><p>Loading live listings…</p></div>
 <p class="src" id="rcount"></p>
+<p class="src">Listings by <a href="https://www.propertyfinder.ae" target="_blank" rel="noopener">PropertyFinder</a> — tap any listing for photos, map and agent contact.</p>
 <div class="pfbox"><b>Want live agency listings?</b><p>Browse thousands of current Dubai rentals on PropertyFinder with photos, maps and agent chat.</p><a href="https://www.propertyfinder.ae/en/search?c=2&q=dubai" target="_blank" rel="noopener">Open PropertyFinder Live Search →</a></div>
 <h2>List Your Room — Free</h2>
 <p>Landlords and tenants: send us your room details and we publish genuine listings free. Fill the form — your email app opens with everything pre-filled to our team.</p>
@@ -104,39 +104,39 @@ footer{background:#071222;border-top:1px solid rgba(255,255,255,.08);padding:30p
 <div><h4>UAE</h4><a href="/#prayer">Prayer Times</a><a href="/jobs">UAE Jobs</a><a href="/rooms">Room Rent</a><a href="/#today">UAE Time</a></div>
 </div><div class="copy">© 2026 SunnyToolsPro. All rights reserved. | Website Design &amp; Build by <b style="color:#fff">Sunny Janjowa &amp; Sabir Ali</b></div></div></footer>
 <script>
-var ROOMS=[
-{city:"Sharjah",area:"Al Nahda",type:"private",label:"Private Room",price:1200,desc:"Al Nahda 1, Sharjah · 1 Room · Attached Bath · WIFI"},
-{city:"Sharjah",area:"Al Qasimia",type:"partition",label:"Partition",price:900,desc:"Al Qasimia, Sharjah · Partition · WIFI · Near Metro"},
-{city:"Sharjah",area:"Al Nahda",type:"master",label:"Master Room",price:1500,desc:"Al Nahda 2, Sharjah · Master Room · Attached Bath"},
-{city:"Sharjah",area:"Rolla",type:"bedspace",label:"Bed Space",price:650,desc:"Rolla, Sharjah · Bed Space · WIFI · AC"},
-{city:"Sharjah",area:"Al Majaz",type:"private",label:"Private Room",price:1100,desc:"Al Majaz, Sharjah · Corniche side · Sharing kitchen · WIFI"},
-{city:"Dubai",area:"Deira",type:"bedspace",label:"Bed Space",price:750,desc:"Deira, Dubai · Near Metro · AC · WIFI"},
-{city:"Dubai",area:"Bur Dubai",type:"partition",label:"Partition",price:1100,desc:"Bur Dubai · Family building · Attached Bath · WIFI"},
-{city:"Dubai",area:"Al Barsha",type:"master",label:"Master Room",price:2200,desc:"Al Barsha, Dubai · Master Room · Attached Bath · Parking"}
-];
-var fa=document.getElementById('fa');
-Array.from(new Set(ROOMS.map(function(r){return r.area}))).forEach(function(a){fa.add(new Option(a,a))});
+var ALL_ROOMS=[];
+function esc(s){return String(s==null?"":s)}
 function renderRooms(){
-  var c=document.getElementById('fc').value,a=fa.value,t=document.getElementById('ft').value,b=document.getElementById('fb').value;
+  var c=document.getElementById('fc').value,b2=document.getElementById('fb2').value,b=document.getElementById('fb').value;
   var g=document.getElementById('rgrid');g.innerHTML='';
-  var list=ROOMS.filter(function(r){
-    if(c&&r.city!==c)return false; if(a&&r.area!==a)return false; if(t&&r.type!==t)return false;
-    if(b==='99999'){if(r.price<=1800)return false}else if(b&&r.price>+b)return false;
+  var list=ALL_ROOMS.filter(function(r){
+    if(b2==='studio'){if(!/studio/i.test(r.beds)&&r.beds!=='0')return false}
+    else if(b2){var n=parseInt(r.beds,10);if(b2==='3'){if(!(n>=3))return false}else if(!(n===+b2))return false}
+    if(b&&!(r.monthly>0&&r.monthly<=+b))return false;
     return true;
   });
-  list.forEach(function(r){
+  if(!list.length){g.innerHTML='<p>No matches — loosen a filter.</p>'}
+  list.slice(0,24).forEach(function(r){
     var d=document.createElement('div');d.className='room';
-    d.innerHTML='<b></b><div class="price"></div><small></small>';
-    d.querySelector('b').textContent=r.label+' Available — '+r.city;
-    d.querySelector('.price').textContent='AED '+r.price.toLocaleString()+' / Month';
-    d.querySelector('small').textContent=r.desc;
-    var link=document.createElement('a');link.className='cta2';link.textContent='Enquire →';link.href='/contact';
+    var img=r.img?('<img src="'+r.img+'" alt="" loading="lazy" style="width:100%;height:130px;object-fit:cover;border-radius:8px">'):'';
+    d.innerHTML=img+'<b></b><div class="price"></div><small></small>';
+    d.querySelector('b').textContent=r.title;
+    d.querySelector('.price').textContent='AED '+r.monthly.toLocaleString()+' / Month'+(r.beds&&r.beds!=='—'?' · '+r.beds+' bed':'');
+    d.querySelector('small').textContent=(r.area||'')+(r.baths&&r.baths!=='—'?' · '+r.baths+' bath':'')+(r.size?' · '+r.size:'')+(r.broker?' · '+r.broker:'');
+    var link=document.createElement('a');link.className='cta2';link.textContent='View listing →';link.href=r.url;link.target='_blank';link.rel='noopener';
     d.appendChild(link);g.appendChild(d);
   });
-  document.getElementById('rcount').textContent=list.length+' room(s) found. Sample community listings — list yours free below.';
+  document.getElementById('rcount').textContent=list.length+' live listing(s) in '+c+'. Prices update with the market.';
 }
-['fc','fa','ft','fb'].forEach(function(id){document.getElementById(id).addEventListener('change',renderRooms)});
-renderRooms();
+function loadRooms(){
+  var c=document.getElementById('fc').value;
+  document.getElementById('rgrid').innerHTML='<p>Loading live listings…</p>';
+  fetch('/api/pf-rooms?city='+encodeURIComponent(c)).then(function(r){return r.json()}).then(function(d){
+    ALL_ROOMS=(d&&d.listings)||[];renderRooms();
+  }).catch(function(){document.getElementById('rgrid').innerHTML='<p>Live listings unavailable just now — try the PropertyFinder button below.</p>'});
+}
+['fc','fb2','fb'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){if(id==='fc')loadRooms();else renderRooms()})});
+loadRooms();
 document.getElementById('postRoom').onclick=function(){
   location.href='mailto:support@yourdomain.com?subject='+encodeURIComponent('New Room Listing')+'&body='+encodeURIComponent('City/Area:\nRoom type (private/partition/master/bed space):\nMonthly rent (AED):\nDetails (bath, wifi, metro):\nContact name:\nContact phone/WhatsApp:');
 };

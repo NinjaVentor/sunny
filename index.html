@@ -98,7 +98,14 @@ a{color:inherit;text-decoration:none}button{font-family:inherit}
 .rooms-head{display:flex;justify-content:space-between;align-items:center}
 .rooms-head h3{margin:0;color:var(--navy-text-2);font-size:15px}
 .api-ready{font-size:11px;color:var(--green);font-weight:700}
-.room-grid{display:grid;grid-template-columns:200px repeat(4,1fr);gap:12px;margin-top:12px}
+.room-grid-live{display:grid;grid-template-columns:200px 1fr;gap:12px;margin-top:12px}
+.live-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.live-cards .room-card{min-width:0}
+.live-cards .room-card img{width:100%;height:86px;object-fit:cover;display:block}
+.live-cards .room-card .room-body{padding:8px}
+.live-cards .room-card b{font-size:11.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.live-cards .room-card .price{font-size:12px}
+.live-cards .room-card small{font-size:10.5px}
 .filters label{font-size:11px;color:#6b7aa5;display:block;margin:8px 0 4px}
 .filters select{width:100%;border:1px solid #dfe5f0;border-radius:8px;padding:9px;font-size:12px;color:#111;background:#fff}
 .room-card{border:1px solid #e6ebf4;border-radius:10px;overflow:hidden;min-width:0;background:#fff}
@@ -142,7 +149,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
 .grid3{grid-template-columns:1fr 1fr}
 .tools{grid-template-columns:repeat(3,1fr)}
 .daily{grid-template-columns:repeat(3,1fr)}
-.room-grid{grid-template-columns:1fr 1fr}
+.room-grid-live{grid-template-columns:1fr 1fr}.live-cards{grid-template-columns:1fr 1fr}
 .why-in{grid-template-columns:1fr}
 .fgrid{grid-template-columns:1fr 1fr}
 }
@@ -157,7 +164,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
 .tools{grid-template-columns:1fr 1fr}
 .tool b,.tool small{white-space:normal}
 .daily{grid-template-columns:1fr 1fr}
-.room-grid{grid-template-columns:1fr}
+.room-grid-live{grid-template-columns:1fr}.live-cards{grid-template-columns:1fr 1fr}
 .feats{grid-template-columns:1fr 1fr}
 .fgrid{grid-template-columns:1fr 1fr}
 .conv-row{flex-direction:column}.conv-cur{max-width:100%}
@@ -266,19 +273,13 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
   <div class="ad-slot-placeholder">Advertisement</div>
   <section class="rooms" id="rooms">
     <div class="rooms-head"><h3>UAE Room Rent Finder</h3><span class="api-ready">• <a href="/rooms" style="color:var(--green)">Open full finder →</a></span></div>
-    <div class="room-grid">
+    <div class="room-grid-live">
       <div class="filters">
-        <label>City</label><select id="hRoomCity"><option value="">All cities</option><option>Sharjah</option><option>Dubai</option></select>
-        <label>Area</label><select id="hRoomArea"><option value="">All areas</option><option>Al Nahda</option><option>Rolla</option><option>Al Qasimia</option></select>
-        <label>Room Type</label><select id="hRoomType"><option value="">All types</option><option value="private">Private Room</option><option value="partition">Partition</option><option value="master">Master Room</option><option value="bedspace">Bed Space</option></select>
-        <label>Budget</label><select id="hRoomBudget"><option value="">Any budget</option><option value="1000">Under AED 1,000</option><option value="1500">Under AED 1,500</option><option value="2500">Under AED 2,500</option></select>
-        <button class="darkbtn" style="margin-top:12px" id="hRoomSearch">Search Rooms →</button>
-        <p id="hRoomCount" style="font-size:11px;color:#6b7aa5"></p>
+        <label>City</label><select id="hRoomCity"><option value="sharjah">Sharjah</option><option value="dubai">Dubai</option><option value="ajman">Ajman</option></select>
+        <p style="font-size:11px;color:#6b7aa5">Live PropertyFinder listings. <a href="/rooms" style="color:var(--green)">Full finder →</a></p>
       </div>
-      <div class="room-card" data-city="Sharjah" data-area="Al Nahda" data-type="private" data-price="1200"><div class="price">AED 1,200 / Month</div><small>Al Nahda 1, Sharjah<br/>1 Room • Attached Bath • WIFI</small></div></div>
-      <div class="room-card" data-city="Sharjah" data-area="Al Qasimia" data-type="partition" data-price="900"><div class="price">AED 900 / Month</div><small>Al Qasimia, Sharjah<br/>Partition • WIFI • Near Metro</small></div></div>
-      <div class="room-card" data-city="Sharjah" data-area="Al Nahda" data-type="master" data-price="1500"><div class="price">AED 1,500 / Month</div><small>Al Nahda 2, Sharjah<br/>Master Room • Attached Bath</small></div></div>
-      <div class="room-card" data-city="Sharjah" data-area="Rolla" data-type="bedspace" data-price="650"><div class="price">AED 650 / Month</div><small>Roll a, Sharjah<br/>Bed Space • WIFI • AC</small></div></div>
+      <div id="hRoomLive" class="live-cards"><p style="font-size:13px;color:#6b7aa5">Loading live rentals…</p></div>
+    </div>
     </div>
   </section>
 
@@ -350,18 +351,29 @@ $("top").onclick=function(){window.scrollTo({top:0,behavior:"smooth"})};
   }).catch(function(){box.innerHTML='<div class="job"><span class="ic">👤</span><div><b>Browse all jobs</b><small>Tap below for live listings</small></div></div>'});
 })();
 
-/* ——— Homepage room filter ——— */
+/* ——— Homepage live rentals (PropertyFinder via /api/pf-rooms) ——— */
 (function(){
-  var btn=$("hRoomSearch"); if(!btn) return;
-  btn.onclick=function(){
-    var c=$("hRoomCity").value,a=$("hRoomArea").value,t=$("hRoomType").value,b=$("hRoomBudget").value;
-    var cards=document.querySelectorAll(".room-card"),n=0;
-    cards.forEach(function(card){
-      var ok=(!c||card.dataset.city===c)&&(!a||card.dataset.area===a)&&(!t||card.dataset.type===t)&&(!b||+card.dataset.price<=+b);
-      card.style.display=ok?"":"none"; if(ok)n++;
-    });
-    $("hRoomCount").textContent=n+" room(s) found. More on the full page → /rooms";
-  };
+  var box=$("hRoomLive"),sel=$("hRoomCity"); if(!box||!sel) return;
+  function load(){
+    var c=sel.value;
+    box.innerHTML='<p style="font-size:13px;color:#6b7aa5">Loading live rentals…</p>';
+    api("/api/pf-rooms?city="+encodeURIComponent(c)).then(function(d){
+      if(!d.listings||!d.listings.length) throw 0;
+      box.innerHTML="";
+      d.listings.slice(0,4).forEach(function(r){
+        var card=document.createElement("div");card.className="room-card";
+        var img=r.img?'<img src="'+r.img+'" alt="" loading="lazy">':'<div class="room-img">🏠</div>';
+        card.innerHTML=img+'<div class="room-body"><b></b><div class="price"></div><small></small></div>';
+        card.querySelector("b").textContent=r.title;
+        card.querySelector(".price").textContent="AED "+r.monthly.toLocaleString()+" / Month";
+        card.querySelector("small").textContent=(r.area||"").split(",").slice(-2).join(",").trim();
+        card.style.cursor="pointer";
+        card.onclick=function(){window.open(r.url,"_blank","noopener")};
+        box.appendChild(card);
+      });
+    }).catch(function(){box.innerHTML='<p style="font-size:13px;color:#6b7aa5">Live rentals unavailable — see the <a href="/rooms">full finder</a>.</p>'});
+  }
+  sel.onchange=load; load();
 })();
 
 /* Tools grid */
