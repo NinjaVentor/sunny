@@ -41,7 +41,7 @@ module.exports = [
     sections: [
       {
         h: "Send us a message",
-        html: "<p>Fill in the form and your email app will open with your message pre-addressed to our support inbox. We read every message and aim to reply within 2–3 working days.</p>{{CONTACT_FORM}}<p class='muted'>Prefer email? Write to us directly at <a href='mailto:support@yourdomain.com'>support@yourdomain.com</a>. Please include the tool name, your device and browser, and (for file issues) the file type and size — it helps us reproduce the problem faster.</p>",
+        html: "<p>Fill in the form and your email app will open with your message pre-addressed to our support inbox. We read every message and aim to reply within 2–3 working days.</p>{{CONTACT_FORM}}<p class='muted'>Prefer email? Write to us directly at <a href='mailto:sunnytoolspro@gmail.com'>sunnytoolspro@gmail.com</a>. Please include the tool name, your device and browser, and (for file issues) the file type and size — it helps us reproduce the problem faster.</p>",
       },
       {
         h: "Before you write",
@@ -70,7 +70,7 @@ module.exports = [
       },
       {
         h: "3. Information you give us",
-        html: "<p>If you contact us at <a href='mailto:support@yourdomain.com'>support@yourdomain.com</a>, we receive your email address and message content. We use it only to respond, and we do not sell, rent or share it with marketers. Contact messages are retained only as long as needed to resolve your enquiry.</p>",
+        html: "<p>If you contact us at <a href='mailto:sunnytoolspro@gmail.com'>sunnytoolspro@gmail.com</a>, we receive your email address and message content. We use it only to respond, and we do not sell, rent or share it with marketers. Contact messages are retained only as long as needed to resolve your enquiry.</p>",
       },
       {
         h: "4. Google AdSense and third-party cookies",
@@ -86,11 +86,11 @@ module.exports = [
       },
       {
         h: "7. Your rights and choices",
-        html: "<ul><li>Block or delete cookies in your browser settings at any time; the site's tools continue to work.</li><li>Clear site data (including the theme preference) from your browser settings.</li><li>Request a copy or deletion of any contact correspondence by emailing <a href='mailto:support@yourdomain.com'>support@yourdomain.com</a>.</li></ul>",
+        html: "<ul><li>Block or delete cookies in your browser settings at any time; the site's tools continue to work.</li><li>Clear site data (including the theme preference) from your browser settings.</li><li>Request a copy or deletion of any contact correspondence by emailing <a href='mailto:sunnytoolspro@gmail.com'>sunnytoolspro@gmail.com</a>.</li></ul>",
       },
       {
         h: "8. Changes to this policy",
-        html: "<p>We will update the date above whenever this policy changes materially. Continued use of the site after changes means you accept the updated policy. For questions about privacy, contact <a href='mailto:support@yourdomain.com'>support@yourdomain.com</a>.</p>",
+        html: "<p>We will update the date above whenever this policy changes materially. Continued use of the site after changes means you accept the updated policy. For questions about privacy, contact <a href='mailto:sunnytoolspro@gmail.com'>sunnytoolspro@gmail.com</a>.</p>",
       },
     ],
   },
@@ -135,7 +135,7 @@ module.exports = [
       },
       {
         h: "9. Changes and contact",
-        html: "<p>We may update these terms; continued use after changes constitutes acceptance. Questions: <a href='mailto:support@yourdomain.com'>support@yourdomain.com</a> or our <a href='/contact'>contact page</a>.</p>",
+        html: "<p>We may update these terms; continued use after changes constitutes acceptance. Questions: <a href='mailto:sunnytoolspro@gmail.com'>sunnytoolspro@gmail.com</a> or our <a href='/contact'>contact page</a>.</p>",
       },
     ],
   },
@@ -149,7 +149,7 @@ module.exports = [
     sections: [
       {
         h: "Filing a takedown notice (step by step)",
-        html: "<p><strong>Step 1 — Identify the work.</strong> Tell us exactly what copyrighted work you own (title, and a link or registration if available).</p><p><strong>Step 2 — Identify the infringing material.</strong> Send the exact URL(s) on this site and describe what on the page infringes.</p><p><strong>Step 3 — Add your contact details.</strong> Full name, email address and (for companies) your role and company name.</p><p><strong>Step 4 — Include two statements.</strong> (a) “I have a good-faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law.” (b) “The information in this notice is accurate, and under penalty of perjury I am authorized to act on behalf of the owner.”</p><p><strong>Step 5 — Sign and send.</strong> Physical or electronic signature, then email everything to <a href='mailto:support@yourdomain.com'>support@yourdomain.com</a> with the subject line “DMCA Takedown Notice”.</p>",
+        html: "<p><strong>Step 1 — Identify the work.</strong> Tell us exactly what copyrighted work you own (title, and a link or registration if available).</p><p><strong>Step 2 — Identify the infringing material.</strong> Send the exact URL(s) on this site and describe what on the page infringes.</p><p><strong>Step 3 — Add your contact details.</strong> Full name, email address and (for companies) your role and company name.</p><p><strong>Step 4 — Include two statements.</strong> (a) “I have a good-faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law.” (b) “The information in this notice is accurate, and under penalty of perjury I am authorized to act on behalf of the owner.”</p><p><strong>Step 5 — Sign and send.</strong> Physical or electronic signature, then email everything to <a href='mailto:sunnytoolspro@gmail.com'>sunnytoolspro@gmail.com</a> with the subject line “DMCA Takedown Notice”.</p>",
       },
       {
         h: "What happens next",

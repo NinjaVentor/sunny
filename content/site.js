@@ -2,7 +2,7 @@
 module.exports = {
   siteName: "SunnyToolsPro",
   domain: "https://sunnytoolspro.pages.dev",
-  supportEmail: "support@yourdomain.com",
+  supportEmail: "sunnytoolspro@gmail.com",
   tagline: "Your Everyday Digital Toolkit — free online tools, converters and daily utilities.",
   categories: [
     {

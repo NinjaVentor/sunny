@@ -152,7 +152,7 @@ function loadRooms(){
 ['fc','fb2','fb'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){if(id==='fc')loadRooms();else renderRooms()})});
 loadRooms();
 document.getElementById('postRoom').onclick=function(){
-  location.href='mailto:support@yourdomain.com?subject='+encodeURIComponent('New Room Listing')+'&body='+encodeURIComponent('City/Area:\nRoom type (private/partition/master/bed space):\nMonthly rent (AED):\nDetails (bath, wifi, metro):\nContact name:\nContact phone/WhatsApp:');
+  location.href='mailto:sunnytoolspro@gmail.com?subject='+encodeURIComponent('New Room Listing')+'&body='+encodeURIComponent('City/Area:\nRoom type (private/partition/master/bed space):\nMonthly rent (AED):\nDetails (bath, wifi, metro):\nContact name:\nContact phone/WhatsApp:');
 };
 fetch('/api/dld-rents').then(function(r){return r.json()}).then(function(d){
   if(!d.areas||!d.areas.length)throw 0;
