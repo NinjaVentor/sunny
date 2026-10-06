@@ -4,6 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>SunnyToolsPro — Your Everyday Digital Toolkit</title>
+<meta name="description" content="100% free online tools: PDF converters, image tools, currency, VAT, age and unit calculators, Qibla finder, UAE prayer times, jobs and room rent — no signup." />
+<link rel="canonical" href="https://sunnytoolspro.pages.dev/" />
+<meta property="og:type" content="website" /><meta property="og:title" content="SunnyToolsPro — Your Everyday Digital Toolkit" /><meta property="og:description" content="Free online tools, converters and live UAE information — no signup." /><meta property="og:url" content="https://sunnytoolspro.pages.dev/" />
+<meta name="twitter:card" content="summary" /><meta name="twitter:title" content="SunnyToolsPro — Your Everyday Digital Toolkit" /><meta name="twitter:description" content="Free online tools, converters and live UAE information — no signup." />
 <link rel="stylesheet" href="tokens.css" />
 <style>
 *{box-sizing:border-box}html,body{overflow-x:clip}body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink)}
@@ -27,6 +31,11 @@ a{color:inherit;text-decoration:none}button{font-family:inherit}
 .lang-btn{height:32px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#fff;font-weight:700;font-size:13px;padding:0 10px;cursor:pointer}
 .login{background:var(--yellow);border:0;border-radius:8px;font-weight:800;font-size:13px;padding:8px 16px;cursor:pointer;color:#111}
 .hamburger{display:none;background:transparent;border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;width:42px;height:38px;font-size:18px;cursor:pointer}
+.hdrop{position:relative}.hdropmenu{display:none;position:absolute;top:100%;left:0;background:#0d2140;border:1px solid rgba(255,255,255,.14);border-radius:10px;min-width:210px;padding:6px;z-index:70;max-height:70vh;overflow:auto}
+.hdrop:hover .hdropmenu,.hdrop:focus-within .hdropmenu{display:block}
+.hdropmenu b{display:block;font-size:10.5px;color:#8ea0c2;text-transform:uppercase;letter-spacing:.08em;padding:8px 10px 2px}
+.hdropmenu a{display:block;padding:6px 10px;font-size:13px}
+.ad-slot-placeholder{border:1.5px dashed rgba(255,255,255,.28);border-radius:10px;text-align:center;color:#8ea0c2;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px;margin:16px 0;background:rgba(255,255,255,.02)}
 /* welcome strip */
 .strip{background:#0d1f3a;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);text-align:center;font-size:13px;padding:9px 12px;color:var(--yellow);font-weight:700}
 /* ===== Hero ===== */
@@ -171,7 +180,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
     <button class="hamburger" id="ham" aria-label="Menu">☰</button>
     <a class="logo" href="#"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a>
     <nav class="nav" aria-label="Main">
-      <a href="#tools">Tools</a><a href="#today">UAE</a><a href="#converter">Finance</a><a href="#jobs">Jobs</a><a href="#rooms">Rent</a><a href="#prayer">Islamic</a><a href="#">More</a>
+      <span class="hdrop"><a href="#tools">Tools ▾</a><span class="hdropmenu"><b>PDF Tools</b><a href="/tools/jpg-to-pdf">JPG to PDF</a><a href="/tools/pdf-to-jpg">PDF to JPG</a><a href="/tools/pdf-merge">PDF Merge</a><a href="/tools/pdf-split">PDF Split</a><a href="/tools/word-to-pdf">Word to PDF</a><b>Image Tools</b><a href="/tools/image-compressor">Image Compressor</a><a href="/tools/image-resizer">Image Resizer</a><a href="/tools/image-crop">Image Crop</a><b>Calculators</b><a href="/tools/currency-converter">Currency Converter</a><a href="/tools/vat-calculator">VAT Calculator</a><a href="/tools/age-calculator">Age Calculator</a><a href="/tools/unit-converter">Unit Converter</a></span></span><a href="#today">UAE</a><a href="#converter">Finance</a><a href="#jobs">Jobs</a><a href="#rooms">Rent</a><a href="#prayer">Islamic</a><a href="/blog">Blog</a>
     </nav>
     <div class="top-actions">
       <button class="icon-btn" title="Theme">◐</button>
@@ -256,6 +265,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
   </section>
 
   <!-- ROOMS -->
+  <div class="ad-slot-placeholder">Advertisement</div>
   <section class="rooms" id="rooms">
     <div class="rooms-head"><h3>UAE Room Rent Finder</h3><span class="api-ready">• API-ready</span></div>
     <div class="room-grid">
@@ -276,6 +286,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
   <!-- TOOLS -->
   <div class="sec-head"><h3>Popular Free Tools</h3><a href="#" id="viewAll">View All Tools →</a></div>
   <section class="tools" id="tools"></section>
+  <div class="ad-slot-placeholder">Advertisement</div>
 
   <!-- DAILY -->
   <div class="sec-head"><h3>Daily UAE Updates</h3></div>
@@ -304,11 +315,11 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
 <footer>
   <div class="wrap">
     <div class="fgrid">
-      <div><a class="logo" href="#" style="margin-bottom:10px"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a><p class="fabout">Your everyday digital toolkit with free online tools, converters and daily utilities.</p></div>
-      <div><h4>Quick Links</h4><a href="#">Home</a><a href="#tools">All Tools</a><a href="#today">UAE Dashboard</a><a href="#jobs">Jobs in UAE</a><a href="#rooms">Room Rent UAE</a></div>
-      <div><h4>Popular Tools</h4><a href="#tools">JPG to PDF</a><a href="#tools">PDF to JPG</a><a href="#converter">Currency Converter</a><a href="#prayer">UAE Prayer Times</a><a href="#">VAT Calculator</a></div>
-      <div><h4>UAE</h4><a href="#prayer">Prayer Times</a><a href="#jobs">UAE Jobs</a><a href="#rooms">Room Rent</a><a href="#">UAE Holidays</a><a href="#">UAE Time</a></div>
-      <div><h4>Legal</h4><a href="#">About Us</a><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Disclaimer</a><a href="#">Contact Us</a></div>
+      <div><a class="logo" href="/" style="margin-bottom:10px"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a><p class="fabout">Your everyday digital toolkit with free online tools, converters and daily utilities.</p></div>
+      <div><h4>Quick Links</h4><a href="/">Home</a><a href="#tools">All Tools</a><a href="#today">UAE Dashboard</a><a href="#jobs">Jobs in UAE</a><a href="#rooms">Room Rent UAE</a><a href="/blog">Blog &amp; Guides</a></div>
+      <div><h4>Popular Tools</h4><a href="/tools/jpg-to-pdf">JPG to PDF</a><a href="/tools/pdf-to-jpg">PDF to JPG</a><a href="/tools/currency-converter">Currency Converter</a><a href="/tools/vat-calculator">VAT Calculator</a><a href="/tools/image-compressor">Image Compressor</a></div>
+      <div><h4>UAE</h4><a href="#prayer">Prayer Times</a><a href="#jobs">UAE Jobs</a><a href="#rooms">Room Rent</a><a href="#today">UAE Time</a><a href="/tools/qibla-finder">Qibla Finder</a></div>
+      <div><h4>Legal</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/privacy-policy">Privacy Policy</a><a href="/terms-of-service">Terms of Service</a><a href="/dmca">DMCA</a></div>
     </div>
     <div class="copy">© 2026 SunnyToolsPro. All rights reserved. | Website Design &amp; Build by <b style="color:#fff">Sunny Janjowa &amp; Sabir Ali</b></div>
   </div>
@@ -323,23 +334,19 @@ $("top").onclick=function(){window.scrollTo({top:0,behavior:"smooth"})};
 
 /* Tools grid */
 var TOOLS=[
-["🖼️","JPG to PDF","Convert Images to PDF"],["🖼️","PDF to JPG","Convert PDF to Images"],
-["📁","PDF Merge","Merge Multiple PDF"],["✂️","PDF Split","Split PDF into Pages"],
-["🗜️","PDF Compress","Compress PDF Size"],["🖊️","Image Compressor","Reduce Image Size"],
-["↔️","Image Resizer","Resize Images"],["💱","Currency Converter","Live Currency Rates"],
-["🧾","VAT Calculator","UAE VAT Calculator"],["🎂","Age Calculator","Calculate Your Age"],
-["📄","Word to PDF","Convert Word to PDF"],["📕","PDF to Word","Convert PDF to Word"],
-["🖼️","PNG to PDF","Convert PNG to PDF"],["🧭","Qibla Finder","Find Qibla Direction"],
-["🔗","Unit Converter","Convert Any Unit"]];
+["🖼️","JPG to PDF","Convert Images to PDF","jpg-to-pdf"],["🖼️","PDF to JPG","Convert PDF to Images","pdf-to-jpg"],
+["📁","PDF Merge","Merge Multiple PDF","pdf-merge"],["✂️","PDF Split","Split PDF into Pages","pdf-split"],
+["🗜️","PDF Compress","Compress PDF Size","pdf-compress"],["🖊️","Image Compressor","Reduce Image Size","image-compressor"],
+["↔️","Image Resizer","Resize Images","image-resizer"],["💱","Currency Converter","Live Currency Rates","currency-converter"],
+["🧾","VAT Calculator","UAE VAT Calculator","vat-calculator"],["🎂","Age Calculator","Calculate Your Age","age-calculator"],
+["📄","Word to PDF","Convert Word to PDF","word-to-pdf"],["📕","PDF to Word","Convert PDF to Word","pdf-to-word"],
+["🖼️","PNG to PDF","Convert PNG to PDF","png-to-pdf"],["🧭","Qibla Finder","Find Qibla Direction","qibla-finder"],
+["🔗","Unit Converter","Convert Any Unit","unit-converter"]];
 var tg=$("tools");
 TOOLS.forEach(function(t){
   var b=document.createElement("button");b.className="tool";b.setAttribute("data-name",t[1].toLowerCase());
   b.innerHTML='<span class="ti">'+t[0]+'</span><span><b>'+t[1]+'</b><small>'+t[2]+'</small></span>';
-  b.onclick=function(){
-    if(t[1].indexOf("Currency")>-1)$("converter").scrollIntoView({behavior:"smooth"});
-    else if(t[1].indexOf("Qibla")>-1||t[1].indexOf("Prayer")>-1)$("prayer").scrollIntoView({behavior:"smooth"});
-    else $("converter").scrollIntoView({behavior:"smooth"});
-  };
+  b.onclick=function(){location.href='/tools/'+t[3]};
   tg.appendChild(b);
 });
 function filterTools(q){

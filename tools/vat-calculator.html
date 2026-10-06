@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UAE VAT Calculator — Add or Remove 5% VAT | SunnyToolsPro</title><meta name="description" content="Calculate UAE 5% VAT instantly: add VAT to net prices or extract it from gross. Free, with invoice examples.">
+<link rel="canonical" href="https://sunnytoolspro.pages.dev/tools/vat-calculator">
+<meta property="og:type" content="article"><meta property="og:title" content="UAE VAT Calculator — Add or Remove 5% VAT | SunnyToolsPro"><meta property="og:description" content="Calculate UAE 5% VAT instantly: add VAT to net prices or extract it from gross. Free, with invoice examples."><meta property="og:url" content="https://sunnytoolspro.pages.dev/tools/vat-calculator">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="UAE VAT Calculator — Add or Remove 5% VAT | SunnyToolsPro"><meta name="twitter:description" content="Calculate UAE 5% VAT instantly: add VAT to net prices or extract it from gross. Free, with invoice examples.">
+<link rel="stylesheet" href="/tokens.css"><style>
+*{box-sizing:border-box}html,body{overflow-x:clip}
+body{margin:0;font-family:Inter,"Segoe UI",system-ui,Arial,sans-serif;background:#0a1931;color:#fff;line-height:1.65}
+a{color:#ffc107}.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+.topbar{position:sticky;top:0;z-index:60;background:#071222;border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar-in{display:flex;align-items:center;gap:14px;min-height:60px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;color:#fff;text-decoration:none;white-space:nowrap}
+.logo .sun{color:#ffc107;font-size:22px}.logo b{font-size:15px;display:block;line-height:1}.logo small{font-size:15px;display:block;line-height:1}
+.logo .pro{background:#ffc107;color:#111;font-size:10px;font-weight:800;border-radius:5px;padding:2px 6px;margin-left:6px}
+.nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav a,.dropbtn{color:#dbe4f5;text-decoration:none;font-size:13.5px;font-weight:600;padding:8px 10px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit}
+.nav a:hover,.dropbtn:hover{color:#ffc107}
+.drop{position:relative}.dropmenu{display:none;position:absolute;top:100%;left:0;background:#0d2140;border:1px solid rgba(255,255,255,.14);border-radius:10px;min-width:210px;padding:6px;z-index:70}
+.drop:hover .dropmenu,.drop:focus-within .dropmenu{display:block}
+.dropmenu b{display:block;font-size:11px;color:#8ea0c2;text-transform:uppercase;letter-spacing:.08em;padding:8px 10px 2px}
+.dropmenu a{display:block;padding:7px 10px;font-size:13px}
+.hsearch{margin-left:auto;display:flex;background:#fff;border-radius:8px;overflow:hidden}
+.hsearch input{border:0;padding:8px 10px;font-size:13px;width:170px;outline:none}
+.hsearch button{background:#ffc107;border:0;padding:0 12px;cursor:pointer;font-weight:800}
+main{background:#0a1931}
+.card{background:#fff;color:#16215c;border-radius:14px;padding:22px;margin:18px 0}
+.card h1{margin:0 0 8px;font-size:clamp(24px,3.4vw,34px);color:#1a2f8a;line-height:1.2}
+.card h2{color:#1a2f8a;font-size:20px;margin:26px 0 8px}
+.card h3{color:#1a2f8a;font-size:16px;margin:18px 0 6px}
+.card p{font-size:14.5px;color:#33406b}.card ul,.card ol{font-size:14.5px;color:#33406b;padding-left:22px}
+.card li{margin:6px 0}.lead{font-size:16px;color:#33406b}
+.crumb{font-size:12.5px;color:#93a3c0;margin:16px 0 0}.crumb a{color:#8fb0ff;text-decoration:none}
+.ad-slot-placeholder{border:1.5px dashed rgba(255,255,255,.28);border-radius:10px;text-align:center;color:#8ea0c2;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:14px;margin:16px 0;background:rgba(255,255,255,.02)}
+.widget{background:#f4f6fb;border:1px solid #e2e7f2;border-radius:12px;padding:18px;margin:16px 0;color:#16215c}
+.dropzone{border:2px dashed #9db0d0;border-radius:10px;background:#fff;padding:26px 14px;text-align:center;cursor:pointer;font-size:14px;color:#51607f}
+.dropzone:hover{border-color:#1a2f8a}
+.btn{background:#0b2342;color:#fff;border:0;border-radius:9px;padding:11px 18px;font-weight:800;font-size:14px;cursor:pointer}
+.btn.yellow{background:#ffc107;color:#111}.btn:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin:10px 0}
+.field label{display:block;font-size:12px;color:#6b7aa5;margin-bottom:4px;font-weight:700}
+.field input,.field select,.field textarea{border:1px solid #dfe5f0;border-radius:8px;padding:9px 10px;font-size:14px;color:#111;background:#fff;font-family:inherit}
+textarea.ta{width:100%;min-height:160px;resize:vertical}
+.out{background:#fff;border:1px solid #e2e7f2;border-radius:8px;padding:10px;font-size:13px;max-height:220px;overflow:auto;white-space:pre-wrap;color:#16215c}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.thumbs img{width:86px;height:86px;object-fit:cover;border-radius:8px;border:1px solid #dfe5f0}
+.stat{font-size:13px;color:#0e9f6e;font-weight:800}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.feat{background:#f4f6fb;border:1px solid #e6ebf4;border-radius:10px;padding:12px}
+.feat b{display:block;font-size:13.5px;color:#1a2f8a}.feat span{font-size:13px;color:#5b6584}
+.steps{counter-reset:st;margin:12px 0;padding:0;list-style:none}
+.steps li{position:relative;padding:10px 10px 10px 52px;background:#f4f6fb;border:1px solid #e6ebf4;border-radius:10px;margin:8px 0;font-size:14px;color:#33406b}
+.steps li::before{counter-increment:st;content:counter(st);position:absolute;left:12px;top:10px;width:28px;height:28px;border-radius:50%;background:#0b2342;color:#fff;font-weight:800;display:grid;place-items:center;font-size:14px}
+details.faq{border:1px solid #e2e7f2;border-radius:10px;margin:8px 0;background:#fff}
+details.faq summary{cursor:pointer;padding:12px 14px;font-weight:700;font-size:14px;color:#1a2f8a;list-style:none}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";float:right;color:#0e9f6e;font-weight:800}
+details.faq[open] summary::after{content:"−"}
+details.faq .a{padding:0 14px 14px;font-size:14px;color:#33406b}
+.privacy-box{background:#e7f7ef;border:1px solid #0e9f6e;border-radius:10px;padding:14px;font-size:14px;color:#0c3b2a;margin:18px 0}
+.rel{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.rel a{background:#0b2342;color:#fff;border-radius:10px;padding:14px;text-decoration:none;font-weight:700;font-size:14px}
+footer{background:#071222;border-top:1px solid rgba(255,255,255,.08);padding:30px 0 40px;margin-top:26px}
+.fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:18px}
+.fgrid h4{font-size:13px;margin:0 0 10px;color:#fff}.fgrid a{display:block;font-size:12.5px;color:#9db0d0;margin:5px 0;text-decoration:none}
+.fabout{font-size:12.5px;color:#9db0d0}.copy{text-align:center;font-size:12px;color:#8ea0c2;margin-top:24px;border-top:1px solid rgba(255,255,255,.08);padding-top:16px}
+.postmeta{font-size:13px;color:#8ea0c2;margin-bottom:6px}
+.bloggrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.postcard{background:#fff;border-radius:12px;padding:16px;color:#16215c;text-decoration:none;display:block}
+.postcard b{color:#1a2f8a;font-size:15px;display:block;margin-bottom:6px}
+.postcard p{font-size:13.5px;color:#5b6584;margin:0 0 8px}.postcard small{font-size:12px;color:#8a94b5}
+.cta{background:#0b2342;border-radius:12px;padding:18px;text-align:center;margin:18px 0}
+.cta b{font-size:17px}.cta p{color:#c4d0e8;font-size:14px}.cta a{display:inline-block;background:#ffc107;color:#111;font-weight:800;border-radius:9px;padding:10px 22px;text-decoration:none;margin-top:8px}
+table.t{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+table.t th,table.t td{border:1px solid #e2e7f2;padding:7px;text-align:left;color:#16215c}
+table.t th{background:#f4f6fb;color:#1a2f8a}
+@media(max-width:680px){.feat-grid,.rel,.bloggrid{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr 1fr}.hsearch{width:100%;margin:6px 0}.hsearch input{flex:1;width:auto}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I remove 5% VAT from AED 1,050?","acceptedAnswer":{"@type":"Answer","text":"Divide by 1.05: base = AED 1,000, VAT = AED 50. Never just subtract 5% (that gives AED 997.50, which is wrong)."}},{"@type":"Question","name":"What is the VAT rate in the UAE?","acceptedAnswer":{"@type":"Answer","text":"5% standard rate on most goods and services since 2018, with specific zero-rated and exempt categories."}},{"@type":"Question","name":"Is restaurant VAT included in menu prices?","acceptedAnswer":{"@type":"Answer","text":"Usually yes — menus typically show VAT-inclusive prices. Use Extract mode on the bill total to see the VAT inside."}},{"@type":"Question","name":"Can I use this for business invoices?","acceptedAnswer":{"@type":"Answer","text":"For the arithmetic, absolutely. For tax compliance (registration, filing, exempt categories), follow Federal Tax Authority rules or consult an accountant."}},{"@type":"Question","name":"Is the calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — unlimited calculations, no account needed."}}]}</script></head><body>
+<header class="topbar"><div class="wrap topbar-in">
+<a class="logo" href="/"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a>
+<nav class="nav" aria-label="Main">
+<span class="drop"><button class="dropbtn">Tools ▾</button><span class="dropmenu"><div><b>PDF Tools</b><a href="/tools/jpg-to-pdf">JPG to PDF</a><a href="/tools/pdf-to-jpg">PDF to JPG</a><a href="/tools/pdf-merge">PDF Merge</a><a href="/tools/pdf-split">PDF Split</a><a href="/tools/pdf-compress">PDF Compress</a><a href="/tools/word-to-pdf">Word to PDF</a><a href="/tools/pdf-to-word">PDF to Word</a><a href="/tools/png-to-pdf">PNG to PDF</a><a href="/tools/text-to-pdf">Text to PDF</a></div><div><b>Image Tools</b><a href="/tools/image-compressor">Image Compressor</a><a href="/tools/image-resizer">Image Resizer</a><a href="/tools/image-crop">Image Crop</a></div><div><b>Calculators</b><a href="/tools/currency-converter">Currency Converter</a><a href="/tools/vat-calculator">VAT Calculator</a><a href="/tools/age-calculator">Age Calculator</a><a href="/tools/unit-converter">Unit Converter</a></div><div><b>Everyday Utilities</b><a href="/tools/qibla-finder">Qibla Finder</a><a href="/#prayer">UAE Prayer Times</a><a href="/#jobs">UAE Jobs</a><a href="/#rooms">Room Rent Finder</a></div></span></span>
+<a href="/#today">UAE</a><a href="/blog">Blog</a><a href="/#jobs">Jobs</a><a href="/#rooms">Rent</a><a href="/#prayer">Islamic</a>
+</nav>
+<span class="hsearch"><input id="hs" type="search" placeholder="Search tools…" aria-label="Search tools" list="hsl"><datalist id="hsl"></datalist><button id="hsb" aria-label="Search">⌕</button></span>
+</div></header>
+<script>var TI=[{"n":"JPG to PDF","u":"/tools/jpg-to-pdf"},{"n":"PDF to JPG","u":"/tools/pdf-to-jpg"},{"n":"PDF Merge","u":"/tools/pdf-merge"},{"n":"PDF Split","u":"/tools/pdf-split"},{"n":"PDF Compress","u":"/tools/pdf-compress"},{"n":"Word to PDF","u":"/tools/word-to-pdf"},{"n":"PDF to Word","u":"/tools/pdf-to-word"},{"n":"PNG to PDF","u":"/tools/png-to-pdf"},{"n":"Text to PDF","u":"/tools/text-to-pdf"},{"n":"Image Compressor","u":"/tools/image-compressor"},{"n":"Image Resizer","u":"/tools/image-resizer"},{"n":"Image Crop","u":"/tools/image-crop"},{"n":"Currency Converter","u":"/tools/currency-converter"},{"n":"VAT Calculator","u":"/tools/vat-calculator"},{"n":"Age Calculator","u":"/tools/age-calculator"},{"n":"Unit Converter","u":"/tools/unit-converter"},{"n":"Qibla Finder","u":"/tools/qibla-finder"}];var dl=document.getElementById('hsl');TI.forEach(function(t){var o=document.createElement('option');o.value=t.n;dl.appendChild(o)});function goHS(){var q=(document.getElementById('hs').value||'').toLowerCase();var f=TI.find(function(t){return t.n.toLowerCase().indexOf(q)>-1});if(f)location.href=f.u}document.getElementById('hsb').onclick=goHS;document.getElementById('hs').addEventListener('keydown',function(e){if(e.key==='Enter')goHS()});</script><main><div class="wrap"><p class="crumb"><a href="/">Home</a> / Tools / VAT Calculator</p>
+<div class="ad-slot-placeholder">Advertisement</div>
+
+<h1 style="margin:16px 0 4px;font-size:clamp(24px,3.4vw,34px)">UAE VAT Calculator (5%)</h1>
+<p class="postmeta">Free online tool · No signup · Works on mobile</p>
+<div class="widget" id="top-widget"><div class="row"><div class="field"><label for="amt">Amount (AED)</label><input id="amt" type="number" value="1000" min="0" step="any" style="width:150px"></div><div class="field"><label for="md">Mode</label><select id="md"><option value="add">Add 5% VAT</option><option value="ex">Extract VAT (inclusive)</option></select></div><button class="btn" id="go">Calculate</button></div>
+<table class="t"><tr><th>Base</th><th>VAT (5%)</th><th>Total</th></tr><tr><td id="b">—</td><td id="v">—</td><td id="t">—</td></tr></table>
+<script>function calc(){var a=parseFloat(document.getElementById('amt').value);if(isNaN(a))return;var b,v,t;if(document.getElementById('md').value==='add'){b=a;v=a*0.05;t=a*1.05}else{b=a/1.05;v=a-b;t=a}var f=function(n){return 'AED '+n.toLocaleString('en-AE',{minimumFractionDigits:2,maximumFractionDigits:2})};document.getElementById('b').textContent=f(b);document.getElementById('v').textContent=f(v);document.getElementById('t').textContent=f(t)}document.getElementById('go').onclick=calc;document.getElementById('amt').addEventListener('input',calc);document.getElementById('md').addEventListener('change',calc);calc();</script></div><script>function stpDown(bytes,name,mime){var b=bytes instanceof Blob?bytes:new Blob([bytes],{type:mime||'application/octet-stream'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},800)}</script>
+<div class="card"><h1>UAE VAT Calculator (5%)</h1>
+<p class="lead">The UAE's 5% VAT hides inside everyday prices — and extracting it trips up almost everyone. This calculator adds VAT to net amounts or pulls it out of VAT-inclusive totals in one click, with the base, VAT and total shown separately.</p>
+<p>Freelancers quoting clients, shoppers checking receipts, and small businesses raising invoices use it daily. Free, instant, and built for how VAT actually appears on Gulf paperwork.</p>
+<h2>How to Use This Tool (Step-by-Step Guide)</h2>
+<ol class="steps"><li><b>Enter the amount.</b> Type the price as shown — net or gross.</li><li><b>Choose direction.</b> Select Add 5% VAT (net → gross) or Extract VAT (gross → base + VAT).</li><li><b>Calculate.</b> Instantly see base amount, VAT portion and total, itemized.</li><li><b>Use the figures.</b> Copy numbers straight into quotes, invoices or expense claims.</li></ol>
+<h2>Key Features &amp; Benefits</h2>
+<div class="feat-grid"><div class="feat"><b>Both directions</b><span>Add VAT or extract it — the two real-world needs.</span></div><div class="feat"><b>Itemized output</b><span>Base, VAT and total shown separately.</span></div><div class="feat"><b>Correct math</b><span>Proper ÷1.05 extraction, not the 5%-off error.</span></div><div class="feat"><b>Invoice-ready</b><span>Figures formatted for quotes and bills.</span></div><div class="feat"><b>Instant + free</b><span>No signup, results as you type.</span></div><div class="feat"><b>Mobile first</b><span>Settle a bill dispute at the table.</span></div></div>
+<h2>Understanding VAT Calculator</h2>
+<p>Adding VAT is simple multiplication (×1.05), but removing it requires division (÷1.05) — subtracting 5% from a gross price gives the wrong answer. A AED 1,050 inclusive invoice holds AED 50 of VAT (1050 ÷ 1.05 = 1000 base), not AED 52.50. The calculator handles both directions so the classic mistake disappears.</p><p>Remember this is arithmetic, not tax advice: zero-rated and exempt categories (some healthcare, education, residential rent) follow FTA rules with fine print. For accounting decisions, confirm with official guidance — then do the math here.</p><p>Keep a paper trail for every figure you rely on: note the date, the gross or net starting amount, and which direction you calculated. Small businesses that log these three details per invoice reconcile their books dramatically faster at quarter-end, and the itemized base–VAT–total breakdown this tool shows maps directly onto standard UAE invoice line items.</p>
+<h2>Pro Tips for Best Results</h2>
+<ul><li>For quotes, always state whether prices include VAT.</li><li>Extract VAT from receipts before claiming expenses.</li><li>Pair with the currency converter for imports priced in USD.</li><li>Round only the final total, never intermediate steps.</li></ul>
+<h2>Frequently Asked Questions</h2>
+<details class="faq"><summary>How do I remove 5% VAT from AED 1,050?</summary><div class="a">Divide by 1.05: base = AED 1,000, VAT = AED 50. Never just subtract 5% (that gives AED 997.50, which is wrong).</div></details><details class="faq"><summary>What is the VAT rate in the UAE?</summary><div class="a">5% standard rate on most goods and services since 2018, with specific zero-rated and exempt categories.</div></details><details class="faq"><summary>Is restaurant VAT included in menu prices?</summary><div class="a">Usually yes — menus typically show VAT-inclusive prices. Use Extract mode on the bill total to see the VAT inside.</div></details><details class="faq"><summary>Can I use this for business invoices?</summary><div class="a">For the arithmetic, absolutely. For tax compliance (registration, filing, exempt categories), follow Federal Tax Authority rules or consult an accountant.</div></details><details class="faq"><summary>Is the calculator free?</summary><div class="a">Yes — unlimited calculations, no account needed.</div></details>
+<div class="privacy-box"><b>Security &amp; Privacy Guarantee.</b> Your privacy is guaranteed. All processing is done locally in your browser/deleted automatically from our servers after processing. Your files are never uploaded, stored or shared.</div>
+<h2>Works Everywhere You Do</h2>
+<p>This tool is fully responsive: identical features on Android, iPhone, tablets and desktops, with no app to install. Files stay on your device, results download straight to your downloads folder, and everything is free without an account.</p>
+<h2>Related Tools</h2><div class="rel"><a href="/tools/currency-converter">→ Currency Converter</a><a href="/tools/age-calculator">→ Age Calculator</a></div>
+<p><a href="/#tools">Explore all free tools →</a> · <a href="/blog">Read how-to guides →</a></p>
+</div>
+<div class="cta"><b>Try VAT Calculator now — free forever</b><p>No signup · No watermark · Private by design</p><a href="#top-widget" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Open the tool ↑</a></div>
+<div class="ad-slot-placeholder">Advertisement</div>
+</div></main><footer><div class="wrap"><div class="fgrid">
+<div><a class="logo" href="/"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a><p class="fabout">Your everyday digital toolkit with free online tools, converters and daily utilities.</p><h4 style="margin-top:12px">Legal</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/privacy-policy">Privacy Policy</a><a href="/terms-of-service">Terms of Service</a><a href="/dmca">DMCA</a></div>
+<div><h4>PDF Tools</h4><a href="/tools/jpg-to-pdf">JPG to PDF</a><a href="/tools/pdf-to-jpg">PDF to JPG</a><a href="/tools/pdf-merge">PDF Merge</a><a href="/tools/pdf-split">PDF Split</a><a href="/tools/pdf-compress">PDF Compress</a></div><div><h4>Image Tools</h4><a href="/tools/image-compressor">Image Compressor</a><a href="/tools/image-resizer">Image Resizer</a><a href="/tools/image-crop">Image Crop</a></div><div><h4>Calculators</h4><a href="/tools/currency-converter">Currency Converter</a><a href="/tools/vat-calculator">VAT Calculator</a><a href="/tools/age-calculator">Age Calculator</a><a href="/tools/unit-converter">Unit Converter</a></div>
+</div><div class="copy">© 2026 SunnyToolsPro. All rights reserved. | Website Design &amp; Build by <b style="color:#fff">Sunny Janjowa &amp; Sabir Ali</b></div></div></footer></body></html>
