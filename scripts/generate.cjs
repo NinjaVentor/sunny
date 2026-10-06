@@ -351,7 +351,7 @@ blog.forEach((p) => {
 });
 
 // sitemap + robots
-const urls = ["/", "/about", "/contact", "/privacy-policy", "/terms-of-service", "/dmca", "/blog",
+const urls = ["/", "/about", "/contact", "/privacy-policy", "/terms-of-service", "/dmca", "/blog", "/jobs", "/rooms",
   ...blog.map((p) => "/blog/" + p.slug), ...tools.map((t) => "/tools/" + t.slug)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
   urls.map((u) => `<url><loc>${site.domain + u}</loc><lastmod>2026-10-06</lastmod><changefreq>monthly</changefreq></url>`).join("") + `</urlset>`);

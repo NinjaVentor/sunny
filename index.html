@@ -255,31 +255,30 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
     </div>
 
     <div class="card" id="jobs">
-      <h3>Latest UAE Jobs <a href="#">View All →</a></h3>
-      <div class="job"><span class="ic">👤</span><div><b>Marketing Executive</b><small>Dubai<br/>AED 4,000 – 6,000</small></div><span class="new">New</span></div>
-      <div class="job"><span class="ic">👤</span><div><b>Accountant</b><small>Sharjah<br/>AED 3,500 – 5,000</small></div><span class="new">New</span></div>
-      <div class="job"><span class="ic">👤</span><div><b>Driver (Light Vehicle)</b><small>Abu Dhabi<br/>AED 2,000 – 3,000</small></div><span class="new">New</span></div>
-      <div class="job"><span class="ic">👤</span><div><b>Sales Executive</b><small>Dubai<br/>AED 3,000 – 4,500</small></div><span class="new">New</span></div>
-      <button class="darkbtn">Browse All Jobs →</button>
+      <h3>Latest Jobs <a href="/jobs">View All →</a></h3>
+      <div id="homeJobs"><div class="job"><span class="ic">👤</span><div><b>Loading live jobs…</b></div></div></div>
+      <p style="font-size:11px;color:#8a94b5;margin:6px 0 0">Listings by <a href="https://jobicy.com" target="_blank" rel="noopener" style="color:#3b82f6">Jobicy</a> · Apply on employer site</p>
+      <button class="darkbtn" onclick="location.href='/jobs'">Browse All Jobs →</button>
     </div>
   </section>
 
   <!-- ROOMS -->
   <div class="ad-slot-placeholder">Advertisement</div>
   <section class="rooms" id="rooms">
-    <div class="rooms-head"><h3>UAE Room Rent Finder</h3><span class="api-ready">• API-ready</span></div>
+    <div class="rooms-head"><h3>UAE Room Rent Finder</h3><span class="api-ready">• <a href="/rooms" style="color:var(--green)">Open full finder →</a></span></div>
     <div class="room-grid">
       <div class="filters">
-        <label>City</label><select><option>Sharjah</option><option>Dubai</option><option>Abu Dhabi</option></select>
-        <label>Area</label><select><option>Al Nahda</option><option>Roll a</option><option>Al Qasimia</option></select>
-        <label>Room Type</label><select><option>Private Room</option><option>Partition</option><option>Master Room</option><option>Bed Space</option></select>
-        <label>Budget</label><select><option>AED 800 - 1,500</option><option>AED 1,500 - 2,500</option></select>
-        <button class="darkbtn" style="margin-top:12px">Search Rooms →</button>
+        <label>City</label><select id="hRoomCity"><option value="">All cities</option><option>Sharjah</option><option>Dubai</option></select>
+        <label>Area</label><select id="hRoomArea"><option value="">All areas</option><option>Al Nahda</option><option>Rolla</option><option>Al Qasimia</option></select>
+        <label>Room Type</label><select id="hRoomType"><option value="">All types</option><option value="private">Private Room</option><option value="partition">Partition</option><option value="master">Master Room</option><option value="bedspace">Bed Space</option></select>
+        <label>Budget</label><select id="hRoomBudget"><option value="">Any budget</option><option value="1000">Under AED 1,000</option><option value="1500">Under AED 1,500</option><option value="2500">Under AED 2,500</option></select>
+        <button class="darkbtn" style="margin-top:12px" id="hRoomSearch">Search Rooms →</button>
+        <p id="hRoomCount" style="font-size:11px;color:#6b7aa5"></p>
       </div>
-      <div class="room-card"><div class="room-img">🛏️</div><div class="room-body"><b>Private Room Available</b><div class="price">AED 1,200 / Month</div><small>Al Nahda 1, Sharjah<br/>1 Room • Attached Bath • WIFI</small></div></div>
-      <div class="room-card"><div class="room-img">🛋️</div><div class="room-body"><b>Partition Available</b><div class="price">AED 900 / Month</div><small>Al Qasimia, Sharjah<br/>Partition • WIFI • Near Metro</small></div></div>
-      <div class="room-card"><div class="room-img">🛏️</div><div class="room-body"><b>Master Room Available</b><div class="price">AED 1,500 / Month</div><small>Al Nahda 2, Sharjah<br/>Master Room • Attached Bath</small></div></div>
-      <div class="room-card"><div class="room-img">🏠</div><div class="room-body"><b>Bed Space Available</b><div class="price">AED 650 / Month</div><small>Roll a, Sharjah<br/>Bed Space • WIFI • AC</small></div></div>
+      <div class="room-card" data-city="Sharjah" data-area="Al Nahda" data-type="private" data-price="1200"><div class="price">AED 1,200 / Month</div><small>Al Nahda 1, Sharjah<br/>1 Room • Attached Bath • WIFI</small></div></div>
+      <div class="room-card" data-city="Sharjah" data-area="Al Qasimia" data-type="partition" data-price="900"><div class="price">AED 900 / Month</div><small>Al Qasimia, Sharjah<br/>Partition • WIFI • Near Metro</small></div></div>
+      <div class="room-card" data-city="Sharjah" data-area="Al Nahda" data-type="master" data-price="1500"><div class="price">AED 1,500 / Month</div><small>Al Nahda 2, Sharjah<br/>Master Room • Attached Bath</small></div></div>
+      <div class="room-card" data-city="Sharjah" data-area="Rolla" data-type="bedspace" data-price="650"><div class="price">AED 650 / Month</div><small>Roll a, Sharjah<br/>Bed Space • WIFI • AC</small></div></div>
     </div>
   </section>
 
@@ -316,9 +315,9 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
   <div class="wrap">
     <div class="fgrid">
       <div><a class="logo" href="/" style="margin-bottom:10px"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a><p class="fabout">Your everyday digital toolkit with free online tools, converters and daily utilities.</p></div>
-      <div><h4>Quick Links</h4><a href="/">Home</a><a href="#tools">All Tools</a><a href="#today">UAE Dashboard</a><a href="#jobs">Jobs in UAE</a><a href="#rooms">Room Rent UAE</a><a href="/blog">Blog &amp; Guides</a></div>
+      <div><h4>Quick Links</h4><a href="/">Home</a><a href="#tools">All Tools</a><a href="#today">UAE Dashboard</a><a href="/jobs">Jobs in UAE</a><a href="/rooms">Room Rent UAE</a><a href="/blog">Blog &amp; Guides</a></div>
       <div><h4>Popular Tools</h4><a href="/tools/jpg-to-pdf">JPG to PDF</a><a href="/tools/pdf-to-jpg">PDF to JPG</a><a href="/tools/currency-converter">Currency Converter</a><a href="/tools/vat-calculator">VAT Calculator</a><a href="/tools/image-compressor">Image Compressor</a></div>
-      <div><h4>UAE</h4><a href="#prayer">Prayer Times</a><a href="#jobs">UAE Jobs</a><a href="#rooms">Room Rent</a><a href="#today">UAE Time</a><a href="/tools/qibla-finder">Qibla Finder</a></div>
+      <div><h4>UAE</h4><a href="#prayer">Prayer Times</a><a href="/jobs">UAE Jobs</a><a href="/rooms">Room Rent</a><a href="#today">UAE Time</a><a href="/tools/qibla-finder">Qibla Finder</a></div>
       <div><h4>Legal</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/privacy-policy">Privacy Policy</a><a href="/terms-of-service">Terms of Service</a><a href="/dmca">DMCA</a></div>
     </div>
     <div class="copy">© 2026 SunnyToolsPro. All rights reserved. | Website Design &amp; Build by <b style="color:#fff">Sunny Janjowa &amp; Sabir Ali</b></div>
@@ -331,6 +330,39 @@ var $=function(id){return document.getElementById(id)};
 $("ham").onclick=function(){var m=$("mnav");m.hidden=!m.hidden};
 document.querySelectorAll("#mnav a").forEach(function(a){a.onclick=function(){$("mnav").hidden=true}});
 $("top").onclick=function(){window.scrollTo({top:0,behavior:"smooth"})};
+
+/* ——— Homepage live jobs (Jobicy via /api/jobs) ——— */
+(function(){
+  var box=$("homeJobs"); if(!box) return;
+  api("/api/jobs?count=4").then(function(d){
+    if(!d.jobs||!d.jobs.length) throw 0;
+    box.innerHTML="";
+    d.jobs.forEach(function(j){
+      var div=document.createElement("div");div.className="job";
+      var dt=j.date?new Date(j.date).toLocaleDateString("en-GB",{day:"numeric",month:"short"}):"New";
+      div.innerHTML='<span class="ic">👤</span><div><b></b><small></small></div><span class="new">'+dt+'</span>';
+      div.querySelector("b").textContent=j.title;
+      div.querySelector("small").textContent=j.company+" · "+(j.geo||"Remote");
+      div.style.cursor="pointer";
+      div.onclick=function(){window.open(j.url,"_blank","noopener")};
+      box.appendChild(div);
+    });
+  }).catch(function(){box.innerHTML='<div class="job"><span class="ic">👤</span><div><b>Browse all jobs</b><small>Tap below for live listings</small></div></div>'});
+})();
+
+/* ——— Homepage room filter ——— */
+(function(){
+  var btn=$("hRoomSearch"); if(!btn) return;
+  btn.onclick=function(){
+    var c=$("hRoomCity").value,a=$("hRoomArea").value,t=$("hRoomType").value,b=$("hRoomBudget").value;
+    var cards=document.querySelectorAll(".room-card"),n=0;
+    cards.forEach(function(card){
+      var ok=(!c||card.dataset.city===c)&&(!a||card.dataset.area===a)&&(!t||card.dataset.type===t)&&(!b||+card.dataset.price<=+b);
+      card.style.display=ok?"":"none"; if(ok)n++;
+    });
+    $("hRoomCount").textContent=n+" room(s) found. More on the full page → /rooms";
+  };
+})();
 
 /* Tools grid */
 var TOOLS=[
