@@ -40,6 +40,7 @@ main{background:#0a1931}
 .card p{font-size:14.5px;color:#33406b}.card ul,.card ol{font-size:14.5px;color:#33406b;padding-left:22px}
 .card li{margin:6px 0}.lead{font-size:16px;color:#33406b}
 .crumb{font-size:12.5px;color:#93a3c0;margin:16px 0 0}.crumb a{color:#8fb0ff;text-decoration:none}
+.tool-title{margin:16px 0 4px;font-size:clamp(24px,3.4vw,34px);font-weight:800;line-height:1.2;color:#fff}
 .ad-slot-placeholder{border:1.5px dashed rgba(255,255,255,.28);border-radius:10px;text-align:center;color:#8ea0c2;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:14px;margin:16px 0;background:rgba(255,255,255,.02)}
 .widget{background:#f4f6fb;border:1px solid #e2e7f2;border-radius:12px;padding:18px;margin:16px 0;color:#16215c}
 .dropzone{border:2px dashed #9db0d0;border-radius:10px;background:#fff;padding:26px 14px;text-align:center;cursor:pointer;font-size:14px;color:#51607f}
@@ -256,7 +257,7 @@ function toolPage(t) {
   const tips = t.tips.map((x) => `<li>${esc(x)}</li>`).join("");
   const rel = t.related.map((s) => { const r = tools.find((x) => x.slug === s); return r ? `<a href="/tools/${r.slug}">→ ${esc(r.name)}</a>` : ""; }).join("");
   const body = `
-<h1 style="margin:16px 0 4px;font-size:clamp(24px,3.4vw,34px)">${esc(t.h1)}</h1>
+<div class="tool-title">${esc(t.h1)}</div>
 <p class="postmeta">Free online tool · No signup · Works on mobile</p>
 ${widgetHTML(t.widget, t.slug)}
 <div class="card"><h1>${esc(t.h1)}</h1>
