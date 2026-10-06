@@ -45,6 +45,18 @@ footer{background:#071222;border-top:1px solid rgba(255,255,255,.08);padding:30p
 .fgrid h4{font-size:13px;margin:0 0 10px;color:#fff}.fgrid a{display:block;font-size:12.5px;color:#9db0d0;margin:5px 0;text-decoration:none}
 .fabout{font-size:12.5px;color:#9db0d0}.copy{text-align:center;font-size:12px;color:#8ea0c2;margin-top:24px;border-top:1px solid rgba(255,255,255,.08);padding-top:16px}
 @media(max-width:680px){.fgrid{grid-template-columns:1fr 1fr}}
+.theme-btn{border:1px solid rgba(255,255,255,.18);background:transparent;color:#fff;font-weight:700;font-size:12.5px;border-radius:8px;padding:8px 10px;cursor:pointer;font-family:inherit;white-space:nowrap}
+body[data-theme="light"]{background:#edf1f7;color:#16215c}
+body[data-theme="light"] .topbar{background:#fff;border-color:#e2e7f2}
+body[data-theme="light"] .logo{color:#16215c}
+body[data-theme="light"] .nav a{color:#33406b}
+body[data-theme="light"] .theme-btn{border-color:#c4cde0;color:#16215c}
+body[data-theme="light"] .crumb{color:#6b7aa5}
+body[data-theme="light"] footer{background:#fff;border-color:#e2e7f2}
+body[data-theme="light"] .fgrid h4{color:#16215c}
+body[data-theme="light"] .fgrid a,body[data-theme="light"] .fabout{color:#5b6584}
+body[data-theme="light"] .copy{color:#8a94b5;border-color:#e2e7f2}
+body[data-theme="light"] .ad-slot-placeholder{border-color:#c4cde0;color:#8a94b5;background:#fff}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are these jobs really in the UAE?","acceptedAnswer":{"@type":"Answer","text":"These are remote roles you can do from the UAE — employers hire worldwide and many list no location restriction. For on-site UAE roles, use the application links and check the location field before applying."}},{"@type":"Question","name":"Is applying free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Browsing is free and applications go directly to the employer's original posting — we never charge candidates or take a cut."}},{"@type":"Question","name":"How do I avoid job scams?","acceptedAnswer":{"@type":"Answer","text":"Never pay for a job offer, visa processing, or training to secure a role. Real employers interview you and pay you — money flows toward you, never away. Verify the company website and email domain before sharing documents."}},{"@type":"Question","name":"How fresh are these listings?","acceptedAnswer":{"@type":"Answer","text":"Listings refresh from the Jobicy feed, one of the largest remote-job boards. New roles appear daily; apply early as remote postings close fast."}},{"@type":"Question","name":"Can I work remotely for a foreign company while in the UAE?","acceptedAnswer":{"@type":"Answer","text":"Many residents do — commonly as freelancers or through remote-employment arrangements. Visa, tax and labour rules depend on your situation, so confirm with official UAE government guidance or a legal adviser for your case."}}]}</script>
 </head>
@@ -52,7 +64,9 @@ footer{background:#071222;border-top:1px solid rgba(255,255,255,.08);padding:30p
 <header class="topbar"><div class="wrap topbar-in">
 <a class="logo" href="/"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a>
 <nav class="nav"><a href="/#tools">Tools</a><a href="/#today">UAE</a><a href="/blog">Blog</a><a href="/jobs">Jobs</a><a href="/rooms">Rent</a><a href="/#prayer">Islamic</a></nav>
+<button class="theme-btn" id="themeBtn">☀ Light</button>
 </div></header>
+<script>try{var _t=localStorage.getItem("stp-theme")||"dark";document.body.setAttribute("data-theme",_t)}catch(e){document.body.setAttribute("data-theme","dark")}</script>
 <main><div class="wrap">
 <p class="crumb"><a href="/">Home</a> / Jobs</p>
 <div class="ad-slot-placeholder">Advertisement</div>
@@ -109,7 +123,17 @@ function render(){
     d.querySelector('small').textContent=j.company+' · '+(j.geo||'Remote')+' · '+(j.type||'');
     d.querySelector('p').textContent=j.excerpt||'';
     var a=document.createElement('a');a.className='apply';a.textContent='Apply →';a.href=j.url;a.target='_blank';a.rel='noopener';
-    d.appendChild(a);box.appendChild(d);
+    d.appendChild(a);
+    if(j.description||j.salary){
+      var det=document.createElement('button');det.className='apply';det.style.background='#fff';det.style.color='#0b2342';det.style.border='1px solid #0b2342';det.style.marginLeft='8px';det.textContent='Details ▾';
+      var full=document.createElement('div');full.style.display='none';full.style.marginTop='8px';full.style.fontSize='13px';full.style.color='#33406b';
+      if(j.salary){var s=document.createElement('p');s.innerHTML='<b>Salary: </b>';s.appendChild(document.createTextNode(j.salary));full.appendChild(s)}
+      if(j.description){var t=document.createElement('p');t.textContent=j.description;full.appendChild(t)}
+      var a2=document.createElement('a');a2.className='apply';a2.textContent='Apply on employer site →';a2.href=j.url;a2.target='_blank';a2.rel='noopener';full.appendChild(a2);
+      det.onclick=function(){var open=full.style.display!=='none';full.style.display=open?'none':'block';det.textContent=open?'Details ▾':'Hide ▲'};
+      d.appendChild(det);d.appendChild(full);
+    }
+    box.appendChild(d);
   });
 }
 document.getElementById('jq').addEventListener('input',render);
@@ -118,5 +142,6 @@ fetch('/api/jobs?count=24').then(function(r){return r.json()}).then(function(d){
   ALL=(d&&d.jobs)||[];render();
 }).catch(function(){document.getElementById('jobs').innerHTML='<p>Could not load jobs just now — please refresh.</p>'});
 </script>
+<script>(function(){var b=document.getElementById('themeBtn');function lb(){if(b)b.textContent=document.body.getAttribute('data-theme')==='dark'?'☀ Light':'☾ Dark'}lb();if(b)b.onclick=function(){var n=document.body.getAttribute('data-theme')==='dark'?'light':'dark';document.body.setAttribute('data-theme',n);try{localStorage.setItem('stp-theme',n)}catch(e){}lb()}})();</script>
 </body>
 </html>

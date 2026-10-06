@@ -30,7 +30,7 @@ a{color:#ffc107}.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
 .dropmenu b{display:block;font-size:11px;color:#8ea0c2;text-transform:uppercase;letter-spacing:.08em;padding:8px 10px 2px}
 .dropmenu a{display:block;padding:7px 10px;font-size:13px}
 .hsearch{margin-left:auto;display:flex;background:#fff;border-radius:8px;overflow:hidden}
-.hsearch input{border:0;padding:8px 10px;font-size:13px;width:170px;outline:none}
+.hsearch input{border:0;padding:8px 10px;font-size:13px;width:170px;outline:none;background:#fff;color:#111}
 .hsearch button{background:#ffc107;border:0;padding:0 12px;cursor:pointer;font-weight:800}
 main{background:#0a1931}
 .card{background:#fff;color:#16215c;border-radius:14px;padding:22px;margin:18px 0}
@@ -105,8 +105,11 @@ function header(active) {
 <a href="/#today">UAE</a><a href="/blog">Blog</a><a href="/#jobs">Jobs</a><a href="/#rooms">Rent</a><a href="/#prayer">Islamic</a>
 </nav>
 <span class="hsearch"><input id="hs" type="search" placeholder="Search tools…" aria-label="Search tools" list="hsl"><datalist id="hsl"></datalist><button id="hsb" aria-label="Search">⌕</button></span>
+<button class="theme-btn" id="themeBtn">☀ Light</button>
 </div></header>
-<script>var TI=${idx};var dl=document.getElementById('hsl');TI.forEach(function(t){var o=document.createElement('option');o.value=t.n;dl.appendChild(o)});function goHS(){var q=(document.getElementById('hs').value||'').toLowerCase();var f=TI.find(function(t){return t.n.toLowerCase().indexOf(q)>-1});if(f)location.href=f.u}document.getElementById('hsb').onclick=goHS;document.getElementById('hs').addEventListener('keydown',function(e){if(e.key==='Enter')goHS()});</script>`;
+<script>try{var _t=localStorage.getItem("stp-theme")||"dark";document.body.setAttribute("data-theme",_t)}catch(e){document.body.setAttribute("data-theme","dark")}</script>
+<script>var TI=${idx};var dl=document.getElementById('hsl');TI.forEach(function(t){var o=document.createElement('option');o.value=t.n;dl.appendChild(o)});function goHS(){var q=(document.getElementById('hs').value||'').toLowerCase();var f=TI.find(function(t){return t.n.toLowerCase().indexOf(q)>-1});if(f)location.href=f.u}document.getElementById('hsb').onclick=goHS;document.getElementById('hs').addEventListener('keydown',function(e){if(e.key==='Enter')goHS()});</script>
+<script>(function(){var b=document.getElementById('themeBtn');function lb(){if(b)b.textContent=document.body.getAttribute('data-theme')==='dark'?'☀ Light':'☾ Dark'}lb();if(b)b.onclick=function(){var n=document.body.getAttribute('data-theme')==='dark'?'light':'dark';document.body.setAttribute('data-theme',n);try{localStorage.setItem('stp-theme',n)}catch(e){}lb()}})();</script>`;
 }
 function footer() {
   const cols = site.categories.slice(0, 3).map((c) =>

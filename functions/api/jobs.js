@@ -14,6 +14,14 @@ export async function onRequest({ request }) {
     if (!res.ok) throw new Error("upstream " + res.status);
     const data = await res.json();
     const jobs = Array.isArray(data.jobs) ? data.jobs : [];
+    const strip = (s) => String(s || "").replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/gi, " ").replace(/\s+/g, " ").trim().slice(0, 4000);
+    const salaryOf = (j) => {
+      if (!j.salaryMin && !j.salaryMax) return "";
+      const cur = j.salaryCurrency || "";
+      const fmt = (n) => Number(n).toLocaleString("en-US");
+      const range = j.salaryMin && j.salaryMax ? fmt(j.salaryMin) + "–" + fmt(j.salaryMax) : fmt(j.salaryMax || j.salaryMin);
+      return (cur ? cur + " " : "") + range + (j.salaryPeriod ? " / " + j.salaryPeriod : "");
+    };
     return Response.json(
       {
         jobs: jobs.map((j) => ({
@@ -25,6 +33,8 @@ export async function onRequest({ request }) {
           industry: Array.isArray(j.jobIndustry) ? j.jobIndustry.join(", ") : j.jobIndustry || "",
           level: j.jobLevel || "",
           excerpt: (j.jobExcerpt || "").replace(/&hellip;|…/g, "").slice(0, 160),
+          description: strip(j.jobDescription),
+          salary: salaryOf(j),
           url: j.url || "https://jobicy.com/remote-jobs",
           date: j.pubDate || null,
         })),
