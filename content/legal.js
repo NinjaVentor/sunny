@@ -23,7 +23,7 @@ module.exports = [
       },
       {
         h: "Who builds SunnyToolsPro",
-        html: "<p>SunnyToolsPro is designed and built by Sunny Janjowa, with contributions from Sabir Ali. We maintain the site, write the guides in our <a href='/blog'>blog</a>, and answer support messages ourselves. If something is broken or confusing, <a href='/contact'>contact us</a> — real humans read every message.</p>",
+        html: "<p>SunnyToolsPro is designed and built by Sunny Janjowa. We maintain the site, write the guides in our <a href='/blog'>blog</a>, and answer support messages ourselves. If something is broken or confusing, <a href='/contact'>contact us</a> — real humans read every message.</p>",
       },
       {
         h: "What is next",

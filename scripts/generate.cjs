@@ -119,7 +119,7 @@ function footer() {
   return `<footer><div class="wrap"><div class="fgrid">
 <div><a class="logo" href="/"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a><p class="fabout">Your everyday digital toolkit with free online tools, converters and daily utilities.</p><h4 style="margin-top:12px">Legal</h4>${legalLinks}</div>
 ${cols}
-</div><div class="copy">© 2026 SunnyToolsPro. All rights reserved. | Website Design &amp; Build by <b style="color:#fff">Sunny Janjowa &amp; Sabir Ali</b></div></div></footer>`;
+</div><div class="copy">© 2026 SunnyToolsPro. All rights reserved. | Website Design &amp; Build by <b style="color:#fff">Sunny Janjowa</b></div></div></footer>`;
 }
 function head({ title, desc, canonical, jsonld }) {
   return `<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
