@@ -27,9 +27,6 @@ a{color:inherit;text-decoration:none}button{font-family:inherit}
 .nav{display:flex;gap:22px;margin-left:14px;font-size:14px;font-weight:600;color:#dbe4f5}
 .nav a{opacity:.92}.nav a:hover{color:var(--yellow)}
 .top-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
-.icon-btn{width:38px;height:32px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#fff;cursor:pointer;font-size:14px}
-.lang-btn{height:32px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#fff;font-weight:700;font-size:13px;padding:0 10px;cursor:pointer}
-.login{background:var(--yellow);border:0;border-radius:8px;font-weight:800;font-size:13px;padding:8px 16px;cursor:pointer;color:#111}
 .hamburger{display:none;background:transparent;border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;width:42px;height:38px;font-size:18px;cursor:pointer}
 .hdrop{position:relative}.hdropmenu{display:none;position:absolute;top:100%;left:0;background:#0d2140;border:1px solid rgba(255,255,255,.14);border-radius:10px;min-width:210px;padding:6px;z-index:70;max-height:70vh;overflow:auto}
 .hdrop:hover .hdropmenu,.hdrop:focus-within .hdropmenu{display:block}
@@ -44,7 +41,7 @@ body[data-theme="light"] .logo{color:#16215c}
 body[data-theme="light"] .nav a{color:#33406b}
 body[data-theme="light"] .hdropmenu{background:#fff;border-color:#e2e7f2}
 body[data-theme="light"] .hdropmenu a{color:#33406b}
-body[data-theme="light"] .icon-btn,body[data-theme="light"] .theme-btn,body[data-theme="light"] .lang-btn{border-color:#c4cde0;color:#16215c}
+body[data-theme="light"] .theme-btn{border-color:#c4cde0;color:#16215c}
 body[data-theme="light"] .hamburger{border-color:#c4cde0;color:#16215c}
 body[data-theme="light"] .mobile-nav{background:#fff}
 body[data-theme="light"] .mobile-nav a{color:#16215c;border-color:#eef1f7}
@@ -75,6 +72,14 @@ body[data-theme="light"] .ad-slot-placeholder{border-color:#c4cde0;color:#8a94b5
 .searchbar{display:flex;background:#fff;border-radius:10px;overflow:hidden;max-width:560px}
 .searchbar input{flex:1;border:0;padding:13px 14px;font-size:14px;outline:none;min-width:0;background:#fff;color:#111}
 .searchbar button{background:var(--yellow);border:0;width:56px;font-size:18px;cursor:pointer}
+.searchwrap{position:relative}
+.suggest{position:absolute;top:100%;left:0;right:0;background:#fff;border-radius:0 0 10px 10px;box-shadow:0 12px 28px rgba(0,0,0,.35);z-index:50;overflow:hidden;margin-top:2px}
+.suggest[hidden]{display:none}
+.suggest button{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;border:0;background:#fff;color:#16215c;padding:9px 14px;cursor:pointer;text-align:left;font-size:13.5px}
+.suggest button b{color:#1a2f8a}
+.suggest button small{color:#77809a;font-size:11.5px}
+.suggest button:hover{background:#eef3ff}
+.suggest .none{padding:10px 14px;font-size:12.5px;color:#77809a}
 .quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .quick button{background:transparent;border:1px solid rgba(255,255,255,.25);color:#e6edfa;border-radius:8px;font-size:12.5px;padding:6px 12px;cursor:pointer}
 .quick button:hover{border-color:var(--yellow);color:var(--yellow)}
@@ -114,7 +119,9 @@ body[data-theme="light"] .ad-slot-placeholder{border-color:#c4cde0;color:#8a94b5
 .conv-row{display:flex;gap:8px;align-items:center;margin-top:10px}
 .conv-row input,.conv-row select{border:1px solid #e2e7f2;border-radius:8px;padding:10px;font-size:14px;font-weight:700;width:100%;min-width:0;color:#111;background:#fff}
 .conv-amt{flex:1}.conv-cur{max-width:130px}
-.swap{width:34px;height:34px;border-radius:50%;border:1px solid #e2e7f2;background:#fff;cursor:pointer;flex:none;margin:4px auto;display:block}
+.swap{width:42px;height:42px;border-radius:50%;border:1px solid #c9d4e8;background:#fff;color:#0b2342;font-size:19px;line-height:1;cursor:pointer;flex:none;margin:6px auto;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(11,35,66,.12)}
+.swap:hover{border-color:var(--yellow);background:#fff8e1}
+.swap:active{transform:scale(.94)}
 .liverate{display:flex;justify-content:space-between;font-size:12px;margin:8px 0;font-weight:700;color:var(--navy-text-2)}
 .liverate b{color:var(--green)}
 .poptable{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px}
@@ -191,8 +198,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
 @media(max-width:680px){
 .nav{display:none}
 .hamburger{display:block}
-.top-actions .lang-btn{display:none}
-.top-actions .icon-btn{display:none}
+.top-actions .theme-btn{padding:0 8px;font-size:12px}
 .hero{padding:22px 0}
 .tiles{grid-template-columns:1fr 1fr}
 .grid3{grid-template-columns:1fr}
@@ -226,9 +232,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
       <span class="hdrop"><a href="#tools">Tools ▾</a><span class="hdropmenu"><b>PDF Tools</b><a href="/tools/jpg-to-pdf">JPG to PDF</a><a href="/tools/pdf-to-jpg">PDF to JPG</a><a href="/tools/pdf-merge">PDF Merge</a><a href="/tools/pdf-split">PDF Split</a><a href="/tools/word-to-pdf">Word to PDF</a><b>Image Tools</b><a href="/tools/image-compressor">Image Compressor</a><a href="/tools/image-resizer">Image Resizer</a><a href="/tools/image-crop">Image Crop</a><b>Calculators</b><a href="/tools/currency-converter">Currency Converter</a><a href="/tools/vat-calculator">VAT Calculator</a><a href="/tools/age-calculator">Age Calculator</a><a href="/tools/unit-converter">Unit Converter</a></span></span><a href="#today">UAE</a><a href="#converter">Finance</a><a href="#jobs">Jobs</a><a href="#rooms">Rent</a><a href="#prayer">Islamic</a><a href="/blog">Blog</a>
     </nav>
     <div class="top-actions">
-      <button class="icon-btn" title="Theme">◐</button>
       <button class="theme-btn" id="themeBtn">☀ Light</button>
-      <button class="lang-btn">EN ▾</button>
     </div>
   </div>
   <div class="mobile-nav" id="mnav" hidden>
@@ -244,9 +248,10 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
       <p class="kicker">• FREE • LIVE</p>
       <h1>Your Everyday<br/>Digital Toolkit</h1>
       <p class="sub">100% free online tools, UAE live information, converters &amp; daily utilities — all in one place.</p>
-      <div class="searchbar">
-        <input id="globalSearch" type="search" placeholder="What do you need today?" aria-label="Search tools" />
+      <div class="searchbar searchwrap">
+        <input id="globalSearch" type="search" placeholder="What do you need today?" aria-label="Search tools" autocomplete="off" />
         <button id="searchBtn" aria-label="Search">⌕</button>
+        <div class="suggest" id="gsuggest" hidden></div>
       </div>
       <div class="quick">
         <button data-q="PDF Converter">PDF Converter</button>
@@ -291,7 +296,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
         <input id="fxAmount" type="number" value="1000" min="0" step="any" />
         <select id="fxFrom" class="conv-cur"></select>
       </div>
-      <button class="swap" id="fxSwap" aria-label="Swap">⇅</button>
+      <button class="swap" id="fxSwap" aria-label="Swap currencies" title="Swap currencies">⇄</button>
       <div class="conv-row">
         <input id="fxResult" readonly value="—" />
         <select id="fxTo" class="conv-cur"></select>
@@ -343,7 +348,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
 <!-- WHY -->
 <section class="why">
   <div class="wrap why-in">
-    <div><h2>Why Choose<br/>SunnyToolsPro?</h2><p>Fast, reliable and completely free online tools with real-time UAE information in one place.</p><button class="explore">Explore All Tools →</button></div>
+    <div><h2>Why Choose<br/>SunnyToolsPro?</h2><p>Fast, reliable and completely free online tools with real-time UAE information in one place.</p><button class="explore" onclick="location.href='/tools'">Explore All Tools →</button></div>
     <div class="feats">
       <div class="f"><div class="fi">🎁</div><b>100% Free</b><small>No hidden charges.</small></div>
       <div class="f"><div class="fi">♡</div><b>Fast &amp; Secure</b><small>Simple and easy to use.</small></div>
@@ -459,8 +464,39 @@ function filterTools(q){
   });
 }
 $("globalSearch").addEventListener("input",function(){filterTools(this.value);});
-$("searchBtn").onclick=function(){$("tools").scrollIntoView({behavior:"smooth"});filterTools($("globalSearch").value);};
-document.querySelectorAll(".quick button").forEach(function(b){b.onclick=function(){filterTools(b.getAttribute("data-q"));$("tools").scrollIntoView({behavior:"smooth"});}});
+function toolMatches(q){
+  q=(q||"").toLowerCase().trim();
+  if(!q)return [];
+  return TOOLS.filter(function(t){return (t[1]+" "+t[2]).toLowerCase().indexOf(q)>-1}).slice(0,7);
+}
+function renderSuggest(){
+  var box=$("gsuggest"),q=$("globalSearch").value;
+  var m=toolMatches(q);
+  box.innerHTML="";
+  if(!q.trim()){box.hidden=true;return}
+  if(!m.length){box.innerHTML='<div class="none">No tool found — try "PDF", "image" or "currency".</div>'}
+  m.forEach(function(t){
+    var b=document.createElement("button");b.type="button";
+    b.innerHTML="<b></b><small></small>";
+    b.querySelector("b").textContent=t[1];
+    b.querySelector("small").textContent=t[2];
+    b.addEventListener("mousedown",function(e){e.preventDefault();location.href="/tools/"+t[3]});
+    box.appendChild(b);
+  });
+  box.hidden=false;
+}
+$("globalSearch").addEventListener("input",renderSuggest);
+$("globalSearch").addEventListener("keydown",function(e){
+  if(e.key==="Escape"){$("gsuggest").hidden=true}
+  if(e.key==="Enter"){var m=toolMatches($("globalSearch").value);if(m.length)location.href="/tools/"+m[0][3];}
+});
+$("globalSearch").addEventListener("blur",function(){setTimeout(function(){$("gsuggest").hidden=true},150)});
+$("searchBtn").onclick=function(){var m=toolMatches($("globalSearch").value);if(m.length)location.href="/tools/"+m[0][3];else $("tools").scrollIntoView({behavior:"smooth"})};
+document.querySelectorAll(".quick button").forEach(function(b){b.onclick=function(){
+  var q=b.getAttribute("data-q");
+  var go={"PDF Converter":"/tools","Currency":"/tools/currency-converter","Prayer Times":"/#prayer","Jobs":"/jobs","Room Rent":"/rooms"};
+  if(go[q])location.href=go[q];
+};});
 
 /* Dates + clocks */
 function tick(){
