@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="tokens.css" />
 <style>
 *{box-sizing:border-box}html,body{overflow-x:clip}body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink)}
+/* Strip entrance: slides in from right on page load */
+.strip{animation:page-slide-in .65s cubic-bezier(.22,1,.36,1) both}
+@keyframes page-slide-in{from{opacity:0;transform:translateX(100vw)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.strip{animation:none}}
 a{color:inherit;text-decoration:none}button{font-family:inherit}
 .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
 /* ===== Header ===== */
@@ -172,14 +176,13 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
     <div class="top-actions">
       <button class="icon-btn" title="Theme">◐</button>
       <button class="lang-btn">EN ▾</button>
-      <button class="login">👋 Login</button>
     </div>
   </div>
   <div class="mobile-nav" id="mnav" hidden>
     <a href="#tools">Tools</a><a href="#today">UAE</a><a href="#converter">Finance</a><a href="#jobs">Jobs</a><a href="#rooms">Rent</a><a href="#prayer">Islamic</a>
   </div>
 </header>
-<div class="strip">🚀 <b>Welcome to SunnyToolsPro</b> — Site made by <b>Sunny &amp; Sabir</b> ✨</div>
+<div class="strip">🚀 <b>Welcome to SunnyToolsPro</b> — Site made by <b>Sunny</b> ✨</div>
 
 <div class="wrap">
   <!-- HERO -->
