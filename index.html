@@ -103,7 +103,13 @@ body[data-theme="light"] .ad-slot-placeholder{border-color:#c4cde0;color:#8a94b5
 .nextbox{background:var(--green-soft);border-radius:10px;padding:10px 12px;margin-top:10px;display:flex;justify-content:space-between;align-items:center}
 .nextbox small{display:block;color:#51607f;font-size:11px}.nextbox b{font-size:13px;color:#111}
 .nextbox .cd{color:var(--green);font-weight:800;font-size:18px}
-.ptabs{display:flex;gap:14px;justify-content:center;font-size:11px;color:#8a94b5;margin-top:10px;flex-wrap:wrap}
+.ptabs{display:flex;gap:8px;justify-content:center;font-size:11px;color:#8a94b5;margin-top:10px;flex-wrap:wrap}
+.ptab{border:1px solid #e2e7f2;background:#fff;color:#6b7aa5;border-radius:999px;padding:6px 14px;font-size:11.5px;font-weight:700;cursor:pointer}
+.ptab.on{background:#0b2342;border-color:#0b2342;color:#fff}
+.ptable{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
+.ptable th,.ptable td{border:1px solid #eef1f7;padding:4px 3px;text-align:center;color:#33406b}
+.ptable th{background:#f4f6fb;color:#1a2f8a;position:sticky;top:0}
+.ptable-wrap{max-height:240px;overflow:auto;margin-top:8px;border:1px solid #eef1f7;border-radius:8px}
 /* converter */
 .conv-row{display:flex;gap:8px;align-items:center;margin-top:10px}
 .conv-row input,.conv-row select{border:1px solid #e2e7f2;border-radius:8px;padding:10px;font-size:14px;font-weight:700;width:100%;min-width:0;color:#111;background:#fff}
@@ -255,8 +261,8 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
       <div class="tiles">
         <div class="tile"><div class="t">☀ Weather</div><div class="v blue" id="tWeather">--°C</div><div class="s" id="tWeatherS">Partly Cloudy</div></div>
         <div class="tile"><div class="t">💱 Currency</div><div class="v blue" id="tFx">1 AED</div><div class="s" id="tFxS">= 75.60 PKR</div></div>
-        <div class="tile"><div class="t">👤 Gold Price</div><div class="v" id="tGold">—</div><div class="s">Connect provider</div></div>
-        <div class="tile"><div class="t">🛢 Fuel Price</div><div class="v">—</div><div class="s">Connect provider</div></div>
+        <div class="tile"><div class="t">👤 Gold Price</div><div class="v" id="tGold">—</div><div class="s">24K · per gram · live</div></div>
+        <div class="tile"><div class="t">🛢 Fuel Price</div><div class="v" id="tFuel">—</div><div class="s" id="tFuelS">AED/L · Oct 2026</div></div>
         <div class="tile"><div class="t">📅 Hijri Date</div><div class="v blue" id="tHijri">—</div><div class="s">AH</div></div>
         <div class="tile"><div class="t">🕐 UAE Time</div><div class="v" id="tTime">--:--</div><div class="s">GMT+4</div></div>
       </div>
@@ -267,16 +273,20 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
   <!-- 3 COL -->
   <section class="grid3">
     <div class="card" id="prayer">
-      <h3>🕌 UAE Prayer Times <a href="#">More▾</a></h3>
+      <h3>🕌 UAE Prayer Times</h3>
       <div class="citysel">📍 <select id="prayerCity"><option>Sharjah, UAE</option><option>Dubai, UAE</option><option>Abu Dhabi, UAE</option><option>Ajman, UAE</option></select></div>
       <div class="prayer-meta"><span>📅 <span id="gregDate">—</span></span><b id="hijriDate">—</b></div>
+      <div id="prayerToday">
       <div id="prayerRows"><div class="prow"><span>Fajr</span><span>--:--</span></div></div>
       <div class="nextbox"><div><small>Next Prayer</small><b id="nextName">Dhuhr</b><small>remaining</small></div><div class="cd" id="nextCd">--:--:--</div></div>
-      <div class="ptabs"><span>Today</span><span>Tomorrow</span><span>Monthly</span><span>Calendar</span><span>Qibla</span></div>
+      </div>
+      <div id="prayerMonthly" hidden><div id="monthlyBody" style="font-size:12px;color:#6b7aa5">Select Monthly to load.</div></div>
+      <div id="prayerQibla" hidden><div id="qiblaBody" style="font-size:13px;color:#33406b">Select Qibla to load.</div></div>
+      <div class="ptabs"><button class="ptab on" data-ptab="today">Today</button><button class="ptab" data-ptab="monthly">Monthly</button><button class="ptab" data-ptab="qibla">Qibla</button></div>
     </div>
 
     <div class="card" id="converter">
-      <h3>◎ Live Currency Converter <a href="#">More▾</a></h3>
+      <h3>◎ Live Currency Converter</h3>
       <div class="conv-row">
         <input id="fxAmount" type="number" value="1000" min="0" step="any" />
         <select id="fxFrom" class="conv-cur"></select>
@@ -315,18 +325,18 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
   </section>
 
   <!-- TOOLS -->
-  <div class="sec-head"><h3>Popular Free Tools</h3><a href="#" id="viewAll">View All Tools →</a></div>
+  <div class="sec-head"><h3>Popular Free Tools</h3><a href="/tools" id="viewAll">View All Tools →</a></div>
   <section class="tools" id="tools"></section>
   <div class="ad-slot-placeholder">Advertisement</div>
 
   <!-- DAILY -->
   <div class="sec-head"><h3>Daily UAE Updates</h3></div>
   <section class="daily" id="daily">
-    <div class="dcard"><b>Gold Price (24K)</b><div class="big" style="font-size:13px" id="dGold">—</div><span class="ok">Connect gold API</span></div>
-    <div class="dcard"><b>Fuel Price (Super 98)</b><div class="big">—</div><small>No provider configured</small></div>
+    <div class="dcard"><b>Gold Price (24K)</b><div class="big" style="font-size:13px" id="dGold">—</div><span class="ok">Live · per gram</span></div>
+    <div class="dcard"><b>Fuel Prices (AED/L)</b><div id="dFuel" style="font-size:12px;line-height:1.7;color:#33406b">Loading…</div><small id="dFuelLabel">October 2026 — UAE Fuel Price Committee (updated monthly)</small></div>
     <div class="dcard"><b>USD → AED</b><div class="big" id="dUsdAed">3.6725 AED</div><small>Live reference rate</small></div>
     <div class="dcard"><b>Weather (Sharjah)</b><div class="big" id="dWx">--°C</div><small id="dWxS">Partly Cloudy</small></div>
-    <div class="dcard"><b>UAE News</b><div class="big" style="font-size:15px">Latest</div><small>Connect news feed</small></div>
+    <div class="dcard"><b>UAE News</b><div id="dNews" style="font-size:12px;line-height:1.65;color:#33406b">Loading headlines…</div><small>via ARN News Centre</small></div>
   </section>
 </div>
 
@@ -548,6 +558,120 @@ function tickCountdown(){
   var hh=String(Math.floor(s/3600)).padStart(2,"0"),mm=String(Math.floor(s%3600/60)).padStart(2,"0"),ss=String(s%60).padStart(2,"0");
   $("nextCd").textContent=hh+":"+mm+":"+ss;
 }
+/* ——— Fuel prices: monthly UAE rates (AED per litre) ———
+ * Source of truth: /api/fuel (data/fuel.json, refreshed monthly by automation).
+ * FUEL_FALLBACK is offline-only — shown if the fetch fails. */
+var FUEL_FALLBACK = {
+  month: "October 2026",
+  prices: { super_98: 4.40, special_95: 4.28, e_plus_91: 4.21, diesel: 4.80 }
+};
+var FUEL_LABELS = [["Super 98", "super_98"], ["Special 95", "special_95"], ["E-Plus 91", "e_plus_91"], ["Diesel", "diesel"]];
+function shortMonth(month){
+  var p=String(month||"").split(" ");
+  return p.length===2 ? p[0].slice(0,3)+" "+p[1] : month;
+}
+function renderFuel(data){
+  var prices=data.prices||{};
+  function val(k){var v=Number(prices[k]);return isFinite(v)?v.toFixed(2):"—"}
+  var t=$("tFuel"); if(t){t.textContent=val("super_98");}
+  var s=$("tFuelS"); if(s){s.textContent="Super 98 · AED/L · "+shortMonth(data.month);}
+  var d=$("dFuel");
+  if(d){
+    d.innerHTML="";
+    FUEL_LABELS.forEach(function(pair){
+      var row=document.createElement("div");
+      row.innerHTML="<b></b> — AED "+val(pair[1])+"/L";
+      row.querySelector("b").textContent=pair[0];
+      d.appendChild(row);
+    });
+  }
+  var lab=$("dFuelLabel"); if(lab){lab.textContent=data.month+" — UAE Fuel Price Committee (updated monthly)";}
+}
+(function(){
+  api("/api/fuel").then(function(d){
+    if(!d.prices) throw 0;
+    renderFuel(d);
+  }).catch(function(){renderFuel(FUEL_FALLBACK)});
+})();
+
+/* ——— UAE News headlines (ARN News Centre RSS via /api/news) ——— */
+(function(){
+  var box=$("dNews"); if(!box) return;
+  api("/api/news").then(function(d){
+    if(!d.items||!d.items.length) throw 0;
+    box.innerHTML="";
+    var ul=document.createElement("div");
+    d.items.slice(0,5).forEach(function(n){
+      var a=document.createElement("a");
+      a.href=n.link; a.target="_blank"; a.rel="noopener";
+      a.style.cssText="display:block;color:#1a2f8a;font-weight:600;text-decoration:none;margin:5px 0;font-size:12px";
+      a.textContent="• "+n.title;
+      ul.appendChild(a);
+    });
+    box.appendChild(ul);
+  }).catch(function(){box.textContent="News temporarily unavailable";});
+})();
+
+/* ——— Prayer tabs: Today / Monthly / Qibla (all real data) ——— */
+(function(){
+  var CITY_COORDS={"Sharjah, UAE":[25.3463,55.4209],"Dubai, UAE":[25.2048,55.2708],"Abu Dhabi, UAE":[24.4539,54.3773],"Ajman, UAE":[25.4052,55.5137]};
+  function city(){return $("prayerCity").value||"Dubai, UAE"}
+  function coords(){return CITY_COORDS[city()]||CITY_COORDS["Dubai, UAE"]}
+  function show(which){
+    document.querySelectorAll(".ptab").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-ptab")===which)});
+    $("prayerToday").hidden=which!=="today";
+    $("prayerMonthly").hidden=which!=="monthly";
+    $("prayerQibla").hidden=which!=="qibla";
+    if(which==="monthly")loadMonthly();
+    if(which==="qibla")loadQibla();
+  }
+  document.querySelectorAll(".ptab").forEach(function(b){
+    b.onclick=function(){show(b.getAttribute("data-ptab"))};
+  });
+  var monthLoaded="";
+  function loadMonthly(){
+    var c=city().split(",")[0], key=c+$("gregDate").textContent;
+    var now=new Date();
+    var parts;
+    try{parts=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Dubai",year:"numeric",month:"numeric"}).formatToParts(now);}catch(_){parts=[]}
+    var Y="2026",M="10";
+    parts.forEach(function(p){if(p.type==="year")Y=p.value;if(p.type==="month")M=String(+p.value).padStart(2,"0")});
+    var ck=c+Y+M;
+    if(monthLoaded===ck) return;
+    monthLoaded=ck;
+    var box=$("monthlyBody");box.textContent="Loading "+c+" month view…";
+    fetch("https://api.aladhan.com/v1/calendarByCity/"+Y+"/"+M+"?city="+encodeURIComponent(c)+"&country=UAE&method=16")
+      .then(function(r){return r.json()}).then(function(d){
+        if(!d.data||!d.data.length) throw 0;
+        var h='<div class="ptable-wrap"><table class="ptable"><tr><th>Day</th><th>Fajr</th><th>Sun</th><th>Dhuhr</th><th>Asr</th><th>Magh</th><th>Isha</th></tr>';
+        d.data.forEach(function(day){
+          var t=day.timings,cut=function(s){return String(s||"").slice(0,5)};
+          h+="<tr><td>"+day.date.gregorian.day+"</td><td>"+cut(t.Fajr)+"</td><td>"+cut(t.Sunrise)+"</td><td>"+cut(t.Dhuhr)+"</td><td>"+cut(t.Asr)+"</td><td>"+cut(t.Maghrib)+"</td><td>"+cut(t.Isha)+"</td></tr>";
+        });
+        box.innerHTML=h+"</table></div>";
+      }).catch(function(){box.textContent="Monthly view unavailable — try again later.";monthLoaded=""});
+  }
+  function loadQibla(){
+    var ll=coords(), box=$("qiblaBody");
+    box.textContent="Locating Qibla for "+city()+"…";
+    fetch("https://api.aladhan.com/v1/qibla/"+ll[0]+"/"+ll[1]).then(function(r){return r.json()}).then(function(d){
+      if(!d.data||typeof d.data.direction!=="number") throw 0;
+      var deg=d.data.direction.toFixed(1);
+      box.innerHTML="";
+      var p=document.createElement("p");
+      p.innerHTML="Qibla from <b></b> faces <b>"+deg+"°</b> from true north.";
+      p.querySelector("b").textContent=city();
+      box.appendChild(p);
+      var a=document.createElement("a");
+      a.href="/tools/qibla-finder";a.textContent="Open live Qibla compass →";
+      a.style.cssText="color:#1a2f8a;font-weight:700";
+      box.appendChild(a);
+    }).catch(function(){box.textContent="Qibla unavailable — try again later."});
+  }
+  var oldChange=$("prayerCity").onchange;
+  $("prayerCity").onchange=function(){monthLoaded="";if(oldChange)oldChange();var on=document.querySelector(".ptab.on");if(on&&on.getAttribute("data-ptab")!=="today")show(on.getAttribute("data-ptab"))};
+})();
+
 loadPrayer();tick();
 </script>
 </body>

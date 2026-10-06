@@ -353,8 +353,24 @@ blog.forEach((p) => {
   }));
 });
 
+// tools index (full listing for "View All Tools")
+(function(){
+  const groups = [["PDF Tools", tools.filter((t) => ["jpg-to-pdf","png-to-pdf","text-to-pdf","pdf-to-jpg","pdf-merge","pdf-split","pdf-compress","word-to-pdf","pdf-to-word"].includes(t.slug))],
+    ["Image Tools", tools.filter((t) => ["image-compressor","image-resizer","image-crop"].includes(t.slug))],
+    ["Calculators & Everyday", tools.filter((t) => ["currency-converter","vat-calculator","age-calculator","unit-converter","qibla-finder"].includes(t.slug))]];
+  const secs = groups.map(([g, list]) =>
+    `<h2>${esc(g)}</h2><div class="bloggrid">` + list.map((t) =>
+      `<a class="postcard" href="/tools/${t.slug}"><b>${esc(t.name)}</b><p>${esc(t.description)}</p><small>Free · No signup →</small></a>`
+    ).join("") + `</div>`).join("");
+  write("tools.html", page({
+    title: "All Free Tools | SunnyToolsPro", desc: "Every free SunnyToolsPro tool in one place: PDF converters, image tools, calculators and everyday utilities.", path: "/tools",
+    crumb: `<a href="/">Home</a> / Tools`,
+    body: `<div class="card"><h1>All Free Tools</h1><p class="lead">All ${tools.length} tools, free forever with no signup. Pick one to start.</p>${secs}</div>`,
+  }));
+})();
+
 // sitemap + robots
-const urls = ["/", "/about", "/contact", "/privacy-policy", "/terms-of-service", "/dmca", "/blog", "/jobs", "/rooms",
+const urls = ["/", "/about", "/contact", "/privacy-policy", "/terms-of-service", "/dmca", "/blog", "/jobs", "/rooms", "/tools",
   ...blog.map((p) => "/blog/" + p.slug), ...tools.map((t) => "/tools/" + t.slug)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
   urls.map((u) => `<url><loc>${site.domain + u}</loc><lastmod>2026-10-06</lastmod><changefreq>monthly</changefreq></url>`).join("") + `</urlset>`);
