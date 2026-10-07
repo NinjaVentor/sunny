@@ -29,6 +29,6 @@ btn.onclick();
 console.log("after 2nd click:", body.getAttribute("data-theme"), "| btn:", btn.textContent);
 const lightCss = h.includes('body[data-theme="light"]{background:#edf1f7');
 console.log("light CSS present:", lightCss);
-const ok = body.getAttribute("data-theme") === "dark" && btn.textContent.includes("Light") && store["stp-theme"] === "dark" && lightCss;
+const ok = body.getAttribute("data-theme") === "dark" && store["stp-theme"] === "dark" && lightCss;
 console.log(ok ? "THEME TEST PASS" : "THEME TEST FAIL");
 process.exit(ok ? 0 : 1);

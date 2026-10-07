@@ -20,7 +20,8 @@ a{color:#ffc107}.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
 .topbar{position:sticky;top:0;z-index:60;background:#071222;border-bottom:1px solid rgba(255,255,255,.08)}
 .topbar-in{display:flex;align-items:center;gap:14px;min-height:60px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
 .logo{display:flex;align-items:center;gap:8px;font-weight:800;color:#fff;text-decoration:none;white-space:nowrap}
-.logo .sun{color:#ffc107;font-size:22px}.logo b{font-size:15px;display:block;line-height:1}.logo small{font-size:15px;display:block;line-height:1}
+.logo .sun{color:#ffc107;display:inline-flex;width:24px;height:24px}.logo .sun .ic{width:100%;height:100%}.logo b{font-size:15px;display:block;line-height:1}.logo small{font-size:15px;display:block;line-height:1}
+.ic{width:1.15em;height:1.15em;flex:none;vertical-align:-0.22em}
 .logo .pro{background:#ffc107;color:#111;font-size:10px;font-weight:800;border-radius:5px;padding:2px 6px;margin-left:6px}
 .nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
 .nav a,.dropbtn{color:#dbe4f5;text-decoration:none;font-size:13.5px;font-weight:600;padding:8px 10px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit}
@@ -116,17 +117,17 @@ function header(active) {
   ).join("");
   const idx = JSON.stringify(toolIndex());
   return `<header class="topbar"><div class="wrap topbar-in">
-<a class="logo" href="/"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a>
+<a class="logo" href="/"><span class="sun"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg></span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a>
 <nav class="nav" aria-label="Main">
 <span class="drop"><button class="dropbtn">Tools ▾</button><span class="dropmenu">${cats}</span></span>
 <a href="/#today">UAE</a><a href="/blog">Blog</a><a href="/#jobs">Jobs</a><a href="/#rooms">Rent</a><a href="/#prayer">Islamic</a>
 </nav>
 <span class="hsearch"><input id="hs" type="search" placeholder="Search tools…" aria-label="Search tools" list="hsl"><datalist id="hsl"></datalist><button id="hsb" aria-label="Search">⌕</button></span>
-<button class="theme-btn" id="themeBtn">☀ Light</button>
+<button class="theme-btn" id="themeBtn"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg> Light</button>
 </div></header>
 <script>try{var _t=localStorage.getItem("stp-theme")||"dark";document.body.setAttribute("data-theme",_t)}catch(e){document.body.setAttribute("data-theme","dark")}</script>
 <script>var TI=${idx};var dl=document.getElementById('hsl');TI.forEach(function(t){var o=document.createElement('option');o.value=t.n;dl.appendChild(o)});function goHS(){var q=(document.getElementById('hs').value||'').toLowerCase();var f=TI.find(function(t){return t.n.toLowerCase().indexOf(q)>-1});if(f)location.href=f.u}document.getElementById('hsb').onclick=goHS;document.getElementById('hs').addEventListener('keydown',function(e){if(e.key==='Enter')goHS()});</script>
-<script>(function(){var b=document.getElementById('themeBtn');function lb(){if(b)b.textContent=document.body.getAttribute('data-theme')==='dark'?'☀ Light':'☾ Dark'}lb();if(b)b.onclick=function(){var n=document.body.getAttribute('data-theme')==='dark'?'light':'dark';document.body.setAttribute('data-theme',n);try{localStorage.setItem('stp-theme',n)}catch(e){}lb()}})();</script>`;
+<script>(function(){var b=document.getElementById('themeBtn');var SUN='<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg> Light';var MOON='<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-moon"/></svg> Dark';function lb(){if(b)b.innerHTML=document.body.getAttribute('data-theme')==='dark'?SUN:MOON}lb();if(b)b.onclick=function(){var n=document.body.getAttribute('data-theme')==='dark'?'light':'dark';document.body.setAttribute('data-theme',n);try{localStorage.setItem('stp-theme',n)}catch(e){}lb()}})();</script>`;
 }
 function footer() {
   const cols = site.categories.slice(0, 3).map((c) =>
@@ -134,7 +135,7 @@ function footer() {
   ).join("");
   const legalLinks = site.legal.map(([n, u]) => `<a href="${u}">${esc(n)}</a>`).join("");
   return `<footer><div class="wrap"><div class="fgrid">
-<div><a class="logo" href="/"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a><p class="fabout">Your everyday digital toolkit with free online tools, converters and daily utilities.</p><h4 style="margin-top:12px">Legal</h4>${legalLinks}</div>
+<div><a class="logo" href="/"><span class="sun"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg></span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a><p class="fabout">Your everyday digital toolkit with free online tools, converters and daily utilities.</p><h4 style="margin-top:12px">Legal</h4>${legalLinks}</div>
 ${cols}
 </div><div class="copy">© 2026 SunnyToolsPro. All rights reserved. | Website Design &amp; Build by <b style="color:#fff">Sunny Janjowa</b></div></div></footer>`;
 }

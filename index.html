@@ -21,11 +21,35 @@ a{color:inherit;text-decoration:none}button{font-family:inherit}
 .topbar{position:sticky;top:0;z-index:60;background:var(--header);border-bottom:1px solid rgba(255,255,255,.08)}
 .topbar-in{display:flex;align-items:center;gap:18px;height:62px}
 .logo{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:.02em;line-height:1;white-space:nowrap}
-.logo .sun{color:var(--yellow);font-size:22px}
+.logo .sun{color:var(--yellow);display:inline-flex;width:26px;height:26px}
+.logo .sun .ic{width:100%;height:100%}
+.ic{width:1.15em;height:1.15em;flex:none;vertical-align:-0.22em}
+.ti .ic{width:20px;height:20px;vertical-align:0}
+.cicon .ic{width:24px;height:24px;vertical-align:0}
+.tile .t .ic{width:15px;height:15px}
+.job .ic .ic{width:16px;height:16px;vertical-align:0}
+.fi .ic{width:24px;height:24px;vertical-align:0}
+.room-img .ic{width:34px;height:34px;color:#8ea0c2}
+.dropzone .ic{width:26px;height:26px;color:#8ea0c2}
 .logo b{font-size:15px;display:block}.logo small{font-size:15px;display:block}
 .logo .pro{background:var(--yellow);color:#111;font-size:10px;font-weight:800;border-radius:5px;padding:2px 6px;margin-left:6px;vertical-align:middle}
-.nav{display:flex;gap:22px;margin-left:14px;font-size:14px;font-weight:600;color:#dbe4f5}
-.nav a{opacity:.92}.nav a:hover{color:var(--yellow)}
+.nav{display:flex;gap:4px;margin-left:8px;font-size:13px;font-weight:800;letter-spacing:.04em;color:#dbe4f5;align-items:center}
+.nav a{opacity:.92;text-transform:uppercase;padding:10px 10px;white-space:nowrap}
+.nav a:hover{color:var(--yellow)}
+.nav .caret{font-size:10px;opacity:.6;margin-left:3px}
+.nav .plain{text-transform:uppercase}
+.hdrop{position:relative}.hdropbtn{display:flex;align-items:center;background:transparent;border:0;color:inherit;font:inherit;cursor:pointer;text-transform:uppercase;padding:10px 10px;white-space:nowrap;font-size:13px;font-weight:800;letter-spacing:.04em}
+.hdropbtn:hover{color:var(--yellow)}
+.hdropmenu{display:none;position:absolute;top:100%;left:0;background:#0d2140;border:1px solid rgba(255,255,255,.14);border-radius:10px;min-width:210px;padding:6px;z-index:70;max-height:70vh;overflow:auto}
+.hdrop:hover .hdropmenu,.hdrop:focus-within .hdropmenu{display:block}
+.hdropmenu b{display:block;font-size:10.5px;color:#8ea0c2;text-transform:uppercase;letter-spacing:.08em;padding:8px 10px 2px}
+.hdropmenu a{display:block;padding:6px 10px;font-size:13px;text-transform:none;letter-spacing:0;font-weight:600}
+.logo-tag{font-size:10.5px;color:#8ea0c2;font-weight:600;display:block;letter-spacing:.02em}
+.top-actions{margin-left:auto}
+@media(max-width:1100px){
+.nav{display:none}
+.hamburger{display:block}
+}
 .top-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
 .hamburger{display:none;background:transparent;border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;width:42px;height:38px;font-size:18px;cursor:pointer}
 .hdrop{position:relative}.hdropmenu{display:none;position:absolute;top:100%;left:0;background:#0d2140;border:1px solid rgba(255,255,255,.14);border-radius:10px;min-width:210px;padding:6px;z-index:70;max-height:70vh;overflow:auto}
@@ -64,7 +88,42 @@ body[data-theme="light"] .copy{color:#8a94b5;border-color:#e2e7f2}
 body[data-theme="light"] .ad-slot-placeholder{border-color:#c4cde0;color:#8a94b5;background:#fff}
 /* welcome strip */
 .strip{background:#0d1f3a;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);text-align:center;font-size:13px;padding:9px 12px;color:var(--yellow);font-weight:700}
-/* ===== Hero ===== */
+/* ===== Hero (centered) ===== */
+.hero-new{text-align:center;padding:46px 0 8px}
+.hero-new h1{font-size:clamp(30px,4.6vw,52px);font-weight:800;letter-spacing:-.02em;margin:0 0 12px;line-height:1.15}
+.hero-new h1 .hl{background:var(--yellow);color:#111;border-radius:12px;padding:2px 18px;white-space:nowrap}
+.hero-new .sub{color:#c4d0e8;max-width:62ch;margin:0 auto 24px;font-size:15px}
+.herosearch{max-width:640px;margin:0 auto;border-radius:999px;padding:6px 6px 6px 22px;align-items:center}
+.herosearch .smag{color:#8a94b5;font-size:17px;margin-right:6px}
+.herosearch input{padding:12px 8px;font-size:15px;border-radius:999px}
+.herosearch button#searchBtn{width:auto;padding:12px 36px;border-radius:999px;font-weight:800;font-size:15px;color:#111;flex:none}
+.herosearch .suggest{border-radius:14px;text-align:left}
+.reco{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:680px;margin:14px auto 0}
+.reco[hidden]{display:none}
+.reco .reco-label{width:100%;font-size:12.5px;color:#c4d0e8;font-weight:600}
+.reco a{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#fff;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;text-decoration:none}
+.reco a:hover{border-color:var(--yellow);color:var(--yellow)}
+.reco a span{font-size:16px}
+body[data-theme="light"] .reco .reco-label{color:#5b6584}
+body[data-theme="light"] .reco a{background:#fff;border-color:#dfe5f0;color:#1a2f8a}
+.catcards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:32px 0 0}
+.catcard{background:#fff;color:#16215c;border-radius:14px;padding:22px 12px 0;text-decoration:none;display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden;transition:transform .15s ease,box-shadow .15s ease}
+.catcard:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,0,0,.35)}
+.cicon{width:46px;height:46px;border-radius:13px;background:#0b2342;color:#fff;display:grid;place-items:center;font-size:23px;margin-bottom:10px}
+.catcard b.t{font-size:13.5px;color:#101f5c}
+.catcard small{font-size:11px;color:#77809a;margin:4px 0 6px;min-height:30px;line-height:1.45}
+.catcard .crow{color:#b7c1d6;font-size:20px;line-height:1}
+.catcard .cfeat{margin-top:10px;border-top:1px solid #eef1f7;width:calc(100% + 24px);padding:10px 6px;font-size:11px;color:#8a94b5}
+.catcard .cfeat b{color:#101f5c}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:16px;margin:18px 0 26px;padding:24px 10px}
+.stat{display:flex;align-items:center;justify-content:center;gap:12px;padding:0 10px;border-left:1px solid #eef1f7}
+.stat:first-child{border-left:0}
+.stat b{font-size:32px;color:#101f5c;font-weight:800}
+.stat span{font-size:12.5px;color:#77809a;text-align:left;line-height:1.35}
+.today-wide{margin:0 0 18px}
+.today-wide .tiles-wide{grid-template-columns:repeat(6,1fr)}
+body[data-theme="light"] .hero-new .sub{color:#5b6584}
+/* ===== Hero (old, retired) ===== */
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;padding:34px 0 22px;align-items:start}
 .kicker{font-size:11px;letter-spacing:.12em;color:#cdd8ee;font-weight:700;margin:0 0 8px}
 .hero h1{font-size:clamp(32px,4.4vw,54px);line-height:1.04;margin:0 0 12px;font-weight:800;letter-spacing:-.02em}
@@ -187,6 +246,9 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
 .mobile-nav{display:none}
 /* ===== Responsive ===== */
 @media(max-width:1024px){
+.catcards{grid-template-columns:repeat(3,1fr)}
+.stats{grid-template-columns:1fr 1fr;gap:16px}
+.today-wide .tiles-wide{grid-template-columns:repeat(3,1fr)}
 .hero{grid-template-columns:1fr}
 .grid3{grid-template-columns:1fr 1fr}
 .tools{grid-template-columns:repeat(3,1fr)}
@@ -198,6 +260,10 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
 @media(max-width:680px){
 .nav{display:none}
 .hamburger{display:block}
+.hero-new{padding:30px 0 4px}
+.catcards{grid-template-columns:1fr 1fr}
+.herosearch button#searchBtn{padding:12px 22px}
+.today-wide .tiles-wide{grid-template-columns:1fr 1fr}
 .top-actions .theme-btn{padding:0 8px;font-size:12px}
 .hero{padding:22px 0}
 .tiles{grid-template-columns:1fr 1fr}
@@ -227,60 +293,73 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
 <header class="topbar">
   <div class="wrap topbar-in">
     <button class="hamburger" id="ham" aria-label="Menu">☰</button>
-    <a class="logo" href="#"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a>
+    <a class="logo" href="/"><span class="sun"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg></span><span><b>SUNNY TOOLS</b><span class="logo-tag">Free tools for everyone</span></span><span class="pro">PRO</span></a>
     <nav class="nav" aria-label="Main">
-      <span class="hdrop"><a href="#tools">Tools ▾</a><span class="hdropmenu"><b>PDF Tools</b><a href="/tools/jpg-to-pdf">JPG to PDF</a><a href="/tools/pdf-to-jpg">PDF to JPG</a><a href="/tools/pdf-merge">PDF Merge</a><a href="/tools/pdf-split">PDF Split</a><a href="/tools/word-to-pdf">Word to PDF</a><b>Image Tools</b><a href="/tools/image-compressor">Image Compressor</a><a href="/tools/image-resizer">Image Resizer</a><a href="/tools/image-crop">Image Crop</a><b>Calculators</b><a href="/tools/currency-converter">Currency Converter</a><a href="/tools/vat-calculator">VAT Calculator</a><a href="/tools/age-calculator">Age Calculator</a><a href="/tools/unit-converter">Unit Converter</a></span></span><a href="#today">UAE</a><a href="#converter">Finance</a><a href="#jobs">Jobs</a><a href="#rooms">Rent</a><a href="#prayer">Islamic</a><a href="/blog">Blog</a>
+      <span class="hdrop"><button class="hdropbtn">PDF<span class="caret">▾</span></button><span class="hdropmenu"><a href="/tools/jpg-to-pdf">JPG to PDF</a><a href="/tools/png-to-pdf">PNG to PDF</a><a href="/tools/text-to-pdf">Text to PDF</a><a href="/tools/pdf-to-jpg">PDF to JPG</a><a href="/tools/pdf-merge">PDF Merge</a><a href="/tools/pdf-split">PDF Split</a><a href="/tools/pdf-compress">PDF Compress</a><a href="/tools/word-to-pdf">Word to PDF</a><a href="/tools/pdf-to-word">PDF to Word</a></span></span>
+      <span class="hdrop"><button class="hdropbtn">IMAGE<span class="caret">▾</span></button><span class="hdropmenu"><a href="/tools/image-compressor">Image Compressor</a><a href="/tools/image-resizer">Image Resizer</a><a href="/tools/image-crop">Image Crop</a></span></span>
+      <span class="hdrop"><button class="hdropbtn">FINANCE<span class="caret">▾</span></button><span class="hdropmenu"><a href="/tools/currency-converter">Currency Converter</a><a href="/tools/vat-calculator">VAT Calculator</a></span></span>
+      <span class="hdrop"><button class="hdropbtn">CALCULATOR<span class="caret">▾</span></button><span class="hdropmenu"><a href="/tools/age-calculator">Age Calculator</a><a href="/tools/unit-converter">Unit Converter</a></span></span>
+      <span class="hdrop"><button class="hdropbtn">UAE<span class="caret">▾</span></button><span class="hdropmenu"><a href="/#prayer">Prayer Times</a><a href="/tools/qibla-finder">Qibla Finder</a><a href="/jobs">Jobs in UAE</a><a href="/rooms">Room Rent Finder</a></span></span>
+      <a class="plain" href="/blog">Blog</a>
     </nav>
     <div class="top-actions">
-      <button class="theme-btn" id="themeBtn">☀ Light</button>
+      <button class="theme-btn" id="themeBtn"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg> Light</button>
     </div>
   </div>
   <div class="mobile-nav" id="mnav" hidden>
-    <a href="#tools">Tools</a><a href="#today">UAE</a><a href="#converter">Finance</a><a href="#jobs">Jobs</a><a href="#rooms">Rent</a><a href="#prayer">Islamic</a>
+    <a href="/tools">All Tools</a><a href="#today">UAE Today</a><a href="/jobs">Jobs</a><a href="/rooms">Rent</a><a href="#prayer">Prayer Times</a><a href="/blog">Blog</a>
   </div>
 </header>
-<div class="strip">🚀 <b>Welcome to SunnyToolsPro</b> — Site made by <b>Sunny</b> ✨</div>
+<div class="strip"><b>Welcome to SunnyToolsPro</b> — Site made by <b>Sunny</b></div>
 
 <div class="wrap">
   <!-- HERO -->
-  <section class="hero">
-    <div>
-      <p class="kicker">• FREE • LIVE</p>
-      <h1>Your Everyday<br/>Digital Toolkit</h1>
-      <p class="sub">100% free online tools, UAE live information, converters &amp; daily utilities — all in one place.</p>
-      <div class="searchbar searchwrap">
-        <input id="globalSearch" type="search" placeholder="What do you need today?" aria-label="Search tools" autocomplete="off" />
-        <button id="searchBtn" aria-label="Search">⌕</button>
-        <div class="suggest" id="gsuggest" hidden></div>
-      </div>
-      <div class="quick">
-        <button data-q="PDF Converter">PDF Converter</button>
-        <button data-q="Currency">Currency</button>
-        <button data-q="Prayer Times">Prayer Times</button>
-        <button data-q="Jobs">Jobs</button>
-        <button data-q="Room Rent">Room Rent</button>
-      </div>
+  <section class="hero-new">
+    <h1>Free Tools to Make <span class="hl">Everyday</span> Simple</h1>
+    <p class="sub">PDF, image, finance, calculator and UAE tools to make your everyday tasks easier — all free and in your browser.</p>
+    <div class="searchbar searchwrap herosearch">
+      <span class="smag">⌕</span>
+      <input id="globalSearch" type="search" placeholder="Search 17+ tools..." aria-label="Search tools" autocomplete="off" />
+      <button id="searchBtn" aria-label="Search">Search</button>
+      <div class="suggest" id="gsuggest" hidden></div>
     </div>
-    <div class="today" id="today">
-      <div class="today-head"><span>🇦🇪 UAE Today</span><span class="date" id="todayDate">—</span></div>
-      <div class="tiles">
-        <div class="tile"><div class="t">☀ Weather</div><div class="v blue" id="tWeather">--°C</div><div class="s" id="tWeatherS">Partly Cloudy</div></div>
-        <div class="tile"><div class="t">💱 Currency</div><div class="v blue" id="tFx">1 AED</div><div class="s" id="tFxS">= 75.60 PKR</div></div>
-        <div class="tile"><div class="t">👤 Gold Price</div><div class="v" id="tGold">—</div><div class="s">24K · per gram · live</div></div>
-        <div class="tile"><div class="t">🛢 Fuel Price</div><div class="v" id="tFuel">—</div><div class="s" id="tFuelS">AED/L · Oct 2026</div></div>
-        <div class="tile"><div class="t">📅 Hijri Date</div><div class="v blue" id="tHijri">—</div><div class="s">AH</div></div>
-        <div class="tile"><div class="t">🕐 UAE Time</div><div class="v" id="tTime">--:--</div><div class="s">GMT+4</div></div>
-      </div>
-      <button class="fulldash" onclick="document.getElementById('daily').scrollIntoView({behavior:'smooth'})">View Full Dashboard →</button>
+    <div class="reco" id="searchReco" hidden></div>
+    <div class="catcards">
+      <a class="catcard" href="/tools/pdf-merge"><span class="cicon"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-doc"/></svg></span><b class="t">PDF Tools</b><small>Merge, split &amp; convert PDFs</small><span class="crow">›</span><span class="cfeat">Featured: <b>Merge PDF</b></span></a>
+      <a class="catcard" href="/tools/image-compressor"><span class="cicon"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-image"/></svg></span><b class="t">Image Tools</b><small>Compress, resize &amp; crop images</small><span class="crow">›</span><span class="cfeat">Featured: <b>Image Compressor</b></span></a>
+      <a class="catcard" href="/tools/currency-converter"><span class="cicon"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-currency"/></svg></span><b class="t">Finance</b><small>Live rates, VAT &amp; money math</small><span class="crow">›</span><span class="cfeat">Featured: <b>Currency Converter</b></span></a>
+      <a class="catcard" href="/tools/age-calculator"><span class="cicon"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-calc"/></svg></span><b class="t">Calculators</b><small>Age, units &amp; everyday math</small><span class="crow">›</span><span class="cfeat">Featured: <b>Age Calculator</b></span></a>
+      <a class="catcard" href="/#prayer"><span class="cicon"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-mosque"/></svg></span><b class="t">UAE Services</b><small>Prayer, Qibla, jobs &amp; rent</small><span class="crow">›</span><span class="cfeat">Featured: <b>Prayer Times</b></span></a>
+      <a class="catcard" href="/blog"><span class="cicon"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-book"/></svg></span><b class="t">Guides</b><small>How-tos &amp; money-saving tips</small><span class="crow">›</span><span class="cfeat">Featured: <b>Latest Guides</b></span></a>
     </div>
+    <div class="stats">
+      <div class="stat"><b>17+</b><span>Free<br/>Tools</span></div>
+      <div class="stat"><b>100%</b><span>Browser<br/>Based</span></div>
+      <div class="stat"><b>0</b><span>Signup<br/>Required</span></div>
+      <div class="stat"><b>Free</b><span>Always &amp;<br/>Forever</span></div>
+    </div>
+  </section>
+
+  <!-- UAE TODAY -->
+  <section class="today today-wide" id="today">
+    <div class="today-head"><span>UAE Today</span><span class="date" id="todayDate">—</span></div>
+    <div class="tiles tiles-wide">
+      <div class="tile"><div class="t"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg> Weather</div><div class="v blue" id="tWeather">--°C</div><div class="s" id="tWeatherS">Partly Cloudy</div></div>
+      <div class="tile"><div class="t"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-currency"/></svg> Currency</div><div class="v blue" id="tFx">1 AED</div><div class="s" id="tFxS">= 75.60 PKR</div></div>
+      <div class="tile"><div class="t"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-coin"/></svg> Gold Price</div><div class="v" id="tGold">—</div><div class="s">24K · per gram · live</div></div>
+      <div class="tile"><div class="t"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-fuel"/></svg> Fuel Price</div><div class="v" id="tFuel">—</div><div class="s" id="tFuelS">AED/L · Oct 2026</div></div>
+      <div class="tile"><div class="t"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-calendar"/></svg> Hijri Date</div><div class="v blue" id="tHijri">—</div><div class="s">AH</div></div>
+      <div class="tile"><div class="t"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-clock"/></svg> UAE Time</div><div class="v" id="tTime">--:--</div><div class="s">GMT+4</div></div>
+    </div>
+    <button class="fulldash" onclick="document.getElementById('daily').scrollIntoView({behavior:'smooth'})">View Full Dashboard →</button>
   </section>
 
   <!-- 3 COL -->
   <section class="grid3">
     <div class="card" id="prayer">
-      <h3>🕌 UAE Prayer Times</h3>
-      <div class="citysel">📍 <select id="prayerCity"><option>Sharjah, UAE</option><option>Dubai, UAE</option><option>Abu Dhabi, UAE</option><option>Ajman, UAE</option></select></div>
-      <div class="prayer-meta"><span>📅 <span id="gregDate">—</span></span><b id="hijriDate">—</b></div>
+      <h3><svg class="ic" aria-hidden="true" style="width:18px;height:18px"><use href="/assets/icons.svg#i-mosque"/></svg> UAE Prayer Times</h3>
+      <div class="citysel"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-pin"/></svg> <select id="prayerCity"><option>Sharjah, UAE</option><option>Dubai, UAE</option><option>Abu Dhabi, UAE</option><option>Ajman, UAE</option></select></div>
+      <div class="prayer-meta"><span><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-calendar"/></svg> <span id="gregDate">—</span></span><b id="hijriDate">—</b></div>
       <div id="prayerToday">
       <div id="prayerRows"><div class="prow"><span>Fajr</span><span>--:--</span></div></div>
       <div class="nextbox"><div><small>Next Prayer</small><b id="nextName">Dhuhr</b><small>remaining</small></div><div class="cd" id="nextCd">--:--:--</div></div>
@@ -309,7 +388,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
 
     <div class="card" id="jobs">
       <h3>Latest Jobs <a href="/jobs">View All →</a></h3>
-      <div id="homeJobs"><div class="job"><span class="ic">👤</span><div><b>Loading live jobs…</b></div></div></div>
+      <div id="homeJobs"><div class="job"><span class="ic"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-user"/></svg></span><div><b>Loading live jobs…</b></div></div></div>
       <p style="font-size:11px;color:#8a94b5;margin:6px 0 0">Live UAE listings · Apply on employer site</p>
       <button class="darkbtn" onclick="location.href='/jobs'">Browse All Jobs →</button>
     </div>
@@ -350,10 +429,10 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
   <div class="wrap why-in">
     <div><h2>Why Choose<br/>SunnyToolsPro?</h2><p>Fast, reliable and completely free online tools with real-time UAE information in one place.</p><button class="explore" onclick="location.href='/tools'">Explore All Tools →</button></div>
     <div class="feats">
-      <div class="f"><div class="fi">🎁</div><b>100% Free</b><small>No hidden charges.</small></div>
-      <div class="f"><div class="fi">♡</div><b>Fast &amp; Secure</b><small>Simple and easy to use.</small></div>
-      <div class="f"><div class="fi">📱</div><b>Mobile Friendly</b><small>Works on every screen.</small></div>
-      <div class="f"><div class="fi">✓</div><b>Live &amp; Accurate</b><small>Trusted data sources.</small></div>
+      <div class="f"><div class="fi"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-gift"/></svg></div><b>100% Free</b><small>No hidden charges.</small></div>
+      <div class="f"><div class="fi"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-shield"/></svg></div><b>Fast &amp; Secure</b><small>Simple and easy to use.</small></div>
+      <div class="f"><div class="fi"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-phone"/></svg></div><b>Mobile Friendly</b><small>Works on every screen.</small></div>
+      <div class="f"><div class="fi"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-check"/></svg></div><b>Live &amp; Accurate</b><small>Trusted data sources.</small></div>
     </div>
   </div>
 </section>
@@ -361,7 +440,7 @@ footer{background:var(--bg-2);border-top:1px solid rgba(255,255,255,.08);padding
 <footer>
   <div class="wrap">
     <div class="fgrid">
-      <div><a class="logo" href="/" style="margin-bottom:10px"><span class="sun">☀</span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a><p class="fabout">Your everyday digital toolkit with free online tools, converters and daily utilities.</p></div>
+      <div><a class="logo" href="/" style="margin-bottom:10px"><span class="sun"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg></span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a><p class="fabout">Your everyday digital toolkit with free online tools, converters and daily utilities.</p></div>
       <div><h4>Quick Links</h4><a href="/">Home</a><a href="#tools">All Tools</a><a href="#today">UAE Dashboard</a><a href="/jobs">Jobs in UAE</a><a href="/rooms">Room Rent UAE</a><a href="/blog">Blog &amp; Guides</a></div>
       <div><h4>Popular Tools</h4><a href="/tools/jpg-to-pdf">JPG to PDF</a><a href="/tools/pdf-to-jpg">PDF to JPG</a><a href="/tools/currency-converter">Currency Converter</a><a href="/tools/vat-calculator">VAT Calculator</a><a href="/tools/image-compressor">Image Compressor</a></div>
       <div><h4>UAE</h4><a href="#prayer">Prayer Times</a><a href="/jobs">UAE Jobs</a><a href="/rooms">Room Rent</a><a href="#today">UAE Time</a><a href="/tools/qibla-finder">Qibla Finder</a></div>
@@ -381,7 +460,9 @@ $("top").onclick=function(){window.scrollTo({top:0,behavior:"smooth"})};
 /* ——— Theme: dark / light ——— */
 (function(){
   var b=$("themeBtn");
-  function label(){if(b)b.textContent=document.body.getAttribute("data-theme")==="dark"?"☀ Light":"☾ Dark"}
+  var SUN='<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg> Light';
+  var MOON='<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-moon"/></svg> Dark';
+  function label(){if(b)b.innerHTML=document.body.getAttribute("data-theme")==="dark"?SUN:MOON}
   label();
   if(b)b.onclick=function(){
     var n=document.body.getAttribute("data-theme")==="dark"?"light":"dark";
@@ -405,14 +486,14 @@ $("top").onclick=function(){window.scrollTo({top:0,behavior:"smooth"})};
     jobs.forEach(function(j){
       var div=document.createElement("div");div.className="job";
       var dt=j.date?new Date(j.date).toLocaleDateString("en-GB",{day:"numeric",month:"short"}):"New";
-      div.innerHTML='<span class="ic">👤</span><div><b></b><small></small></div><span class="new">'+dt+'</span>';
+      div.innerHTML='<span class="ic"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-user"/></svg></span><div><b></b><small></small></div><span class="new">'+dt+'</span>';
       div.querySelector("b").textContent=j.title;
       div.querySelector("small").textContent=j.company+" · "+(j.geo||j.location||"UAE");
       div.style.cursor="pointer";
       div.onclick=function(){window.open(j.url,"_blank","noopener")};
       box.appendChild(div);
     });
-  }).catch(function(){box.innerHTML='<div class="job"><span class="ic">👤</span><div><b>Browse all jobs</b><small>Tap below for live listings</small></div></div>'});
+  }).catch(function(){box.innerHTML='<div class="job"><span class="ic"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-user"/></svg></span><div><b>Browse all jobs</b><small>Tap below for live listings</small></div></div>'});
 })();
 
 /* ——— Homepage live rentals (PropertyFinder via /api/pf-rooms) ——— */
@@ -426,7 +507,7 @@ $("top").onclick=function(){window.scrollTo({top:0,behavior:"smooth"})};
       box.innerHTML="";
       d.listings.slice(0,4).forEach(function(r){
         var card=document.createElement("div");card.className="room-card";
-        var img=r.img?'<img src="'+r.img+'" alt="" loading="lazy">':'<div class="room-img">🏠</div>';
+        var img=r.img?'<img src="'+r.img+'" alt="" loading="lazy">':'<div class="room-img"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-home"/></svg></div>';
         card.innerHTML=img+'<div class="room-body"><b></b><div class="price"></div><small></small></div>';
         card.querySelector("b").textContent=r.title;
         card.querySelector(".price").textContent="AED "+r.monthly.toLocaleString()+" / Month";
@@ -442,18 +523,18 @@ $("top").onclick=function(){window.scrollTo({top:0,behavior:"smooth"})};
 
 /* Tools grid */
 var TOOLS=[
-["🖼️","JPG to PDF","Convert Images to PDF","jpg-to-pdf"],["🖼️","PDF to JPG","Convert PDF to Images","pdf-to-jpg"],
-["📁","PDF Merge","Merge Multiple PDF","pdf-merge"],["✂️","PDF Split","Split PDF into Pages","pdf-split"],
-["🗜️","PDF Compress","Compress PDF Size","pdf-compress"],["🖊️","Image Compressor","Reduce Image Size","image-compressor"],
-["↔️","Image Resizer","Resize Images","image-resizer"],["💱","Currency Converter","Live Currency Rates","currency-converter"],
-["🧾","VAT Calculator","UAE VAT Calculator","vat-calculator"],["🎂","Age Calculator","Calculate Your Age","age-calculator"],
-["📄","Word to PDF","Convert Word to PDF","word-to-pdf"],["📕","PDF to Word","Convert PDF to Word","pdf-to-word"],
-["🖼️","PNG to PDF","Convert PNG to PDF","png-to-pdf"],["🧭","Qibla Finder","Find Qibla Direction","qibla-finder"],
-["🔗","Unit Converter","Convert Any Unit","unit-converter"]];
+["doc","JPG to PDF","Convert Images to PDF","jpg-to-pdf"],["image","PDF to JPG","Convert PDF to Images","pdf-to-jpg"],
+["merge","PDF Merge","Merge Multiple PDF","pdf-merge"],["scissors","PDF Split","Split PDF into Pages","pdf-split"],
+["compress","PDF Compress","Compress PDF Size","pdf-compress"],["image","Image Compressor","Reduce Image Size","image-compressor"],
+["resize","Image Resizer","Resize Images","image-resizer"],["currency","Currency Converter","Live Currency Rates","currency-converter"],
+["receipt","VAT Calculator","UAE VAT Calculator","vat-calculator"],["cake","Age Calculator","Calculate Your Age","age-calculator"],
+["doc","Word to PDF","Convert Word to PDF","word-to-pdf"],["pen","PDF to Word","Convert PDF to Word","pdf-to-word"],
+["image","PNG to PDF","Convert PNG to PDF","png-to-pdf"],["compass","Qibla Finder","Find Qibla Direction","qibla-finder"],
+["link","Unit Converter","Convert Any Unit","unit-converter"]];
 var tg=$("tools");
 TOOLS.forEach(function(t){
   var b=document.createElement("button");b.className="tool";b.setAttribute("data-name",t[1].toLowerCase());
-  b.innerHTML='<span class="ti">'+t[0]+'</span><span><b>'+t[1]+'</b><small>'+t[2]+'</small></span>';
+  b.innerHTML='<span class="ti"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-'+t[0]+'"/></svg></span><span><b>'+t[1]+'</b><small>'+t[2]+'</small></span>';
   b.onclick=function(){location.href='/tools/'+t[3]};
   tg.appendChild(b);
 });
@@ -469,12 +550,58 @@ function toolMatches(q){
   if(!q)return [];
   return TOOLS.filter(function(t){return (t[1]+" "+t[2]).toLowerCase().indexOf(q)>-1}).slice(0,7);
 }
+function lev(a,b){
+  var d=[],i,j;
+  for(i=0;i<=a.length;i++)d[i]=[i];
+  for(j=0;j<=b.length;j++)d[0][j]=j;
+  for(i=1;i<=a.length;i++)for(j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));
+  return d[a.length][b.length];
+}
+function fuzzySuggest(q){
+  q=(q||"").toLowerCase().trim();
+  if(!q)return [];
+  var scored=TOOLS.map(function(t){
+    var name=(t[1]+" "+t[2]).toLowerCase(),score=-1,ix=name.indexOf(q);
+    if(ix>-1)score=100-ix;
+    else{
+      var i=0,k;
+      for(k=0;k<name.length&&i<q.length;k++){if(name[k]===q[i])i++}
+      if(i===q.length)score=50-q.length;
+      else{
+        var words=name.split(/[^a-z]+/);
+        for(var w=0;w<words.length;w++){if(words[w]&&lev(words[w],q)<=2){score=20;break}}
+      }
+    }
+    return {t:t,score:score};
+  }).filter(function(x){return x.score>=0}).sort(function(a,b){return b.score-a.score});
+  if(!scored.length){
+    var popular=["pdf-merge","image-compressor","currency-converter","qibla-finder"];
+    return popular.map(function(s){for(var i=0;i<TOOLS.length;i++)if(TOOLS[i][3]===s)return TOOLS[i];return null}).filter(Boolean);
+  }
+  return scored.slice(0,4).map(function(x){return x.t});
+}
+function showReco(q){
+  var box=$("searchReco");if(!box)return;
+  var list=fuzzySuggest(q);
+  box.innerHTML="";
+  if(!list.length){box.hidden=true;return}
+  var lab=document.createElement("div");lab.className="reco-label";lab.textContent="Suggested for you:";box.appendChild(lab);
+  list.forEach(function(t){
+    var a=document.createElement("a");a.href="/tools/"+t[3];
+    var ic=document.createElement("span");ic.innerHTML='<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-'+t[0]+'"/></svg>';
+    var tx=document.createElement("b");tx.textContent=t[1];
+    a.appendChild(ic);a.appendChild(tx);box.appendChild(a);
+  });
+  box.hidden=false;
+}
+function hideReco(){var box=$("searchReco");if(box)box.hidden=true}
 function renderSuggest(){
   var box=$("gsuggest"),q=$("globalSearch").value;
   var m=toolMatches(q);
   box.innerHTML="";
-  if(!q.trim()){box.hidden=true;return}
-  if(!m.length){box.innerHTML='<div class="none">No tool found — try "PDF", "image" or "currency".</div>'}
+  if(!q.trim()){box.hidden=true;hideReco();return}
+  hideReco();
+  if(!m.length){box.innerHTML='<div class="none">No exact match — see suggestions below.</div>';showReco(q)}
   m.forEach(function(t){
     var b=document.createElement("button");b.type="button";
     b.innerHTML="<b></b><small></small>";
@@ -487,16 +614,17 @@ function renderSuggest(){
 }
 $("globalSearch").addEventListener("input",renderSuggest);
 $("globalSearch").addEventListener("keydown",function(e){
-  if(e.key==="Escape"){$("gsuggest").hidden=true}
-  if(e.key==="Enter"){var m=toolMatches($("globalSearch").value);if(m.length)location.href="/tools/"+m[0][3];}
+  if(e.key==="Escape"){$("gsuggest").hidden=true;hideReco()}
+  if(e.key==="Enter"){var m=toolMatches($("globalSearch").value);if(m.length)location.href="/tools/"+m[0][3];else showReco($("globalSearch").value);}
 });
 $("globalSearch").addEventListener("blur",function(){setTimeout(function(){$("gsuggest").hidden=true},150)});
-$("searchBtn").onclick=function(){var m=toolMatches($("globalSearch").value);if(m.length)location.href="/tools/"+m[0][3];else $("tools").scrollIntoView({behavior:"smooth"})};
+$("searchBtn").onclick=function(){var m=toolMatches($("globalSearch").value);if(m.length)location.href="/tools/"+m[0][3];else showReco($("globalSearch").value);};
 document.querySelectorAll(".quick button").forEach(function(b){b.onclick=function(){
   var q=b.getAttribute("data-q");
   var go={"PDF Converter":"/tools","Currency":"/tools/currency-converter","Prayer Times":"/#prayer","Jobs":"/jobs","Room Rent":"/rooms"};
   if(go[q])location.href=go[q];
 };});
+/* Header search removed */
 
 /* Dates + clocks */
 function tick(){
