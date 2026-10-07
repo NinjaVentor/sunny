@@ -77,6 +77,9 @@ footer{background:#071222;border-top:1px solid rgba(255,255,255,.08);padding:30p
 .postmeta{font-size:13px;color:#8ea0c2;margin-bottom:6px}
 .bloggrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
 .postcard{background:#fff;border-radius:12px;padding:16px;color:#16215c;text-decoration:none;display:block}
+.postcard.has-icon{display:flex;gap:12px;align-items:flex-start}
+.postcard .pic{flex:none;width:40px;height:40px;border-radius:10px;background:#eef3ff;display:grid;place-items:center;color:#1a2f8a}
+.postcard .pic .ic{width:22px;height:22px}
 .postcard b{color:#1a2f8a;font-size:15px;display:block;margin-bottom:6px}
 .postcard p{font-size:13.5px;color:#5b6584;margin:0 0 8px}.postcard small{font-size:12px;color:#8a94b5}
 .cta{background:#0b2342;border-radius:12px;padding:18px;text-align:center;margin:18px 0}
@@ -373,12 +376,13 @@ blog.forEach((p) => {
 
 // tools index (full listing for "View All Tools")
 (function(){
+  const ICONS={"jpg-to-pdf":"doc","png-to-pdf":"doc","text-to-pdf":"doc","pdf-to-jpg":"image","pdf-merge":"merge","pdf-split":"scissors","pdf-compress":"compress","word-to-pdf":"doc","pdf-to-word":"pen","image-compressor":"image","image-resizer":"resize","image-crop":"crop","currency-converter":"currency","vat-calculator":"receipt","age-calculator":"cake","unit-converter":"resize","qibla-finder":"compass"};
   const groups = [["PDF Tools", tools.filter((t) => ["jpg-to-pdf","png-to-pdf","text-to-pdf","pdf-to-jpg","pdf-merge","pdf-split","pdf-compress","word-to-pdf","pdf-to-word"].includes(t.slug))],
     ["Image Tools", tools.filter((t) => ["image-compressor","image-resizer","image-crop"].includes(t.slug))],
     ["Calculators & Everyday", tools.filter((t) => ["currency-converter","vat-calculator","age-calculator","unit-converter","qibla-finder"].includes(t.slug))]];
   const secs = groups.map(([g, list]) =>
     `<h2>${esc(g)}</h2><div class="bloggrid">` + list.map((t) =>
-      `<a class="postcard" href="/tools/${t.slug}"><b>${esc(t.name)}</b><p>${esc(t.description)}</p><small>Free · No signup →</small></a>`
+      `<a class="postcard has-icon" href="/tools/${t.slug}"><span class="pic"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-${ICONS[t.slug]||"doc"}"/></svg></span><span><b>${esc(t.name)}</b><p>${esc(t.description)}</p><small>Free · No signup →</small></span></a>`
     ).join("") + `</div>`).join("");
   write("tools.html", page({
     title: "All Free Tools | SunnyToolsPro", desc: "Every free SunnyToolsPro tool in one place: PDF converters, image tools, calculators and everyday utilities.", path: "/tools",
