@@ -1,80 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1,viewport-fit=cover">
 <title>Room Rent in UAE — Official Averages, Listings & Finder | SunnyToolsPro</title>
 <meta name="description" content="Find rooms for rent in UAE: official Dubai average rents (Land Department data), searchable listings, live PropertyFinder search and free room posting.">
 <link rel="canonical" href="https://sunnytoolspro.pages.dev/rooms">
 <meta property="og:type" content="article"><meta property="og:title" content="Room Rent in UAE — Averages & Listings | SunnyToolsPro"><meta property="og:description" content="Official Dubai rent averages plus searchable room listings. Free, no signup."><meta property="og:url" content="https://sunnytoolspro.pages.dev/rooms">
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Room Rent in UAE | SunnyToolsPro"><meta name="twitter:description" content="Official Dubai rent averages plus searchable room listings.">
+<meta name="theme-color" content="#0a1931" /><meta name="mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="/tokens.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
 <style>
-*{box-sizing:border-box}html,body{overflow-x:clip}
-body{margin:0;font-family:Inter,"Segoe UI",system-ui,Arial,sans-serif;background:#0a1931;color:#fff;line-height:1.65}
-a{color:#ffc107}.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
-.topbar{position:sticky;top:0;z-index:60;background:#071222;border-bottom:1px solid rgba(255,255,255,.08)}
-.topbar-in{display:flex;align-items:center;gap:14px;min-height:60px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
-.logo{display:flex;align-items:center;gap:8px;font-weight:800;color:#fff;text-decoration:none;white-space:nowrap}
-.logo .sun{color:#ffc107;display:inline-flex;width:24px;height:24px}.logo .sun .ic{width:100%;height:100%}.logo b{font-size:15px;display:block;line-height:1}.logo small{font-size:15px;display:block;line-height:1}
-.ic{width:1.15em;height:1.15em;flex:none;vertical-align:-0.22em}
-.logo .pro{background:#ffc107;color:#111;font-size:10px;font-weight:800;border-radius:5px;padding:2px 6px;margin-left:6px}
-.nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
-.nav a{color:#dbe4f5;text-decoration:none;font-size:13.5px;font-weight:600;padding:8px 10px}
-.nav a:hover{color:#ffc107}
-.card{background:#fff;color:#16215c;border-radius:14px;padding:22px;margin:18px 0}
-.card h1{margin:0 0 8px;font-size:clamp(24px,3.4vw,34px);color:#1a2f8a;line-height:1.2}
-.card h2{color:#1a2f8a;font-size:20px;margin:26px 0 8px}
-.card p{font-size:14.5px;color:#33406b}.card ul,.card ol{font-size:14.5px;color:#33406b;padding-left:22px}.card li{margin:6px 0}.lead{font-size:16px;color:#33406b}
-.crumb{font-size:12.5px;color:#93a3c0;margin:16px 0 0}.crumb a{color:#8fb0ff;text-decoration:none}
-.ad-slot-placeholder{border:1.5px dashed rgba(255,255,255,.28);border-radius:10px;text-align:center;color:#8ea0c2;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:14px;margin:16px 0;background:rgba(255,255,255,.02)}
+/* page-specific compat only — base UI comes from /tokens.css */
 table.t{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
-table.t th,table.t td{border:1px solid #e2e7f2;padding:7px;text-align:left;color:#16215c}
-table.t th{background:#f4f6fb;color:#1a2f8a}
+table.t th,table.t td{border:1px solid var(--border);padding:7px;text-align:left;color:var(--fg)}
+table.t th{background:var(--surface-strong)}
 .frow{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
-.frow select{border:1px solid #dfe5f0;border-radius:8px;padding:10px;font-size:13px;color:#111;background:#fff;flex:1;min-width:130px;font-family:inherit}
-.btn{background:#0b2342;color:#fff;border:0;border-radius:9px;padding:11px 18px;font-weight:800;font-size:14px;cursor:pointer}
-.btn.yellow{background:#ffc107;color:#111}
+.frow select{border:1px solid var(--border);border-radius:8px;padding:10px;font-size:13px;color:#111;background:#fff;flex:1;min-width:130px;font-family:inherit}
 .rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
-.room{background:#f4f6fb;border:1px solid #e6ebf4;border-radius:10px;padding:14px}
-.room b{font-size:14px;color:#1a2f8a;display:block}
-.room .price{font-size:13px;color:#0e9f6e;font-weight:800;margin:3px 0}
-.room small{font-size:12.5px;color:#6b7aa5;display:block;line-height:1.6}
-.room a.cta2{display:inline-block;margin-top:8px;background:#0b2342;color:#fff;font-size:12.5px;font-weight:800;border-radius:8px;padding:7px 14px;text-decoration:none}
-.src{font-size:12px;color:#8a94b5}
-details.faq{border:1px solid #e2e7f2;border-radius:10px;margin:8px 0;background:#fff}
-details.faq summary{cursor:pointer;padding:12px 14px;font-weight:700;font-size:14px;color:#1a2f8a;list-style:none}
-details.faq summary::-webkit-details-marker{display:none}
-details.faq .a{padding:0 14px 14px;font-size:14px;color:#33406b}
-.pfbox{background:#0b2342;border-radius:12px;padding:18px;text-align:center;margin:16px 0}
-.pfbox b{font-size:17px;color:#fff}.pfbox p{color:#c4d0e8;font-size:14px}
-.pfbox a{display:inline-block;background:#ffc107;color:#111;font-weight:800;border-radius:9px;padding:10px 22px;text-decoration:none;margin-top:8px}
-footer{background:#071222;border-top:1px solid rgba(255,255,255,.08);padding:30px 0 40px;margin-top:26px}
-.fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:18px}
-.fgrid h4{font-size:13px;margin:0 0 10px;color:#fff}.fgrid a{display:block;font-size:12.5px;color:#9db0d0;margin:5px 0;text-decoration:none}
-.fabout{font-size:12.5px;color:#9db0d0}.copy{text-align:center;font-size:12px;color:#8ea0c2;margin-top:24px;border-top:1px solid rgba(255,255,255,.08);padding-top:16px}
-@media(max-width:680px){.rgrid{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr 1fr}}
-.theme-btn{border:1px solid rgba(255,255,255,.18);background:transparent;color:#fff;font-weight:700;font-size:12.5px;border-radius:8px;padding:8px 10px;cursor:pointer;font-family:inherit;white-space:nowrap}
-body[data-theme="light"]{background:#edf1f7;color:#16215c}
-body[data-theme="light"] .topbar{background:#fff;border-color:#e2e7f2}
-body[data-theme="light"] .logo{color:#16215c}
-body[data-theme="light"] .nav a{color:#33406b}
-body[data-theme="light"] .theme-btn{border-color:#c4cde0;color:#16215c}
-body[data-theme="light"] .crumb{color:#6b7aa5}
-body[data-theme="light"] footer{background:#fff;border-color:#e2e7f2}
-body[data-theme="light"] .fgrid h4{color:#16215c}
-body[data-theme="light"] .fgrid a,body[data-theme="light"] .fabout{color:#5b6584}
-body[data-theme="light"] .copy{color:#8a94b5;border-color:#e2e7f2}
-body[data-theme="light"] .ad-slot-placeholder{border-color:#c4cde0;color:#8a94b5;background:#fff}
+.room{background:var(--surface-strong);border:1px solid var(--border);border-radius:10px;padding:14px}
+.room b{font-size:14px;color:var(--fg);display:block}
+.room .price{font-size:13px;color:var(--success);font-weight:800;margin:3px 0}
+.room small{font-size:12.5px;color:var(--muted);display:block;line-height:1.6}
+.room a.cta2{display:inline-block;margin-top:8px;background:var(--primary);color:var(--on-primary);font-size:12.5px;font-weight:800;border-radius:8px;padding:7px 14px;text-decoration:none}
+.rgrid>*{min-width:0}.room b,.room small,.room .price{overflow-wrap:anywhere}.src{font-size:12px;color:var(--muted)}
+@media(max-width:760px){.room a.cta2{padding:12px 18px}.frow select{padding:12px 10px}}
+.pfbox{background:var(--surface-strong);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;margin:16px 0}
+.pfbox b{font-size:17px;color:var(--fg)}.pfbox p{color:var(--muted);font-size:14px}
+.pfbox a{display:inline-block;background:var(--primary);color:var(--on-primary);font-weight:800;border-radius:9px;padding:10px 22px;text-decoration:none;margin-top:8px}
+@media(max-width:680px){.rgrid{grid-template-columns:1fr}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the average room rent in Dubai?","acceptedAnswer":{"@type":"Answer","text":"It varies widely by area and room type. The table above shows official Dubai Land Department averages from registered Ejari contracts in the last 30 days — the most trustworthy benchmark before you negotiate."}},{"@type":"Question","name":"Private room vs partition vs bed space — what is the difference?","acceptedAnswer":{"@type":"Answer","text":"A private room is your own lockable room; a partition is a divided section of a room; a bed space is one bed in a shared room. Privacy and price rise in that order: bed space is cheapest, master rooms cost most."}},{"@type":"Question","name":"What should I check before paying for a room?","acceptedAnswer":{"@type":"Answer","text":"Visit in person, meet flatmates, confirm what is included (DEWA, wifi, AC, kitchen access), get receipts for every payment, and never pay a full advance to someone you have not met."}},{"@type":"Question","name":"Do I need Ejari for a rented room?","acceptedAnswer":{"@type":"Answer","text":"Ejari registration is normally the main tenant's responsibility. As a sub-occupant, keep copies of your payment receipts and any written agreement — they are your proof of tenancy."}},{"@type":"Question","name":"How do I list my room here for free?","acceptedAnswer":{"@type":"Answer","text":"Use the List Your Room form below — it opens an email to our team with your details pre-filled. We publish genuine listings free of charge."}}]}</script>
 </head>
 <body>
-<header class="topbar"><div class="wrap topbar-in">
-<a class="logo" href="/"><span class="sun"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg></span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a>
-<nav class="nav"><a href="/#tools">Tools</a><a href="/#today">UAE</a><a href="/blog">Blog</a><a href="/jobs">Jobs</a><a href="/rooms">Rent</a><a href="/#prayer">Islamic</a></nav>
-<button class="theme-btn" id="themeBtn"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg> Light</button>
-</div></header>
-<script>try{var _t=localStorage.getItem("stp-theme")||"dark";document.body.setAttribute("data-theme",_t)}catch(e){document.body.setAttribute("data-theme","dark")}</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol><symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol><symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol><symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol><symbol id="i-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h6M9 13h6M9 17h4"/></symbol><symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 16l-5-5-8 8"/></symbol><symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="i-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 7.5L20 19M8 16.5L20 5"/></symbol><symbol id="i-compress" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M10 14l-7 7M14 10l7-7"/></symbol><symbol id="i-resize" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol><symbol id="i-crop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2v16a2 2 0 0 0 2 2h12M2 6h16a2 2 0 0 1 2 2v12"/></symbol><symbol id="i-receipt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></symbol><symbol id="i-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="1.5"/><path d="M6 8v3M10 8v4M14 8v3M18 8v4"/></symbol><symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol><symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol><symbol id="i-currency" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.2c-.5-.8-1.4-1.2-2.5-1.2-1.4 0-2.5.8-2.5 2s1.1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1.1 0-2-.4-2.5-1.2M12 6v2M12 16v2"/></symbol><symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol><symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 10h5a1 1 0 0 1 1 1v10M2 21h20M8 8h2M8 12h2M8 16h2"/></symbol><symbol id="i-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M5 17l1.5-6h4L12 17M12 17l1.5-6h4L19 17"/></symbol><symbol id="i-fuel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 21h14M15 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V9l-3-3M7 8h6"/></symbol><symbol id="i-news" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2zM9 8h6M9 12h6M9 16h4"/></symbol><symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol><symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol><symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></symbol><symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol><symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol><symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1"/></symbol><symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol><symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol><symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol></defs></svg>
+<div class="wrap"><div class="welcome"><span class="label-lg">Welcome to SunnyToolsPro &mdash; Site made by Sunny</span></div>
+<header class="nav"><a class="brand" href="/" aria-label="Sunny Tools Pro home"><span class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-72 -72 144 144" width="30" height="30" role="img" aria-label="SunnyToolsPro sun"><title>SunnyToolsPro sun</title><g stroke="#ffc400" stroke-width="19.84" stroke-linecap="round"><line x1="20" y1="0" x2="58.76" y2="0"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(45)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(90)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(135)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(180)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(225)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(270)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(315)"/></g><circle r="37.8" fill="#ffc400" stroke="#3f313d" stroke-width="1.27"/></svg></span><span>SUNNY TOOLS</span><span class="brand-pro">PRO</span></a>
+<nav class="nav-links" aria-label="Primary"><a href="/tools">Tools</a><a href="/#live">UAE</a><a href="/tools/currency-converter">Finance</a><a href="/jobs">Jobs</a><a href="/rooms">Rent</a><a href="/#prayer">Islamic</a><a href="/blog">Blog</a></nav>
+<div class="nav-right"><button class="btn btn-secondary" id="themeBtn"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sun"/></svg><span>Light</span></button></div></header></div>
+<script>try{var _t=localStorage.getItem("stp-theme")||"dark";document.body.setAttribute("data-theme",_t);if(_t==="light")document.documentElement.setAttribute("data-mode","light");else document.documentElement.removeAttribute("data-mode")}catch(e){document.body.setAttribute("data-theme","dark")}</script>
 <main><div class="wrap">
 <p class="crumb"><a href="/">Home</a> / Room Rent</p>
 <div class="ad-slot-placeholder">Advertisement</div>
@@ -112,14 +77,14 @@ body[data-theme="light"] .ad-slot-placeholder{border-color:#c4cde0;color:#8a94b5
 </div>
 <div class="ad-slot-placeholder">Advertisement</div>
 </div></main>
-<footer><div class="wrap"><div class="fgrid">
-<div><a class="logo" href="/"><span class="sun"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg></span><span><b>SUNNY</b><small>TOOLS</small></span><span class="pro">PRO</span></a><p class="fabout">Your everyday digital toolkit with free online tools, converters and daily utilities.</p><h4 style="margin-top:12px">Legal</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/privacy-policy">Privacy Policy</a><a href="/terms-of-service">Terms of Service</a><a href="/dmca">DMCA</a></div>
-<div><h4>Quick Links</h4><a href="/">Home</a><a href="/#tools">All Tools</a><a href="/blog">Blog &amp; Guides</a><a href="/jobs">Jobs</a><a href="/rooms">Room Rent</a></div>
-<div><h4>Popular Tools</h4><a href="/tools/jpg-to-pdf">JPG to PDF</a><a href="/tools/currency-converter">Currency Converter</a><a href="/tools/vat-calculator">VAT Calculator</a><a href="/tools/qibla-finder">Qibla Finder</a></div>
-<div><h4>UAE</h4><a href="/#prayer">Prayer Times</a><a href="/jobs">UAE Jobs</a><a href="/rooms">Room Rent</a><a href="/#today">UAE Time</a></div>
-</div><div class="copy">© 2026 SunnyToolsPro. All rights reserved. | Website Design &amp; Build by <b style="color:#fff">Sunny Janjowa</b></div></div></footer>
-<script>
-var ALL_ROOMS=[];
+<div class="wrap"><footer id="footer"><div class="foot-grid">
+<div class="foot-brand"><span class="brand"><span class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-72 -72 144 144" width="30" height="30" role="img" aria-label="SunnyToolsPro sun"><title>SunnyToolsPro sun</title><g stroke="#ffc400" stroke-width="19.84" stroke-linecap="round"><line x1="20" y1="0" x2="58.76" y2="0"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(45)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(90)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(135)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(180)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(225)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(270)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(315)"/></g><circle r="37.8" fill="#ffc400" stroke="#3f313d" stroke-width="1.27"/></svg></span><span>SUNNY TOOLS</span><span class="brand-pro">PRO</span></span><p class="body-sm muted">Your everyday digital toolkit with free online tools, converters and daily utilities.</p></div>
+<div class="foot-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/tools">All Tools</a><a href="/blog">Blog &amp; Guides</a><a href="/jobs">Jobs</a><a href="/rooms">Room Rent</a></div>
+<div class="foot-col"><h4>Popular Tools</h4><a href="/tools/jpg-to-pdf">JPG to PDF</a><a href="/tools/currency-converter">Currency Converter</a><a href="/tools/vat-calculator">VAT Calculator</a><a href="/tools/qibla-finder">Qibla Finder</a></div>
+<div class="foot-col"><h4>UAE</h4><a href="/#prayer">Prayer Times</a><a href="/jobs">UAE Jobs</a><a href="/rooms">Room Rent</a><a href="/#live">UAE Time</a></div>
+<div class="foot-col"><h4>Legal</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/privacy-policy">Privacy Policy</a><a href="/terms-of-service">Terms of Service</a><a href="/dmca">DMCA</a></div>
+</div><div class="foot-bottom"><p class="body-sm muted">© 2026 SunnyToolsPro. All rights reserved. | Website Design &amp; Build by Sunny Janjowa</p><button class="up" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button></div></footer></div>
+<script>var ALL_ROOMS=[];
 function esc(s){return String(s==null?"":s)}
 function renderRooms(){
   var c=document.getElementById('fc').value,b2=document.getElementById('fb2').value,b=document.getElementById('fb').value;
@@ -170,6 +135,6 @@ fetch('/api/dld-rents').then(function(r){return r.json()}).then(function(d){
   document.getElementById('dldMeta').textContent='Dubai Land Department Ejari averages, last '+d.windowDays+' days · Sample: '+d.areas.reduce(function(s,a){return s+a.contracts},0).toLocaleString()+' contracts.';
 }).catch(function(){document.getElementById('dldBody').innerHTML='<tr><td colspan="4">Official data temporarily unavailable — try again later.</td></tr>'});
 </script>
-<script>(function(){var b=document.getElementById('themeBtn');var SUN='<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg> Light';var MOON='<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-moon"/></svg> Dark';function lb(){if(b)b.innerHTML=document.body.getAttribute('data-theme')==='dark'?SUN:MOON}lb();if(b)b.onclick=function(){var n=document.body.getAttribute('data-theme')==='dark'?'light':'dark';document.body.setAttribute('data-theme',n);try{localStorage.setItem('stp-theme',n)}catch(e){}lb()}})();</script>
+<script>(function(){var b=document.getElementById('themeBtn');function lb(){var d=document.body.getAttribute('data-theme')==='dark';var SI='<svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sun"/></svg>',MI='<svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-moon"/></svg>';if(b)b.innerHTML=(d?SI:MI)+'<span>'+(d?'Light':'Dark')+'</span>';if(d)document.documentElement.removeAttribute('data-mode');else document.documentElement.setAttribute('data-mode','light')}lb();if(b)b.onclick=function(){var n=document.body.getAttribute('data-theme')==='dark'?'light':'dark';document.body.setAttribute('data-theme',n);try{localStorage.setItem('stp-theme',n)}catch(e){}lb()}})();</script>
 </body>
 </html>

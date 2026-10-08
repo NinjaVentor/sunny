@@ -47,7 +47,8 @@ async function tryFunction(req, res) {
   }
   if (!mod || typeof mod.onRequest !== "function") return false;
   try {
-    const url = new URL(req.url, "http://localhost");
+    const host = (req.headers && req.headers.host) || "localhost";
+    const url = new URL(req.url, "http://" + host);
     const headers = new Headers();
     for (const k of Object.keys(req.headers || {})) {
       const v = req.headers[k];
@@ -98,19 +99,31 @@ const server = http.createServer((req, res) => {
     }
     if (url.pathname === "/" || url.pathname === "") filePath = path.join(ROOT, "index.html");
     if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
-      filePath = path.join(filePath, "index.html");
+      // Like Cloudflare Pages: /blog and /tools serve the sibling blog.html / tools.html.
+      if (fs.existsSync(filePath + ".html")) filePath = filePath + ".html";
+      else filePath = path.join(filePath, "index.html");
     }
     // Clean URLs like Cloudflare Pages: /jobs -> jobs.html, /tools/x -> tools/x.html.
     if (!fs.existsSync(filePath) && !path.extname(filePath) && fs.existsSync(filePath + ".html")) {
       filePath = filePath + ".html";
     }
     if (!fs.existsSync(filePath)) {
+      // Dev parity with Cloudflare Pages: serve the pretty 404 page when present.
+      const notFound = path.join(ROOT, "404.html");
+      if (fs.existsSync(notFound)) {
+        res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+        fs.createReadStream(notFound).pipe(res);
+        return;
+      }
       res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
       res.end("Not found");
       return;
     }
     const ext = path.extname(filePath).toLowerCase();
-    res.writeHead(200, { "Content-Type": MIME[ext] || "application/octet-stream" });
+    // Dev only: never let browsers cache stale HTML/CSS/JS between edits.
+    // HTML is never stored; assets revalidate every load.
+    const cc = ext === ".html" ? "no-store" : "no-cache";
+    res.writeHead(200, { "Content-Type": MIME[ext] || "application/octet-stream", "Cache-Control": cc });
     fs.createReadStream(filePath).pipe(res);
   } catch (err) {
     res.writeHead(500, { "Content-Type": "text/plain; charset=utf-8" });

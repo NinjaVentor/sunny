@@ -5,13 +5,6 @@ const root = __dirname + "/..";
 const exists = (p) => {
   p = String(p).replace(/^\//, "");
   if (p === "") p = "index.html";
-  if (p.endsWith("/")) {
-    const dir = path.join(root, p);
-    if (fs.existsSync(path.join(dir, "index.html"))) return true;
-    const sib = path.join(root, p.slice(0, -1) + ".html");
-    if (fs.existsSync(sib)) return true;
-    return false;
-  }
   const f = path.join(root, p);
   if (fs.existsSync(f) && fs.statSync(f).isFile()) return true;
   if (fs.existsSync(f + ".html")) return true;
