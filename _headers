@@ -1,0 +1,6 @@
+/tokens.v2.css
+  Cache-Control: public, max-age=31536000, immutable
+/tokens.css
+  Cache-Control: public, max-age=0, must-revalidate
+/data/*.json
+  Cache-Control: public, max-age=3600, must-revalidate
