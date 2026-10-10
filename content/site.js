@@ -1,7 +1,7 @@
 // Shared site metadata, navigation and link registry for generated pages.
 module.exports = {
   siteName: "SunnyToolsPro",
-  domain: "https://sunnytoolspro.pages.dev",
+  domain: "https://sunnytoolspro.com",
   supportEmail: "sunnytoolspro@gmail.com",
   tagline: "Your Everyday Digital Toolkit — free online tools, converters and daily utilities.",
   categories: [

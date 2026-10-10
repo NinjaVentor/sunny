@@ -2,7 +2,7 @@
 module.exports = [
   {
     slug: "jpg-to-pdf", name: "JPG to PDF",
-    title: "JPG to PDF Converter — Free, Private, No Signup",
+    title: "Free JPG to PDF Converter Online",
     description: "Convert JPG images to PDF online free. Photos become a clean A4 PDF in your browser — no upload, no watermark, no signup.",
     h1: "JPG to PDF Converter",
     overview: [
@@ -40,7 +40,7 @@ module.exports = [
   },
   {
     slug: "png-to-pdf", name: "PNG to PDF",
-    title: "PNG to PDF Converter — Free Online, No Watermark",
+    title: "Free PNG to PDF Converter Online",
     description: "Convert PNG screenshots and graphics to PDF free. Transparency handled correctly, processed locally in your browser.",
     h1: "PNG to PDF Converter",
     overview: [
@@ -78,7 +78,7 @@ module.exports = [
   },
   {
     slug: "text-to-pdf", name: "Text to PDF",
-    title: "Text to PDF Converter — Paste Text, Get PDF Free",
+    title: "Free Text to PDF Converter Online",
     description: "Convert plain text to a clean PDF online free. Paste notes, letters or essays and download an A4 PDF instantly.",
     h1: "Text to PDF Converter",
     overview: [
@@ -116,7 +116,7 @@ module.exports = [
   },
   {
     slug: "pdf-to-jpg", name: "PDF to JPG",
-    title: "PDF to JPG — Convert PDF Pages to Images Free",
+    title: "Free PDF to JPG Converter Online",
     description: "Turn PDF pages into JPG images online free. Each page becomes a shareable photo — processed locally in your browser.",
     h1: "PDF to JPG Converter",
     overview: [
@@ -154,7 +154,7 @@ module.exports = [
   },
   {
     slug: "pdf-merge", name: "PDF Merge",
-    title: "Merge PDF Files Online Free — Combine in Seconds",
+    title: "Merge PDF Files Online Free",
     description: "Merge multiple PDFs into one file free. Perfect for job and visa applications — private, local, no signup.",
     h1: "Merge PDF Files Online",
     overview: [
@@ -192,7 +192,7 @@ module.exports = [
   },
   {
     slug: "pdf-split", name: "PDF Split",
-    title: "Split PDF Online Free — Extract Pages Easily",
+    title: "Split PDF Online Free",
     description: "Split PDF pages free in your browser. Extract ranges or separate every page — private, fast, no signup.",
     h1: "Split PDF Pages",
     overview: [
@@ -230,7 +230,7 @@ module.exports = [
   },
   {
     slug: "pdf-compress", name: "PDF Compress",
-    title: "Compress PDF Online Free — Shrink File Size",
+    title: "Compress PDF Files Online Free",
     description: "Reduce PDF file size free to fit portal limits. Browser-based optimization that keeps documents readable.",
     h1: "Compress PDF Size",
     overview: [
@@ -307,7 +307,7 @@ module.exports = [
   },
   {
     slug: "pdf-to-word", name: "PDF to Word",
-    title: "PDF to Word Converter — Editable Text Free",
+    title: "Free PDF to Word Converter",
     description: "Extract editable text from PDF to Word free. Get a .doc you can revise — private local processing, no signup.",
     h1: "PDF to Word Converter",
     overview: [

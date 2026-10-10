@@ -2,7 +2,7 @@
 module.exports = [
   {
     slug: "convert-text-to-pdf-on-mobile",
-    title: "How to Convert Text to PDF on Mobile (No App Needed)",
+    title: "Convert Text to PDF on Mobile",
     description:
       "Turn notes, essays or office text into a clean PDF right from your phone browser — free, private and without installing any app.",
     date: "2026-09-28",
@@ -12,7 +12,7 @@ module.exports = [
   },
   {
     slug: "best-practices-image-compression",
-    title: "Best Practices for Image Compression (Smaller Files, Same Look)",
+    title: "Image Compression Best Practices",
     description:
       "Compress photos for job portals, WhatsApp and websites without visible quality loss — sizes, formats and settings explained.",
     date: "2026-09-21",
@@ -22,7 +22,7 @@ module.exports = [
   },
   {
     slug: "crop-images-without-quality-loss",
-    title: "How to Crop Images Without Quality Loss",
+    title: "Crop Images Without Quality Loss",
     description:
       "Crop passport photos, profile pictures and documents cleanly — why cropping never reduces quality and the mistakes to avoid.",
     date: "2026-09-14",
@@ -32,7 +32,7 @@ module.exports = [
   },
   {
     slug: "merge-pdf-files-online-free",
-    title: "How to Merge PDF Files Online for Free (Job Applications & Visas)",
+    title: "Merge PDF Files Online Free",
     description:
       "Combine your CV, certificates, passport and photos into one PDF for job and visa applications — in the right order, without software.",
     date: "2026-09-07",
@@ -42,7 +42,7 @@ module.exports = [
   },
   {
     slug: "uae-vat-calculator-guide",
-    title: "UAE VAT Calculator: How 5% VAT Works (With Examples)",
+    title: "UAE VAT Guide: How 5% VAT Works",
     description:
       "Understand the UAE's 5% VAT: add or remove VAT from any price, see real invoice examples, and know what is exempt.",
     date: "2026-08-30",
@@ -52,7 +52,7 @@ module.exports = [
   },
   {
     slug: "find-qibla-direction-mobile",
-    title: "How to Find the Qibla Direction From Anywhere (Phone Method)",
+    title: "Find Qibla Direction on Your Phone",
     description:
       "Find the accurate prayer direction using your phone's GPS and compass — how Qibla calculation works and how to verify it.",
     date: "2026-08-22",
@@ -62,7 +62,7 @@ module.exports = [
   },
   {
     slug: "send-money-home-exchange-rates",
-    title: "Sending Money Home? How Exchange Rates Decide What Your Family Gets",
+    title: "Sending Money Home: Exchange Rates",
     description:
       "AED to PKR, INR and PHP explained: mid-market vs counter rates, timing transfers, and converting like a pro before you remit.",
     date: "2026-08-15",

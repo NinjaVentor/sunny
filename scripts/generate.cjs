@@ -136,7 +136,7 @@ const SPRITE = `<svg width="0" height="0" style="position:absolute" aria-hidden=
 + `<symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>`
 + `</defs></svg>`;
 const ICO = (n) => `<svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-${n}"/></svg>`;
-const HEAD_META = `<meta name="theme-color" content="#0a1931"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" href="/favicon.svg" type="image/svg+xml">`;
+const HEAD_META = `<meta name="theme-color" content="#0a1931"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/favicon.svg"><link rel="manifest" href="/manifest.json">`;
 
 /* ---------- header / footer ---------- */
 function toolIndex() {
@@ -172,8 +172,8 @@ function head({ title, desc, canonical, jsonld }) {
   return `<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1,viewport-fit=cover">
 <title>${esc(title)}</title><meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${canonical}">
-<meta property="og:type" content="article"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${canonical}">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(desc)}">
+<meta property="og:type" content="article"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="${site.domain}/favicon.svg"><meta property="og:site_name" content="SunnyToolsPro">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(desc)}"><meta name="twitter:image" content="${site.domain}/favicon.svg">
 ${HEAD_META}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="/tokens.v2.css"><style>${CSS}</style>
@@ -205,7 +205,7 @@ function widgetHTML(w, slug) {
   if (w.type === "images-to-pdf") {
     inner = `<div class="dropzone" id="dz">Tap to upload ${esc(w.formats)} images (multiple allowed)<br><input type="file" id="fi" accept="${esc(w.accept)}" multiple hidden></div>
 <div class="thumbs" id="th"></div><div class="row"><button class="btn" id="go" disabled>Convert to PDF</button></div><p class="stat" id="st"></p>
-<script>var files=[];var dz=document.getElementById('dz'),fi=document.getElementById('fi');dz.onclick=function(){fi.click()};fi.onchange=function(){files=files.concat(Array.prototype.slice.call(fi.files));render()};function render(){var th=document.getElementById('th');th.innerHTML='';files.forEach(function(f){var u=URL.createObjectURL(f);th.innerHTML+='<img src="'+u+'">'});document.getElementById('go').disabled=!files.length;document.getElementById('st').textContent=files.length?files.length+' image(s) ready':''}
+<script>var files=[];var dz=document.getElementById('dz'),fi=document.getElementById('fi');dz.onclick=function(){fi.click()};fi.onchange=function(){files=files.concat(Array.prototype.slice.call(fi.files));render()};function render(){var th=document.getElementById('th');th.innerHTML='';files.forEach(function(f){var u=URL.createObjectURL(f);th.innerHTML+='<img src="'+u+'" alt="Uploaded image preview">'});document.getElementById('go').disabled=!files.length;document.getElementById('st').textContent=files.length?files.length+' image(s) ready':''}
 document.getElementById('go').onclick=function(){var js=new window.jspdf.jsPDF({unit:'mm',format:'a4'});var i=0;function next(){if(i>=files.length){js.save('${slug}.pdf')}else{var f=files[i];var img=new Image();img.onload=function(){var pw=210,ph=297;var r=Math.min(pw/img.width,ph/img.height);var w=img.width*r,h=img.height*r;if(i>0)js.addPage();js.addImage(img,(pw-w)/2,(ph-h)/2,w,h);i++;URL.revokeObjectURL(img.src);document.getElementById('st').textContent='Processing '+(i)+'/'+files.length;next()};img.src=URL.createObjectURL(f)}}if(files.length)next()};</script>`;
   } else if (w.type === "text-to-pdf") {
     inner = `<div class="field"><label for="tt">Your text</label><textarea class="ta" id="tt" placeholder="Paste or type your text here…"></textarea></div>
@@ -215,7 +215,7 @@ document.getElementById('go').onclick=function(){var js=new window.jspdf.jsPDF({
     inner = `<div class="dropzone" id="dz">Tap to upload a PDF file<br><input type="file" id="fi" accept="application/pdf,.pdf" hidden></div>
 <div class="row"><button class="btn" id="go" disabled>Convert pages to JPG</button></div><div class="thumbs" id="th"></div><div id="dls"></div><p class="stat" id="st"></p>
 <script>var buf=null,fn='document';var dz=document.getElementById('dz'),fi=document.getElementById('fi');dz.onclick=function(){fi.click()};fi.onchange=function(){var f=fi.files[0];if(!f)return;fn=f.name.replace(/\\.pdf$/i,'');var r=new FileReader();r.onload=function(){buf=r.result;document.getElementById('go').disabled=false;document.getElementById('st').textContent=f.name+' loaded'};r.readAsArrayBuffer(f)};
-document.getElementById('go').onclick=function(){if(!buf)return;document.getElementById('st').textContent='Rendering…';pdfjsLib.getDocument({data:buf}).promise.then(function(pdf){var th=document.getElementById('th'),dls=document.getElementById('dls');th.innerHTML='';dls.innerHTML='';var jobs=[];for(var p=1;p<=pdf.numPages;p++)(function(p){jobs.push(pdf.getPage(p).then(function(page){var v=page.getViewport({scale:2});var c=document.createElement('canvas');c.width=v.width;c.height=v.height;return page.render({canvasContext:c.getContext('2d'),viewport:v}).promise.then(function(){var img=document.createElement('img');img.src=c.toDataURL('image/jpeg',0.92);th.appendChild(img);var b=document.createElement('button');b.className='btn';b.style.margin='4px';b.textContent='Download page '+p;b.onclick=function(){c.toBlob(function(bl){stpDown(bl,fn+'-p'+p+'.jpg','image/jpeg')})};dls.appendChild(b)})}))})(p);Promise.all(jobs).then(function(){document.getElementById('st').textContent=pdf.numPages+' page(s) converted.'})})};</script>`;
+document.getElementById('go').onclick=function(){if(!buf)return;document.getElementById('st').textContent='Rendering…';pdfjsLib.getDocument({data:buf}).promise.then(function(pdf){var th=document.getElementById('th'),dls=document.getElementById('dls');th.innerHTML='';dls.innerHTML='';var jobs=[];for(var p=1;p<=pdf.numPages;p++)(function(p){jobs.push(pdf.getPage(p).then(function(page){var v=page.getViewport({scale:2});var c=document.createElement('canvas');c.width=v.width;c.height=v.height;return page.render({canvasContext:c.getContext('2d'),viewport:v}).promise.then(function(){var img=document.createElement('img');img.alt='Converted page preview';img.src=c.toDataURL('image/jpeg',0.92);th.appendChild(img);var b=document.createElement('button');b.className='btn';b.style.margin='4px';b.textContent='Download page '+p;b.onclick=function(){c.toBlob(function(bl){stpDown(bl,fn+'-p'+p+'.jpg','image/jpeg')})};dls.appendChild(b)})}))})(p);Promise.all(jobs).then(function(){document.getElementById('st').textContent=pdf.numPages+' page(s) converted.'})})};</script>`;
   } else if (w.type === "pdf-merge") {
     inner = `<div class="dropzone" id="dz">Tap to add PDF files (in merge order)<br><input type="file" id="fi" accept="application/pdf,.pdf" multiple hidden></div>
 <div class="out" id="list">No files yet.</div><div class="row"><button class="btn" id="go" disabled>Merge PDFs</button></div><p class="stat" id="st"></p>
@@ -245,23 +245,23 @@ document.getElementById('go').onclick=function(){if(!txt.trim())return;var paras
   } else if (w.type === "image-compress") {
     inner = `<div class="dropzone" id="dz">Tap to upload a JPG or PNG image<br><input type="file" id="fi" accept="image/jpeg,image/png" hidden></div>
 <div class="thumbs" id="th"></div><div class="row"><div class="field"><label for="q">Quality: <span id="qv">75</span>%</label><input type="range" id="q" min="10" max="95" value="75"></div><button class="btn" id="go" disabled>Compress</button></div><p class="stat" id="st"></p><div class="thumbs" id="out"></div><div id="dls"></div>
-<script>var img=null,fn='image';var dz=document.getElementById('dz'),fi=document.getElementById('fi');dz.onclick=function(){fi.click()};fi.onchange=function(){var f=fi.files[0];if(!f)return;fn=f.name.replace(/\\.[^.]+$/,'');var im=new Image();im.onload=function(){img=im;var th=document.getElementById('th');th.innerHTML='';var t=im.cloneNode();t.style.width='86px';t.style.height='86px';th.appendChild(t);document.getElementById('go').disabled=false;document.getElementById('st').textContent='Original: '+Math.round(f.size/1024)+' KB, '+im.width+'×'+im.height;URL.revokeObjectURL(im.src)};im.src=URL.createObjectURL(f)};
+<script>var img=null,fn='image';var dz=document.getElementById('dz'),fi=document.getElementById('fi');dz.onclick=function(){fi.click()};fi.onchange=function(){var f=fi.files[0];if(!f)return;fn=f.name.replace(/\\.[^.]+$/,'');var im=new Image();im.onload=function(){img=im;var th=document.getElementById('th');th.innerHTML='';var t=im.cloneNode();t.alt='Original image preview';t.style.width='86px';t.style.height='86px';th.appendChild(t);document.getElementById('go').disabled=false;document.getElementById('st').textContent='Original: '+Math.round(f.size/1024)+' KB, '+im.width+'×'+im.height;URL.revokeObjectURL(im.src)};im.src=URL.createObjectURL(f)};
 document.getElementById('q').oninput=function(){document.getElementById('qv').textContent=this.value};
-document.getElementById('go').onclick=function(){if(!img)return;var c=document.createElement('canvas');c.width=img.width;c.height=img.height;c.getContext('2d').drawImage(img,0,0);var q=document.getElementById('q').value/100;c.toBlob(function(bl){var o=document.getElementById('out');o.innerHTML='';var u=URL.createObjectURL(bl);o.innerHTML='<img src="'+u+'">';document.getElementById('st').textContent='Compressed: '+Math.round(bl.size/1024)+' KB at '+document.getElementById('q').value+'% quality';var dls=document.getElementById('dls');dls.innerHTML='';var b=document.createElement('button');b.className='btn';b.textContent='Download compressed image';b.onclick=function(){stpDown(bl,fn+'-compressed.jpg','image/jpeg')};dls.appendChild(b)},'image/jpeg',q)};</script>`;
+document.getElementById('go').onclick=function(){if(!img)return;var c=document.createElement('canvas');c.width=img.width;c.height=img.height;c.getContext('2d').drawImage(img,0,0);var q=document.getElementById('q').value/100;c.toBlob(function(bl){var o=document.getElementById('out');o.innerHTML='';var u=URL.createObjectURL(bl);o.innerHTML='<img src="'+u+'" alt="Compressed image preview">';document.getElementById('st').textContent='Compressed: '+Math.round(bl.size/1024)+' KB at '+document.getElementById('q').value+'% quality';var dls=document.getElementById('dls');dls.innerHTML='';var b=document.createElement('button');b.className='btn';b.textContent='Download compressed image';b.onclick=function(){stpDown(bl,fn+'-compressed.jpg','image/jpeg')};dls.appendChild(b)},'image/jpeg',q)};</script>`;
   } else if (w.type === "image-resize") {
     inner = `<div class="dropzone" id="dz">Tap to upload an image<br><input type="file" id="fi" accept="image/*" hidden></div>
 <div class="thumbs" id="th"></div><div class="row"><div class="field"><label for="w">Width (px)</label><input id="w" type="number" min="1" style="width:110px"></div><div class="field"><label for="h">Height (px)</label><input id="h" type="number" min="1" style="width:110px"></div><div class="field"><label for="lk">Aspect</label><select id="lk"><option value="1">Locked</option><option value="0">Free</option></select></div><div class="field"><label for="fm">Format</label><select id="fm"><option value="jpeg">JPG</option><option value="png">PNG</option></select></div><button class="btn" id="go" disabled>Resize</button></div><p class="stat" id="st"></p><div class="thumbs" id="out"></div><div id="dls"></div>
-<script>var img=null,fn='image',ow=0,oh=0;var dz=document.getElementById('dz'),fi=document.getElementById('fi');dz.onclick=function(){fi.click()};fi.onchange=function(){var f=fi.files[0];if(!f)return;fn=f.name.replace(/\\.[^.]+$/,'');var im=new Image();im.onload=function(){img=im;ow=im.width;oh=im.height;document.getElementById('w').value=ow;document.getElementById('h').value=oh;var th=document.getElementById('th');th.innerHTML='<img src="'+im.src+'">';document.getElementById('go').disabled=false;document.getElementById('st').textContent='Original: '+ow+'×'+oh};im.src=URL.createObjectURL(f)};
+<script>var img=null,fn='image',ow=0,oh=0;var dz=document.getElementById('dz'),fi=document.getElementById('fi');dz.onclick=function(){fi.click()};fi.onchange=function(){var f=fi.files[0];if(!f)return;fn=f.name.replace(/\\.[^.]+$/,'');var im=new Image();im.onload=function(){img=im;ow=im.width;oh=im.height;document.getElementById('w').value=ow;document.getElementById('h').value=oh;var th=document.getElementById('th');th.innerHTML='<img src="'+im.src+'" alt="Original image preview">';document.getElementById('go').disabled=false;document.getElementById('st').textContent='Original: '+ow+'×'+oh};im.src=URL.createObjectURL(f)};
 document.getElementById('w').oninput=function(){if(document.getElementById('lk').value==='1'&&ow)document.getElementById('h').value=Math.round(this.value*oh/ow)};
 document.getElementById('h').oninput=function(){if(document.getElementById('lk').value==='1'&&oh)document.getElementById('w').value=Math.round(this.value*ow/oh)};
-document.getElementById('go').onclick=function(){if(!img)return;var w=+document.getElementById('w').value,h=+document.getElementById('h').value;if(!(w>0&&h>0))return;var fm=document.getElementById('fm').value;var c=document.createElement('canvas');c.width=w;c.height=h;var ctx=c.getContext('2d');ctx.imageSmoothingQuality='high';ctx.drawImage(img,0,0,w,h);var mime=fm==='png'?'image/png':'image/jpeg';c.toBlob(function(bl){var o=document.getElementById('out');var u=URL.createObjectURL(bl);o.innerHTML='<img src="'+u+'">';document.getElementById('st').textContent='Resized: '+w+'×'+h+', '+Math.round(bl.size/1024)+' KB';var dls=document.getElementById('dls');dls.innerHTML='';var b=document.createElement('button');b.className='btn';b.textContent='Download resized image';b.onclick=function(){stpDown(bl,fn+'-'+w+'x'+h+'.'+fm,mime)};dls.appendChild(b)},mime,0.92)};</script>`;
+document.getElementById('go').onclick=function(){if(!img)return;var w=+document.getElementById('w').value,h=+document.getElementById('h').value;if(!(w>0&&h>0))return;var fm=document.getElementById('fm').value;var c=document.createElement('canvas');c.width=w;c.height=h;var ctx=c.getContext('2d');ctx.imageSmoothingQuality='high';ctx.drawImage(img,0,0,w,h);var mime=fm==='png'?'image/png':'image/jpeg';c.toBlob(function(bl){var o=document.getElementById('out');var u=URL.createObjectURL(bl);o.innerHTML='<img src="'+u+'" alt="Resized image preview">';document.getElementById('st').textContent='Resized: '+w+'×'+h+', '+Math.round(bl.size/1024)+' KB';var dls=document.getElementById('dls');dls.innerHTML='';var b=document.createElement('button');b.className='btn';b.textContent='Download resized image';b.onclick=function(){stpDown(bl,fn+'-'+w+'x'+h+'.'+fm,mime)};dls.appendChild(b)},mime,0.92)};</script>`;
   } else if (w.type === "image-crop") {
     inner = `<div class="dropzone" id="dz">Tap to upload a photo<br><input type="file" id="fi" accept="image/*" hidden></div>
 <div class="thumbs" id="th"></div><div class="row"><div class="field"><label>Preset</label><select id="pr"><option value="free">Free</option><option value="1">Square 1:1</option><option value="0.75">Passport 3:4</option><option value="1.333">Wide 4:3</option><option value="1.777">Banner 16:9</option></select></div><div class="field"><label for="cx">X</label><input id="cx" type="number" value="0" style="width:80px"></div><div class="field"><label for="cy">Y</label><input id="cy" type="number" value="0" style="width:80px"></div><div class="field"><label for="cw">Width</label><input id="cw" type="number" value="300" style="width:90px"></div><div class="field"><label for="ch">Height</label><input id="ch" type="number" value="300" style="width:90px"></div><button class="btn" id="pv" disabled>Preview</button><button class="btn yellow" id="go" disabled>Crop &amp; Download</button></div><div class="thumbs" id="out"></div><p class="stat" id="st"></p>
-<script>var img=null,fn='image';var dz=document.getElementById('dz'),fi=document.getElementById('fi');dz.onclick=function(){fi.click()};fi.onchange=function(){var f=fi.files[0];if(!f)return;fn=f.name.replace(/\\.[^.]+$/,'');var im=new Image();im.onload=function(){img=im;document.getElementById('cw').value=Math.min(600,im.width);document.getElementById('ch').value=Math.min(600,im.height);var th=document.getElementById('th');th.innerHTML='<img src="'+im.src+'" style="width:120px;height:120px">';document.getElementById('pv').disabled=false;document.getElementById('go').disabled=false;document.getElementById('st').textContent='Loaded '+im.width+'×'+im.height+'. Set the crop box, then preview.'};im.src=URL.createObjectURL(f)};
+<script>var img=null,fn='image';var dz=document.getElementById('dz'),fi=document.getElementById('fi');dz.onclick=function(){fi.click()};fi.onchange=function(){var f=fi.files[0];if(!f)return;fn=f.name.replace(/\\.[^.]+$/,'');var im=new Image();im.onload=function(){img=im;document.getElementById('cw').value=Math.min(600,im.width);document.getElementById('ch').value=Math.min(600,im.height);var th=document.getElementById('th');th.innerHTML='<img src="'+im.src+'" alt="Photo to crop preview" style="width:120px;height:120px">';document.getElementById('pv').disabled=false;document.getElementById('go').disabled=false;document.getElementById('st').textContent='Loaded '+im.width+'×'+im.height+'. Set the crop box, then preview.'};im.src=URL.createObjectURL(f)};
 document.getElementById('pr').onchange=function(){var v=this.value;if(v!=='free'&&img){var w=+document.getElementById('cw').value||300;document.getElementById('ch').value=Math.round(w/parseFloat(v))}};
 function cropBox(){var x=Math.max(0,+document.getElementById('cx').value||0),y=Math.max(0,+document.getElementById('cy').value||0),w=+document.getElementById('cw').value||0,h=+document.getElementById('ch').value||0;if(!img)return null;w=Math.min(w,img.width-x);h=Math.min(h,img.height-y);if(w<1||h<1)return null;return [x,y,w,h]}
-document.getElementById('pv').onclick=function(){var b=cropBox();if(!b){document.getElementById('st').textContent='Invalid crop box.';return}var c=document.createElement('canvas');c.width=b[2];c.height=b[3];c.getContext('2d').drawImage(img,b[0],b[1],b[2],b[3],0,0,b[2],b[3]);document.getElementById('out').innerHTML='<img src="'+c.toDataURL('image/jpeg',0.92)+'">';document.getElementById('st').textContent='Preview: '+b[2]+'×'+b[3]+' from ('+b[0]+','+b[1]+')'};
+document.getElementById('pv').onclick=function(){var b=cropBox();if(!b){document.getElementById('st').textContent='Invalid crop box.';return}var c=document.createElement('canvas');c.width=b[2];c.height=b[3];c.getContext('2d').drawImage(img,b[0],b[1],b[2],b[3],0,0,b[2],b[3]);document.getElementById('out').innerHTML='<img src="'+c.toDataURL('image/jpeg',0.92)+'" alt="Cropped image preview">';document.getElementById('st').textContent='Preview: '+b[2]+'×'+b[3]+' from ('+b[0]+','+b[1]+')'};
 document.getElementById('go').onclick=function(){var b=cropBox();if(!b)return;var c=document.createElement('canvas');c.width=b[2];c.height=b[3];c.getContext('2d').drawImage(img,b[0],b[1],b[2],b[3],0,0,b[2],b[3]);c.toBlob(function(bl){stpDown(bl,fn+'-cropped.jpg','image/jpeg');document.getElementById('st').textContent='Cropped '+b[2]+'×'+b[3]+' downloaded.'},'image/jpeg',0.92)};</script>`;
   } else if (w.type === "currency") {
     inner = `<div class="row"><div class="field"><label for="amt">Amount</label><input id="amt" type="number" value="1000" min="0" step="any" style="width:150px"></div><div class="field"><label for="fr">From</label><select id="fr"></select></div><div class="field"><label for="to">To</label><select id="to"></select></div></div>
@@ -298,32 +298,51 @@ document.getElementById('cat').addEventListener('change',fillU);document.getElem
 /* ---------- tool page ---------- */
 function toolPage(t) {
   const url = "/tools/" + t.slug;
-  const faqJson = JSON.stringify({
+  const canonical = site.domain + url;
+  const graph = {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: t.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
-  });
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        name: t.name,
+        url: canonical,
+        applicationCategory: "UtilitiesApplication",
+        operatingSystem: "All",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      },
+      {
+        "@type": "HowTo",
+        name: `How to Use ${t.name}`,
+        step: t.steps.map((s) => ({ "@type": "HowToStep", name: s.t, text: s.d })),
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: t.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+      },
+    ],
+  };
+  const faqJson = JSON.stringify(graph);
   const steps = t.steps.map((s) => `<li><b>${esc(s.t)}.</b> ${esc(s.d)}</li>`).join("");
   const feats = t.features.map((f) => `<div class="feat"><b>${esc(f.t)}</b><span>${esc(f.d)}</span></div>`).join("");
   const faqs = t.faqs.map((f) => `<details class="faq"><summary>${esc(f.q)}</summary><div class="a">${esc(f.a)}</div></details>`).join("");
   const tips = t.tips.map((x) => `<li>${esc(x)}</li>`).join("");
   const rel = t.related.map((s) => { const r = tools.find((x) => x.slug === s); return r ? `<a href="/tools/${r.slug}">→ ${esc(r.name)}</a>` : ""; }).join("");
   const body = `
-<div class="tool-title h-md">${esc(t.h1)}</div>
+<h1 class="tool-title h-md">${esc(t.name)}</h1>
 <p class="postmeta">Free online tool · No signup · Works on mobile</p>
 ${widgetHTML(t.widget, t.slug)}
-<div class="card"><h1>${esc(t.h1)}</h1>
+<div class="card">
 <p class="lead">${esc(t.overview[0])}</p>
 ${t.overview.slice(1).map((p) => `<p>${esc(p)}</p>`).join("")}
-<h2>How to Use This Tool (Step-by-Step Guide)</h2>
+<h2>How to Use ${esc(t.name)} in ${t.steps.length} Steps</h2>
 <ol class="steps">${steps}</ol>
-<h2>Key Features &amp; Benefits</h2>
+<h2>Why Use Our ${esc(t.name)}?</h2>
 <div class="feat-grid">${feats}</div>
 <h2>Understanding ${esc(t.name)}</h2>
 ${t.understanding.map((p) => `<p>${esc(p)}</p>`).join("")}
 <h2>Pro Tips for Best Results</h2>
 <ul>${tips}</ul>
-<h2>Frequently Asked Questions</h2>
+<h2>Frequently Asked Questions About ${esc(t.name)}</h2>
 ${faqs}
 <div class="privacy-box"><b>Security &amp; Privacy Guarantee.</b> Your privacy is guaranteed. All processing is done locally in your browser/deleted automatically from our servers after processing. Your files are never uploaded, stored or shared.</div>
 <h2>Works Everywhere You Do</h2>
@@ -430,7 +449,18 @@ const urls = ["/", "/about", "/contact", "/privacy-policy", "/terms-of-service",
   ...blog.map((p) => "/blog/" + p.slug), ...tools.map((t) => "/tools/" + t.slug)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
   urls.map((u) => `<url><loc>${site.domain + u}</loc><lastmod>2026-10-06</lastmod><changefreq>monthly</changefreq></url>`).join("") + `</urlset>`);
-write("robots.txt", `User-agent: *\nAllow: /\nSitemap: ${site.domain}/sitemap.xml\n`);
+write("robots.txt", `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${site.domain}/sitemap.xml\n`);
+write("manifest.json", JSON.stringify({
+  name: "SunnyToolsPro — Free Online Tools",
+  short_name: "SunnyToolsPro",
+  description: site.tagline,
+  start_url: "/",
+  scope: "/",
+  display: "standalone",
+  background_color: "#0a1931",
+  theme_color: "#0a1931",
+  icons: [{ src: "/favicon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" }],
+}, null, 2) + "\n");
 
 if (fail) { console.error(fail + " tool pages below 600 words"); process.exit(1); }
 console.log("done: " + tools.length + " tools, " + blog.length + " posts, " + legal.length + " legal pages");

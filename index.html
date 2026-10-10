@@ -4,12 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1,viewport-fit=cover" />
 <title>SunnyToolsPro — Your Everyday Digital Toolkit</title>
-<meta name="description" content="100% free online tools: PDF converters, image tools, currency, VAT, age and unit calculators, Qibla finder, UAE prayer times, jobs and room rent — no signup." />
-<link rel="canonical" href="https://sunnytoolspro.pages.dev/" />
-<meta property="og:type" content="website" /><meta property="og:title" content="SunnyToolsPro — Your Everyday Digital Toolkit" /><meta property="og:description" content="Free online tools, converters and live UAE information — no signup." /><meta property="og:url" content="https://sunnytoolspro.pages.dev/" />
-<meta name="twitter:card" content="summary" /><meta name="twitter:title" content="SunnyToolsPro — Your Everyday Digital Toolkit" /><meta name="twitter:description" content="Free online tools, converters and live UAE information — no signup." />
+<meta name="description" content="100% free online tools: PDF converters, image tools, currency, VAT, age and unit calculators, Qibla finder, UAE prayer times, jobs and rent — no signup." />
+<link rel="canonical" href="https://sunnytoolspro.com/" />
+<meta property="og:type" content="website" /><meta property="og:title" content="SunnyToolsPro — Your Everyday Digital Toolkit" /><meta property="og:description" content="Free online tools, converters and live UAE information — no signup." /><meta property="og:url" content="https://sunnytoolspro.com/" /><meta property="og:image" content="https://sunnytoolspro.com/favicon.svg"><meta property="og:site_name" content="SunnyToolsPro">
+<meta name="twitter:card" content="summary" /><meta name="twitter:title" content="SunnyToolsPro — Your Everyday Digital Toolkit" /><meta name="twitter:description" content="Free online tools, converters and live UAE information — no signup." /><meta name="twitter:image" content="https://sunnytoolspro.com/favicon.svg">
 <meta name="theme-color" content="#0a1931" /><meta name="mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" /><link rel="apple-touch-icon" href="/favicon.svg"><link rel="manifest" href="/manifest.json">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"SunnyToolsPro","url":"https://sunnytoolspro.com/"},{"@type":"Organization","name":"SunnyToolsPro","url":"https://sunnytoolspro.com/","logo":"https://sunnytoolspro.com/favicon.svg"}]}</script>
 <link rel="stylesheet" href="/tokens.v2.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
 <style>
@@ -18,6 +19,8 @@
 .suggest{position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 28px rgba(0,0,0,.35);z-index:50;overflow:hidden;margin-top:6px}
 .suggest[hidden]{display:none}
 .suggest button{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;border:0;background:transparent;color:var(--fg);padding:9px 14px;cursor:pointer;text-align:left;font-size:13.5px}
+.suggest a{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;color:var(--fg);padding:9px 14px;text-decoration:none;font-size:13.5px}
+.suggest a small{color:var(--muted);font-size:11.5px}
 .suggest button small{color:var(--muted);font-size:11.5px}
 .suggest button:hover{background:var(--surface-strong)}
 .suggest .none{padding:10px 14px;font-size:12.5px;color:var(--muted)}
@@ -86,7 +89,7 @@ button.tool .ti svg{width:18px;height:18px}.job .ic svg{width:16px;height:16px}
 <header class="nav">
 <a class="brand" href="#top" aria-label="Sunny Tools Pro home"><span class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-72 -72 144 144" width="30" height="30" role="img" aria-label="SunnyToolsPro sun"><title>SunnyToolsPro sun</title><g stroke="#ffc400" stroke-width="19.84" stroke-linecap="round"><line x1="20" y1="0" x2="58.76" y2="0"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(45)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(90)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(135)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(180)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(225)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(270)"/><line x1="20" y1="0" x2="58.76" y2="0" transform="rotate(315)"/></g><circle r="37.8" fill="#ffc400" stroke="#3f313d" stroke-width="1.27"/></svg></span><span>SUNNY TOOLS</span><span class="brand-pro">PRO</span></a>
 <nav class="nav-links" aria-label="Primary"><a href="#tools">Tools</a><a href="#live">UAE</a><a href="#converter">Finance</a><a href="#jobs">Jobs</a><a href="#rooms">Rent</a><a href="#prayer">Islamic</a><a href="/blog">Blog</a></nav>
-<div class="nav-right"><form class="nav-search" role="search" onsubmit="return false"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-search"/></svg><input id="navSearch" type="search" placeholder="Search tools..." aria-label="Search tools" autocomplete="off"></form><button class="btn btn-secondary" id="themeBtn"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sun"/></svg><span>Light</span></button></div>
+<div class="nav-right"><form class="nav-search" role="search" onsubmit="return false"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-search"/></svg><input id="navSearch" type="search" placeholder="Search tools..." aria-label="Search tools" autocomplete="off"></form><button class="btn btn-secondary" id="themeBtn" aria-label="Toggle color theme"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sun"/></svg><span>Light</span></button></div>
 </header>
 <main>
 <section class="hero" aria-labelledby="hero-title">
@@ -97,12 +100,12 @@ button.tool .ti svg{width:18px;height:18px}.job .ic svg{width:16px;height:16px}
 </section>
 <section aria-label="Categories">
 <div class="cats">
-<button class="cat" type="button" onclick="location.href='/tools/jpg-to-pdf'"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-file"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">PDF Tools</span><span class="body-sm muted">Merge, split &amp; convert PDFs</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">JPG to PDF</b></span></button>
-<button class="cat" type="button" onclick="location.href='/tools/image-compressor'"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">Image Tools</span><span class="body-sm muted">Compress and resize images</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">Image Compressor</b></span></button>
-<button class="cat" type="button" onclick="document.getElementById('converter').scrollIntoView({behavior:'smooth'})"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-currency"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">Finance</span><span class="body-sm muted">Live rates and UAE VAT</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">Currency Converter</b></span></button>
-<button class="cat" type="button" onclick="location.href='/tools/age-calculator'"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ruler"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">Calculators</span><span class="body-sm muted">Dates, units and everyday math</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">Age Calculator</b></span></button>
-<button class="cat" type="button" onclick="document.getElementById('prayer').scrollIntoView({behavior:'smooth'})"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-moon"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">Islamic</span><span class="body-sm muted">UAE prayer times and Qibla</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">Prayer Times</b></span></button>
-<button class="cat" type="button" onclick="document.getElementById('jobs').scrollIntoView({behavior:'smooth'})"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-briefcase"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">Jobs &amp; Rent</span><span class="body-sm muted">Live UAE listings</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">Room Rent</b></span></button>
+<a class="cat" href="/tools/jpg-to-pdf"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-file"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">PDF Tools</span><span class="body-sm muted">Merge, split &amp; convert PDFs</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">JPG to PDF</b></span></a>
+<a class="cat" href="/tools/image-compressor"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-image"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">Image Tools</span><span class="body-sm muted">Compress and resize images</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">Image Compressor</b></span></a>
+<a class="cat" href="#converter"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-currency"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">Finance</span><span class="body-sm muted">Live rates and UAE VAT</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">Currency Converter</b></span></a>
+<a class="cat" href="/tools/age-calculator"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ruler"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">Calculators</span><span class="body-sm muted">Dates, units and everyday math</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">Age Calculator</b></span></a>
+<a class="cat" href="#prayer"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-moon"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">Islamic</span><span class="body-sm muted">UAE prayer times and Qibla</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">Prayer Times</b></span></a>
+<a class="cat" href="#jobs"><span class="badge-sq"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-briefcase"/></svg></span><span class="h-sm" style="font-size:16px;line-height:22px">Jobs &amp; Rent</span><span class="body-sm muted">Live UAE listings</span><span class="cat-foot label-sm muted">Featured: <b style="color:var(--fg);font-weight:500">Room Rent</b></span></a>
 </div>
 <div class="stats" aria-label="At a glance">
 <div class="stat"><b id="stat-count">17</b><span>Free<br>Tools</span></div>
@@ -430,7 +433,7 @@ loadPrayer();tick();
       box.innerHTML="";
       d.listings.slice(0,4).forEach(function(r){
         var card=document.createElement("div");card.className="room-card";
-        var img=r.img?'<img src="'+r.img+'" alt="" loading="lazy">':'<div style="height:86px;display:grid;place-items:center;font-size:34px;display:grid;place-items:center;color:var(--muted)"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-building"/></svg></div>';
+        var img=r.img?'<img src="'+r.img+'" alt="Rental listing photo" loading="lazy">':'<div style="height:86px;display:grid;place-items:center;font-size:34px;display:grid;place-items:center;color:var(--muted)"><svg class="isvg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-building"/></svg></div>';
         card.innerHTML=img+'<div class="room-body"><b></b><div class="price"></div><small></small></div>';
         card.querySelector("b").textContent=r.title;
         card.querySelector(".price").textContent="AED "+r.monthly.toLocaleString()+" / Month";
@@ -465,9 +468,8 @@ function paintTools(){
     if(state.filter!=="all"&&t[4]!==state.filter)return;
     var hay=(t[1]+" "+t[2]+" "+LABELS[t[4]]).toLowerCase();
     for(var i=0;i<words.length;i++){if(hay.indexOf(words[i])<0)return;}
-    var b=document.createElement("button");b.className="tool";b.setAttribute("data-name",t[1].toLowerCase());
+    var b=document.createElement("a");b.className="tool";b.href='/tools/'+t[3];b.setAttribute("data-name",t[1].toLowerCase());
     b.innerHTML='<span class="ti"><svg class="isvg" viewBox="0 0 24 24"><use href="#i-'+t[0]+'"/></svg></span><span style="min-width:0"><span class="cat-label">'+LABELS[t[4]]+'</span><b>'+t[1]+'</b><small class="body-sm muted">'+t[2]+'</small></span>';
-    b.onclick=function(){location.href='/tools/'+t[3]};
     tg.appendChild(b);shown++;
   });
   if(!shown){tg.innerHTML='<div class="empty"><p class="label-lg" style="color:var(--fg)">No tools match that search</p><p class="body-sm">Try a shorter word, like "pdf" or "image".</p></div>';}
@@ -494,11 +496,10 @@ function renderSuggest(){
   if(!q.trim()){box.hidden=true;return}
   if(!m.length){box.innerHTML='<div class="none">No tool found — try "PDF", "image" or "currency".</div>'}
   m.forEach(function(t){
-    var b=document.createElement("button");b.type="button";
+    var b=document.createElement("a");b.href='/tools/'+t[3];
     b.innerHTML="<b></b><small></small>";
     b.querySelector("b").textContent=t[1];
     b.querySelector("small").textContent=t[2];
-    b.addEventListener("mousedown",function(e){e.preventDefault();location.href='/tools/'+t[3]});
     box.appendChild(b);
   });
   box.hidden=false;

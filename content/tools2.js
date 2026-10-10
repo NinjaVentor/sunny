@@ -2,7 +2,7 @@
 module.exports = [
   {
     slug: "image-compressor", name: "Image Compressor",
-    title: "Compress Images Online Free — JPG/PNG Smaller",
+    title: "Compress Images Online Free",
     description: "Reduce image size free without visible quality loss. Perfect for job portals and WhatsApp — private, in-browser.",
     h1: "Image Compressor",
     overview: [
@@ -40,7 +40,7 @@ module.exports = [
   },
   {
     slug: "image-resizer", name: "Image Resizer",
-    title: "Resize Images Online Free — Exact Dimensions",
+    title: "Resize Images Online Free",
     description: "Resize photos to exact pixel dimensions free. Lock aspect ratio, keep quality — in your browser, no signup.",
     h1: "Image Resizer",
     overview: [
@@ -79,7 +79,7 @@ module.exports = [
   },
   {
     slug: "image-crop", name: "Image Crop",
-    title: "Crop Images Online Free — Passport & Profile",
+    title: "Crop Images Online Free",
     description: "Crop photos to exact ratios free. Passport, visa and profile presets — precise, private, in-browser.",
     h1: "Image Crop Tool",
     overview: [
@@ -118,7 +118,7 @@ module.exports = [
   },
   {
     slug: "currency-converter", name: "Currency Converter",
-    title: "Currency Converter — Live Rates, AED & World",
+    title: "Currency Converter - Live Rates",
     description: "Convert currencies at live mid-market rates free. AED to PKR, INR, USD and 30+ currencies with popular conversions.",
     h1: "Live Currency Converter",
     overview: [
@@ -156,7 +156,7 @@ module.exports = [
   },
   {
     slug: "vat-calculator", name: "VAT Calculator",
-    title: "UAE VAT Calculator — Add or Remove 5% VAT",
+    title: "UAE VAT Calculator - 5% VAT",
     description: "Calculate UAE 5% VAT instantly: add VAT to net prices or extract it from gross. Free, with invoice examples.",
     h1: "UAE VAT Calculator (5%)",
     overview: [
@@ -195,7 +195,7 @@ module.exports = [
   },
   {
     slug: "age-calculator", name: "Age Calculator",
-    title: "Age Calculator — Exact Age in Years, Months, Days",
+    title: "Age Calculator - Exact Age Online",
     description: "Calculate exact age from date of birth free. Years, months, days and total days — for forms, admissions and fun.",
     h1: "Age Calculator",
     overview: [
@@ -234,7 +234,7 @@ module.exports = [
   },
   {
     slug: "unit-converter", name: "Unit Converter",
-    title: "Unit Converter — Length, Weight, Temperature & More",
+    title: "Unit Converter - Convert Anything",
     description: "Convert units free: km to miles, kg to pounds, Celsius to Fahrenheit and more. Instant, accurate, no signup.",
     h1: "Unit Converter",
     overview: [
@@ -273,7 +273,7 @@ module.exports = [
   },
   {
     slug: "qibla-finder", name: "Qibla Finder",
-    title: "Qibla Finder — Accurate Prayer Direction Online",
+    title: "Qibla Finder - Prayer Direction",
     description: "Find the Qibla direction from anywhere free. GPS-based Kaaba bearing with live compass — private, no app needed.",
     h1: "Qibla Direction Finder",
     overview: [

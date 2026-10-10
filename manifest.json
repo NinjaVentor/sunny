@@ -1,0 +1,18 @@
+{
+  "name": "SunnyToolsPro — Free Online Tools",
+  "short_name": "SunnyToolsPro",
+  "description": "Your Everyday Digital Toolkit — free online tools, converters and daily utilities.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a1931",
+  "theme_color": "#0a1931",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
